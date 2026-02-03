@@ -1,4 +1,4 @@
-# .github/workflows/pr-comment-notifier.yml
+# .github/workflows/01.on-pr-comment-slack-notify.yml
 
 # 워크플로우의 이름을 지정합니다. GitHub Actions 탭에 이 이름이 표시됩니다.
 name: PR Comment Notifier

@@ -88,8 +88,8 @@ API 통신 방식(예: fetch, axios, react-query), 관련 모듈의 위치, 데�
     ```typescript
      type ApiError = {
        code: number;
-       message:string;
-       details?:string;
+       message: string;
+       details?: string;
      };
 
     type ApiResponse<T> = {
