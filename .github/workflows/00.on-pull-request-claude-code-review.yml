@@ -6,7 +6,7 @@ on:
     paths:
       # 1. 포함할 경로들
       - "src/**"
-      - "next.config.ts"
+      - "vite.config.ts"
       - "tsconfig.json"
       - "package.json"
       - "package-lock.json"
