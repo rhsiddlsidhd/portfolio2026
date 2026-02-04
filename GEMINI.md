@@ -35,6 +35,29 @@ Gemini-CLI는 이 파일의 내용을 항상 참고하여 일관성 있는 코�
   - **`types/`**: 공통으로 사용되는 TypeScript 타입/인터페이스가 위치합니다. 내부 파일들은 도메인별로 `[도메인명].d.ts` (예: `project.d.ts`, `user.d.ts`) 형식으로 작성하며, `.d.ts` 확장자를 사용하여 순수 타입 정의 파일임을 명시합니다.
   - **`utils/`**: 특정 도메인에 종속되지 않는 순수 유틸리티 함수(예: `formatDate`)가 위치합니다.
 
+#### `src/utils/` (유틸리티 함수)
+
+`src/utils/` 폴더는 **특정 도메인(예: Project, User)에 종속되지 않고 여러 곳에서 재사용 가능한 순수한 유틸리티 함수들**을 모아두는 곳입니다.
+
+**1. 순수 함수 (Pure Function) 지향:**
+*   **정의:** 동일한 입력에 대해 항상 동일한 출력을 반환하며, 함수 외부의 어떤 상태도 변경하지 않고, 함수 외부의 상태에도 의존하지 않는 함수입니다.
+*   **특징:** 예측 가능성이 높고, 테스트하기 용이하며, 버그 발생률이 낮습니다.
+*   **예시:** `formatDate`, `formatCurrency`, `debounce`, `throttle` 등.
+
+**2. 부작용 (Side Effects) 최소화:**
+*   유틸리티 함수는 가능한 한 부작용(예: 전역 변수 변경, 콘솔 로깅, 네트워크 요청, DOM 조작, 파일 쓰기/읽기)을 발생시키지 않도록 설계해야 합니다.
+*   부득이하게 부작용이 필요한 경우, 함수 스코프 내로 제한하거나 명확히 문서화해야 합니다.
+
+**3. 의존성 (Dependencies) 제한:**
+*   외부 라이브러리나 프로젝트 내부의 다른 모듈에 대한 의존성을 최소화합니다.
+*   의존성이 필요한 경우, 타입스크립트 인터페이스를 통해 추상화하거나 의존성 주입(Dependency Injection) 패턴을 고려할 수 있습니다.
+*   특정 UI 라이브러리(예: React, Next.js)나 전역 상태 관리 라이브러리에 직접적으로 의존하는 유틸리티는 `hooks/` 또는 `context/`와 같은 더 적합한 폴더에 배치하는 것을 고려합니다.
+
+**4. 파일 구조:**
+*   각 유틸리티 함수는 일반적으로 하나의 파일에 하나의 함수를 정의하는 것을 권장합니다. (예: `formatDate.ts`, `debounce.ts`)
+*   관련된 작은 유틸리티 함수들을 그룹화할 필요가 있다면, 하나의 파일 내에서 `export`할 수도 있습니다.
+
+
 ### 2.1.1. AI 도구별 역할 분담 (AI Tool Responsibilities)
 
 이 프로젝트는 두 가지 AI 도구를 사용하며, 각 도구의 작업 범위가 명확히 구분됩니다.
@@ -97,6 +120,54 @@ API 통신 방식(예: fetch, axios, react-query), 관련 모듈의 위치, 데�
       error: ApiError | null;
     };
     ```
+
+#### 에러 메시지 관리 (추가)
+
+프로젝트 전반의 일관성과 유지보수성을 위해, 공통으로 사용되는 에러 메시지는 중앙 집중식으로 관리합니다.
+
+*   **위치:** `src/constants/errorMessages.ts`와 같은 파일을 생성하여 에러 메시지 상수들을 정의합니다.
+*   **활용:** `src/api/errorHandler.ts`와 같은 중앙 에러 처리 로직에서 이 상수들을 참조하여 `ApiError` 객체의 `message` 필드를 구성합니다.
+
+```typescript
+// src/constants/errorMessages.ts 예시
+export const ERROR_MESSAGES = {
+  NETWORK_ERROR: '네트워크 연결에 실패했습니다. 잠시 후 다시 시도해주세요.',
+  UNAUTHORIZED: '인증 정보가 유효하지 않습니다. 다시 로그인해주세요.',
+  NOT_FOUND: '요청하신 데이터를 찾을 수 없습니다.',
+  SERVER_ERROR: '서버 오류가 발생했습니다. 문제가 지속되면 관리자에게 문의해주세요.',
+  INVALID_INPUT: '입력값이 유효하지 않습니다.',
+  // ... 기타 공통 에러 메시지
+};
+
+// src/api/errorHandler.ts에서 활용 예시 (가정)
+import { ERROR_MESSAGES } from '../constants/errorMessages';
+
+// ... (기존 에러 처리 로직)
+
+// 예를 들어, HTTP 상태 코드에 따라 메시지를 매핑
+const getErrorMessageByStatus = (status: number): string => {
+  if (status === 401) return ERROR_MESSAGES.UNAUTHORIZED;
+  if (status === 404) return ERROR_MESSAGES.NOT_FOUND;
+  if (status >= 500) return ERROR_MESSAGES.SERVER_ERROR;
+  return ERROR_MESSAGES.NETWORK_ERROR; // 기본값
+};
+
+// 중앙 에러 처리 함수에서 활용
+const handleApiError = (error: AxiosError): ApiResponse<any> => {
+  const status = error.response?.status || 0;
+  const message = getErrorMessageByStatus(status); // 중앙 관리 메시지 활용
+  const details = error.response?.data?.message || error.message;
+
+  return {
+    data: null,
+    error: {
+      code: status,
+      message: message,
+      details: details,
+    },
+  };
+};
+```
 
 ---
 
@@ -243,6 +314,7 @@ shadcn/ui의 `--radius` CSS 변수를 기준으로 통일합니다.
 - **기본 트랜지션**: 인터랙티브 요소(버튼, 링크, 카드)에는 `transition-colors duration-200`을 기본 적용합니다.
 - **모션 감소 존중**: `prefers-reduced-motion` 미디어 쿼리를 존중합니다. Tailwind의 `motion-reduce:` 변형을 활용합니다.
 - **페이지 전환/등장 애니메이션**: 필요 시 `opacity`와 `transform`만 사용하여 GPU 가속 애니메이션을 구현합니다. `width`, `height`, `top` 등 레이아웃을 유발하는 속성의 애니메이션은 지양합니다.
+- **스크롤 등장 애니메이션**: `IntersectionObserver`를 사용하는 스크롤 등장 애니메이션(예: `AnimatedSection` 컴포넌트)의 `threshold` 값은 **`0.5`**로 설정하여, 요소가 뷰포트의 **50%** 이상 보일 때 애니메이션이 시작되도록 합니다. 추후 필요에 따라 개선합니다.
 
 #### 아이콘 (Icons)
 
@@ -300,7 +372,10 @@ Tailwind CSS의 기본 브레이크포인트를 사용하며, 모바일 우선(m
 
 1. **유틸리티 함수** (`src/utils/`): 순수 함수이므로 테스트 작성이 가장 용이합니다. 우선적으로 작성합니다.
 2. **커스텀 훅** (`src/hooks/`): `renderHook`을 사용하여 훅의 상태 변화와 반환값을 검증합니다.
-3. **API 함수** (`src/api/`): 요청 URL, 파라미터, 에러 처리 흐름을 검증합니다. 네트워크 요청은 **Mock**하여 외부 의존성을 제거합니다.
+3.  **API 함수** (`src/api/`): 요청 URL, 파라미터, 에러 처리 흐름을 검증합니다. 네트워크 요청은 **Mock**하여 외부 의존성을 제거합니다.
+    *   **Mocking 전략 (추가)**:
+        *   **MSW (Mock Service Worker) 활용:** 실제 네트워크 요청을 가로채어 Mock 응답을 반환하도록 설정할 수 있어, 실제 백엔드 환경과 유사하게 테스트 환경을 구성할 수 있습니다. `MSW`는 브라우저 및 Node.js 환경 모두에서 작동합니다.
+        *   **`vi.mock`으로 `axios` 인스턴스 Mocking:** `vitest`의 `vi.mock`을 사용하여 `axios` 인스턴스 자체를 Mocking하거나, `axios` 요청을 래핑하는 API 클라이언트 함수를 Mocking하여 특정 응답을 반환하도록 설정할 수 있습니다. 이는 간단한 단위 테스트에 유용합니다.
 
 #### 테스트 작성 규칙
 
