@@ -1,3 +1,8 @@
 // This file is used to set up the test environment for Vitest.
-// For example, you can import custom matchers here.
-// import '@testing-library/jest-dom';
+import { expect, afterEach } from 'vitest';
+import { cleanup } from '@testing-library/react';
+
+// 각 테스트 후 자동 cleanup
+afterEach(() => {
+  cleanup();
+});
