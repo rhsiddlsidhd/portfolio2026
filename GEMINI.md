@@ -15,6 +15,7 @@ Gemini-CLI는 이 파일의 내용을 항상 참고하여 일관성 있는 코�
 
 ## 목차
 
+- [0. 프로젝트 기획안](./docs/00_project_plan.md)
 - [1. 프로젝트 개요](./docs/01_project_overview.md)
 - [2. 아키텍처](./docs/02_architecture_folder_structure.md)
   - [2.1. 폴더 구조](./docs/02_architecture_folder_structure.md)

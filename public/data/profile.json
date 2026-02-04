@@ -1,0 +1,12 @@
+{
+  "name": "홍길동",
+  "tagline": "주니어 프론트엔드 개발자",
+  "bio": "사용자 경험을 중시하는 React 개발자입니다.",
+  "avatarUrl": "/assets/images/profile-avatar.jpg",
+  "contact": {
+    "email": "your_email@example.com",
+    "github": "https://github.com/your_github",
+    "linkedin": "https://linkedin.com/in/your_linkedin",
+    "blog": "https://your_blog.com"
+  }
+}

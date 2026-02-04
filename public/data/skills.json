@@ -1,0 +1,42 @@
+[
+  {
+    "id": "lang-ts",
+    "name": "TypeScript",
+    "category": "Languages",
+    "icon": "SiTypescript",
+    "proficiency": 5,
+    "description": "정적 타입 시스템을 활용한 안정적인 코드 작성 경험."
+  },
+  {
+    "id": "fe-react",
+    "name": "React",
+    "category": "Frameworks",
+    "icon": "SiReact",
+    "proficiency": 5,
+    "description": "함수형 컴포넌트와 Hooks 기반의 UI 개발에 능숙."
+  },
+  {
+    "id": "style-tailwind",
+    "name": "Tailwind CSS",
+    "category": "Styling",
+    "icon": "SiTailwindcss",
+    "proficiency": 4,
+    "description": "Utility-first CSS 프레임워크를 활용한 반응형 웹 디자인."
+  },
+  {
+    "id": "lang-js",
+    "name": "JavaScript",
+    "category": "Languages",
+    "icon": "SiJavascript",
+    "proficiency": 5,
+    "description": "ES6+ 문법에 대한 깊은 이해와 비동기 처리."
+  },
+  {
+    "id": "fe-nextjs",
+    "category": "Frameworks",
+    "name": "Next.js",
+    "icon": "SiNextdotjs",
+    "proficiency": 4,
+    "description": "SSR, SSG, ISR 등 다양한 렌더링 전략 활용 경험."
+  }
+]

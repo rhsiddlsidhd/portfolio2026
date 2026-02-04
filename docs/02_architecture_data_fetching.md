@@ -9,8 +9,8 @@
 1.  **중앙 처리**: `axios`의 **응답(response) 인터셉터**를 사용하여 모든 API 호출의 에러를 중앙에서 일관되게 처리합니다.
 2.  **로직 위임**: 인터셉터는 가로챈 `error` 객체를 `src/api/errorHandler.ts`와 같은 곳에 위치한 **중앙 에러 처리 함수**에 위임합니다.
 3.  **에러 분석 및 값 반환**: 중앙 에러 처리 함수는 `error`의 `status` 코드 등을 분석하여 필요한 공통 로직(로깅 등)을 수행한 후, 미리 약속된 **'일정한 에러 값'**을 생성하여 반환합니다.
-4.  **Promise `resolve`**: 인터셉터는 중앙 에러 처리 함수로부터 받은 '일정한 에러 값'으로 Promise를 `reject`하지 않고 **`resolve`** 시킵니다.
-5.  **결과**: 이를 통해 각각의 API 호출 함수는 `try...catch` 없이도 항상 약속된 형태의 응답을 받게 됩니다. UI 컴포넌트는 이 값을 받아 `error` 필드의 유무로 성공/실패를 판단하여 간결하게 분기 처리를 할 수 있습니다.
+4. **Promise `reject`**: 인터셉터는 중앙 에러 처리 함수로부터 받은 `ApiError` 객체로 Promise를 **`reject`** 시킵니다.
+5. **결과**: API 호출 함수는 `Promise.catch()` 블록을 통해 에러를 명시적으로 처리해야 합니다. 이를 통해 성공적인 응답(`AxiosResponse`의 `data` 속성)과 에러 응답(`ApiError` 객체)을 명확하게 분리하여 처리할 수 있습니다. `ApiResponse` 타입은 API 응답 데이터를 래핑하여 표준화할 때 사용합니다.
 6.  **공통 응답 타입 (권장)**: 모든 API 응답은 아래와 같은 공통 타입을 사용하여 타입 안정성을 확보합니다.
     ```typescript
      type ApiError = {
@@ -57,18 +57,15 @@ const getErrorMessageByStatus = (status: number): string => {
 };
 
 // 중앙 에러 처리 함수에서 활용
-const handleApiError = (error: AxiosError): ApiResponse<any> => {
+const handleApiError = (error: AxiosError): ApiError => { // ApiResponse<any> 대신 ApiError 반환으로 수정
   const status = error.response?.status || 0;
   const message = getErrorMessageByStatus(status); // 중앙 관리 메시지 활용
   const details = error.response?.data?.message || error.message;
 
   return {
-    data: null,
-    error: {
-      code: status,
-      message: message,
-      details: details,
-    },
+    code: status,
+    message: message,
+    details: details,
   };
 };
 ```
