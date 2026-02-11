@@ -1,56 +1,49 @@
-# 프로젝트 기술 가이드
+# Gemini CLI 프로젝트 가이드
 
 <!--
-이 문서는 Gemini-CLI가 이 프로젝트의 코드를 이해하고 수정, 생성할 때 따라야 할 규칙과 가이드라인을 정의합니다.
-Gemini-CLI는 이 파일의 내용을 항상 참고하여 일관성 있는 코드를 작성해야 합니다.
+이 문서는 Gemini CLI가 이 프로젝트에서 작업할 때 따라야 할 역할, 범위, 규칙을 정의합니다.
+Gemini CLI는 이 파일의 내용을 항상 참고하여 일관성 있는 작업을 수행해야 합니다.
 -->
 
-## 개요
+## 역할 정의
 
-이 문서는 프로젝트의 기술 스택, 아키텍처, 코딩 컨벤션, 스타일 가이드 및 테스트 전략에 대한 규칙과 가이드라인을 정의합니다. Gemini-CLI는 이 문서들을 참고하여 일관성 있는 코드 작성 및 유지보수를 수행합니다.
+Gemini CLI는 이 프로젝트의 **비즈니스 로직, 데이터 연동, 유틸리티 구현 및 로직 테스트**를 전담합니다.
 
-자세한 내용은 각 섹션의 링크를 참조하십시오.
+## 담당 영역
 
----
+- `src/hooks/` — 커스텀 훅 설계·구현 (데이터 페칭, 상태 관리 등)
+- `src/api/` — axios 인스턴스 구성, API 함수 작성, 에러 핸들링
+- `src/utils/` — 순수 유틸리티 함수 (부수효과 없는 헬퍼)
+- `src/context/` — Context API 프로바이더 설계·구현
+- `src/types/` — 타입 정의 (API 응답, 도메인 모델, 공유 타입)
+- `src/constants/` — 상수 정의 (API 엔드포인트, 에러 메시지, 라우트 경로)
+- `*.test.ts` / `*.test.tsx` — Vitest 단위·통합 테스트 작성
+- 디버깅 및 성능 개선
 
-## 목차
+## 접근 금지 영역
 
-- [1. 프로젝트 개요](./docs/01_project_overview.md)
-- [2. 아키텍처](./docs/02_architecture_folder_structure.md)
-  - [2.1. 폴더 구조](./docs/02_architecture_folder_structure.md)
-    - [유틸리티 함수](./docs/02_architecture_folder_structure.md#srcutils-유틸리티-함수)
-  - [2.1.1. AI 도구별 역할 분담](./docs/02_architecture_ai_responsibilities.md)
-  - [2.2. 상태 관리](./docs/02_architecture_state_management.md)
-  - [2.3. 데이터 페칭](./docs/02_architecture_data_fetching.md)
-    - [에러 핸들링 아키텍처](./docs/02_architecture_data_fetching.md#에러-핸들링-아키텍처)
-    - [에러 메시지 관리](./docs/02_architecture_data_fetching.md#에러-메시지-관리-추가)
-- [3. 코딩 컨벤션](./docs/03_coding_conventions_naming_rules.md)
-  - [3.1. 네이밍 규칙](./docs/03_coding_conventions_naming_rules.md)
-  - [3.2. 타입스크립트](./docs/03_coding_conventions_typescript.md)
-  - [3.3. 컴포넌트 작성 스타일](./docs/03_coding_conventions_component_style.md)
-- [4. 스타일 가이드](./docs/04_styling_guide_method.md)
-  - [4.1. 스타일링 방식](./docs/04_styling_guide_method.md)
-  - [4.2. 디자인 시스템](./docs/04_styling_guide_design_system.md)
-    - [색상 체계](./docs/04_styling_guide_design_system.md#색상-체계-color-palette)
-    - [다크/라이트 모드](./docs/04_styling_guide_design_system.md#다크라이트-모드-theme-mode)
-    - [폰트 체계](./docs/04_styling_guide_design_system.md#폰트-체계-typography)
-    - [간격 체계](./docs/04_styling_guide_design_system.md#간격-체계-spacing)
-    - [모서리 둥글기](./docs/04_styling_guide_design_system.md#모서리-둥글기-border-radius)
-    - [애니메이션/트랜지션](./docs/04_styling_guide_design_system.md#애니메이션트랜지션-animation--transition)
-    - [아이콘](./docs/04_styling_guide_design_system.md#아이콘-icons)
-    - [반응형 브레이크포인트](./docs/04_styling_guide_design_system.md#반응형-브레이크포인트-responsive-breakpoints)
-    - [z-index 관리](./docs/04_styling_guide_design_system.md#z-index-관리)
-- [5. 테스트 전략](./docs/05_testing_strategy_overview.md)
-  - [5.1. 도구 및 역할 분담](./docs/05_testing_strategy_overview.md)
-  - [5.2. Vitest — 로직 테스트](./docs/05_testing_strategy_vitest.md)
-    - [테스트 파일 위치 및 네이밍](./docs/05_testing_strategy_vitest.md#테스트-파일-위치-및-네이밍)
-    - [테스트 대상 우선순위](./docs/05_testing_strategy_vitest.md#테스트-대상-우선순위)
-    - [테스트 작성 규칙](./docs/05_testing_strategy_vitest.md#테스트-작성-규칙)
-    - [실행 명령어](./docs/05_testing_strategy_vitest.md#실행-명령어)
-  - [5.3. Storybook — UI 테스트](./docs/05_testing_strategy_storybook.md)
-    - [목적](./docs/05_testing_strategy_storybook.md#목적)
-    - [Story 파일 위치 및 네이밍](./docs/05_testing_strategy_storybook.md#story-파일-위치-및-네이밍)
-    - [Story 작성 규칙](./docs/05_testing_strategy_storybook.md#story-작성-규칙)
-    - [Atomic Design 계층별 Story 전략](./docs/05_testing_strategy_storybook.md#atomic-design-계층별-story-전략)
-    - [실행 명령어](./docs/05_testing_strategy_storybook.md#실행-명령어)
-  - [5.4. 테스트 제외 대상](./docs/05_testing_strategy_exclusion.md)
+아래 폴더의 파일은 **읽기 전용**으로 취급하고 import만 사용합니다. 직접 추가·수정하지 않습니다.
+
+- `src/components/` — Claude Code 담당 (atoms, molecules, organisms, layout 전체)
+- `src/pages/` — Claude Code 담당
+- `src/styles/` — Claude Code 담당
+- `*.stories.tsx` — Claude Code 담당
+
+## 행동 규칙
+
+- 새로운 UI 컴포넌트가 필요한 경우: 직접 생성하지 않고 **사용자에게 Claude Code로 추가를 요청하라고 안내**
+- Storybook story 작성이 필요한 경우: 직접 생성하지 않고 **사용자에게 Claude Code로 작성을 요청하라고 안내**
+- 스타일(Tailwind 클래스, CSS 변수) 수정이 필요한 경우: **사용자에게 Claude Code로 수정을 요청하라고 안내**
+
+## 참조 문서
+
+로직 구현 및 테스트 작업 시 아래 문서를 반드시 참조합니다.
+
+- [AI 역할 분담](./docs/02_architecture_ai_responsibilities.md)
+- [폴더 구조](./docs/02_architecture_folder_structure.md)
+- [네이밍 규칙](./docs/03_coding_conventions_naming_rules.md)
+- [타입스크립트 규칙](./docs/03_coding_conventions_typescript.md)
+- [상태 관리](./docs/02_architecture_state_management.md)
+- [데이터 페칭](./docs/02_architecture_data_fetching.md)
+- [Vitest 전략](./docs/05_testing_strategy_vitest.md)
+- [테스트 제외 대상](./docs/05_testing_strategy_exclusion.md)

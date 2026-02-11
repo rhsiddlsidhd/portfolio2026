@@ -2,11 +2,11 @@ name: Claude Code Review # Trigger CI to refresh GitHub App permissions again
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [labeled]
     paths:
       # 1. 포함할 경로들
       - "src/**"
-      - "vite.config.ts"
+      - "next.config.ts"
       - "tsconfig.json"
       - "package.json"
       - "package-lock.json"
@@ -22,6 +22,7 @@ on:
 
 jobs:
   claude-review-caller:
+    if: github.event.label.name == 'claude-review'
     permissions:
       contents: read
       issues: write

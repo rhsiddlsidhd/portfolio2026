@@ -5,7 +5,8 @@
   - **`api/`**: `axios` 인스턴스 및 API 호출 함수들이 위치합니다.
   - **`assets/`**: 컴포넌트에서 직접 가져와 사용하는 이미지, 폰트 등의 자원이 위치합니다.
   - **`components/`**: Atomic Design 패턴에 따라 UI 컴포넌트를 구조화합니다.
-    - **`atoms/`**: UI의 가장 작은 단위. **`shadcn/ui` 라이브러리 컴포넌트로만 구성**합니다. (예: `Button`, `Input`). 새로운 `shadcn/ui` 컴포넌트 추가 시 `npx shadcn-ui@latest add [component]` 명령어를 사용합니다. **이 작업은 Claude Code가 전담하며, Gemini-CLI는 atoms를 직접 추가하거나 수정하지 않습니다.**
+    - **`atoms/`**: UI의 가장 작은 단위. **`shadcn/ui` 라이브러리 컴포넌트로만 구성**합니다. (예: `Button`, `Input`). 새로운 `shadcn/ui` 컴포넌트 추가 시 `npx shadcn-ui@latest add [component]` 명령어를 사용합니다.
+  - > **`components/` 하위 전체 계층(atoms, molecules, organisms, layout)은 Claude Code가 설계·구현을 전담합니다. Gemini CLI는 컴포넌트 파일을 직접 생성·수정하지 않으며, 필요한 로직(hooks, api 등)을 보완하는 역할을 합니다.**
     - **`molecules/`**: 여러 `atom`이 결합된 형태의 컴포넌트. (예: `SearchInput`)
     - **`organisms/`**: `atom`과 `molecule`이 결합된, 더 복잡하고 독립적인 UI 영역. (예: `ProjectCard`)
     - **`layout/`**: 페이지의 전체적인 골격을 잡는 컴포넌트. `Header`, `Footer`만 관리합니다.
