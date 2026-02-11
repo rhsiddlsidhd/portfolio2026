@@ -1,0 +1,50 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "title": "Portfolio Website Redesign",
+      "description": "Redesigned and developed a modern, responsive portfolio website using React and Tailwind CSS.",
+      "imageUrl": "/images/project1.png",
+      "link": "https://example.com/portfolio1",
+      "tags": ["React", "Tailwind CSS", "Web Design"]
+    },
+    {
+      "id": "2",
+      "title": "E-commerce Backend API",
+      "description": "Built a RESTful API for an e-commerce platform with Node.js, Express, and MongoDB.",
+      "imageUrl": "/images/project2.png",
+      "link": "https://example.com/project2",
+      "tags": ["Node.js", "Express", "MongoDB", "REST API"]
+    },
+    {
+      "id": "3",
+      "title": "Mobile App UI/UX Design",
+      "description": "Designed intuitive user interfaces and experiences for a cross-platform mobile application.",
+      "imageUrl": "/images/project3.png",
+      "link": "https://example.com/project3",
+      "tags": ["UI/UX Design", "Figma", "Mobile App"]
+    }
+  ],
+  "skills": [
+    {
+      "id": "s1",
+      "name": "JavaScript",
+      "level": "Expert"
+    },
+    {
+      "id": "s2",
+      "name": "TypeScript",
+      "level": "Advanced"
+    },
+    {
+      "id": "s3",
+      "name": "React",
+      "level": "Expert"
+    },
+    {
+      "id": "s4",
+      "name": "Node.js",
+      "level": "Advanced"
+    }
+  ]
+}

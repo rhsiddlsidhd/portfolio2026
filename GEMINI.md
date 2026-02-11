@@ -11,12 +11,14 @@ Gemini CLI는 이 프로젝트의 **비즈니스 로직, 데이터 연동, 유�
 
 ## 담당 영역
 
-- `src/hooks/` — 커스텀 훅 설계·구현 (데이터 페칭, 상태 관리 등)
-- `src/api/` — axios 인스턴스 구성, API 함수 작성, 에러 핸들링
-- `src/utils/` — 순수 유틸리티 함수 (부수효과 없는 헬퍼)
-- `src/context/` — Context API 프로바이더 설계·구현
-- `src/types/` — 타입 정의 (API 응답, 도메인 모델, 공유 타입)
-- `src/constants/` — 상수 정의 (API 엔드포인트, 에러 메시지, 라우트 경로)
+- `packages/backend/` — Node.js 서버 로직, API 구현
+- `packages/shared/` — 공유 타입 정의, 유틸리티 함수 구현 (백엔드/프론트엔드 공통)
+- `packages/frontend/src/hooks/` — 커스텀 훅 설계·구현 (데이터 페칭, 상태 관리 등)
+- `packages/frontend/src/api/` — axios 인스턴스 구성, API 함수 작성, 에러 핸들링
+- `packages/frontend/src/utils/` — 순수 유틸리티 함수 (부수효과 없는 헬퍼)
+- `packages/frontend/src/context/` — Context API 프로바이더 설계·구현
+- `packages/frontend/src/types/` — 타입 정의 (API 응답, 도메인 모델, 공유 타입)
+- `packages/frontend/src/constants/` — 상수 정의 (API 엔드포인트, 에러 메시지, 라우트 경로)
 - `*.test.ts` / `*.test.tsx` — Vitest 단위·통합 테스트 작성
 - 디버깅 및 성능 개선
 
@@ -24,10 +26,10 @@ Gemini CLI는 이 프로젝트의 **비즈니스 로직, 데이터 연동, 유�
 
 아래 폴더의 파일은 **읽기 전용**으로 취급하고 import만 사용합니다. 직접 추가·수정하지 않습니다.
 
-- `src/components/` — Claude Code 담당 (atoms, molecules, organisms, layout 전체)
-- `src/pages/` — Claude Code 담당
-- `src/styles/` — Claude Code 담당
-- `*.stories.tsx` — Claude Code 담당
+- `packages/frontend/src/components/` — Claude Code 담당 (atoms, molecules, organisms, layout 전체)
+- `packages/frontend/src/pages/` — Claude Code 담당
+- `packages/frontend/src/styles/` — Claude Code 담당
+- `packages/frontend/*.stories.tsx` — Claude Code 담당
 
 ## 행동 규칙
 
