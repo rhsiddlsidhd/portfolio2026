@@ -6,3 +6,10 @@
 |---|---|---|
 | **Vitest** | 로직 테스트 (단위/통합) | 유틸리티 함수, 커스텀 훅, API 함수 등 |
 | **Storybook** | UI 테스트 (시각적 검증) | atoms, molecules, organisms 컴포넌트 |
+
+#### AI 도구별 테스트 담당
+
+| 테스트 도구 | 담당 AI |
+|---|---|
+| **Storybook** (UI 시각 테스트) | Claude Code |
+| **Vitest** (로직 단위/통합 테스트) | Gemini CLI |
