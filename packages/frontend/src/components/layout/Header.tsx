@@ -1,40 +1,43 @@
+import clsx from "clsx";
+import { Dropdown, DropdownMenus, DropdownTrigger } from "../atoms/dropdown";
+import { ThemeToggle } from "../molecules/themeToggle";
+import useMobile from "@/hooks/useMobile";
+
 interface HeaderProps {
-  className?: string
+  className?: string;
 }
 
 export function Header({ className }: HeaderProps) {
+  const { isMobile } = useMobile();
   const navItems = [
-    { label: 'About', href: '#about' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Contact', href: '#contact' },
-  ]
+    { label: "기술", href: "#skills" },
+    { label: "프로젝트", href: "#projects" },
+    { label: "블로그", href: "#blog" },
+    { label: "연락처", href: "#contact" },
+  ];
 
   return (
-    <header className={className}>
-      <nav className="container mx-auto flex items-center justify-between px-4 py-4 md:px-8">
-        {/* Logo/Name */}
-        <a
-          href="#"
-          className="text-lg font-semibold text-foreground transition-colors hover:text-primary"
-        >
-          Portfolio
-        </a>
-
-        {/* Navigation Links */}
-        <ul className="flex items-center gap-6">
-          {navItems.map((item) => (
-            <li key={item.href}>
-              <a
-                href={item.href}
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+    <header className={clsx(className)}>
+      <ul
+        className={clsx(
+          "border-border bg-accent/50 text-accent-foreground m-auto flex w-fit items-center gap-4 border-2 px-4 py-2 backdrop-blur-2xl max-sm:w-9/10 max-sm:justify-between",
+          "rounded-4xl",
+        )}
+      >
+        <DropdownMenus
+          menus={navItems}
+          className={clsx(`flex gap-4`, isMobile && "hidden")}
+        />
+        <ThemeToggle
+          className={clsx("cursor-pointer", !isMobile && "hidden")}
+        />
+        <DropdownTrigger
+          className={clsx("cursor-pointer", !isMobile && "hidden")}
+        />
+      </ul>
+      <Dropdown>
+        <DropdownMenus menus={navItems} className={clsx(`space-y-4`)} />
+      </Dropdown>
     </header>
-  )
+  );
 }
