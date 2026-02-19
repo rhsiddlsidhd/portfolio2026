@@ -1,17 +1,17 @@
-import { SkillBadge } from '@/components/molecules/SkillBadge'
-import { Separator } from '@/components/atoms/separator'
+import { SkillBadge } from "@/components/molecules/SkillBadge";
+import { Separator } from "@/components/atoms/separator";
 
 interface Skill {
-  id: string
-  name: string
-  category: string
-  thumbnailUrl?: string | null
+  id: string;
+  name: string;
+  category: string;
+  thumbnailUrl?: string | null;
 }
 
 interface SkillsGridProps {
-  skills: Skill[]
-  groupByCategory?: boolean
-  className?: string
+  skills: Skill[];
+  groupByCategory?: boolean;
+  className?: string;
 }
 
 export function SkillsGrid({
@@ -29,20 +29,23 @@ export function SkillsGrid({
           ))}
         </div>
       </div>
-    )
+    );
   }
 
   // 카테고리별로 그룹핑
-  const groupedSkills = skills.reduce((acc, skill) => {
-    const category = skill.category
-    if (!acc[category]) {
-      acc[category] = []
-    }
-    acc[category].push(skill)
-    return acc
-  }, {} as Record<string, Skill[]>)
+  const groupedSkills = skills.reduce(
+    (acc, skill) => {
+      const category = skill.category;
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(skill);
+      return acc;
+    },
+    {} as Record<string, Skill[]>,
+  );
 
-  const categories = Object.keys(groupedSkills).sort()
+  const categories = Object.keys(groupedSkills).sort();
 
   return (
     <div className={className}>
@@ -51,7 +54,7 @@ export function SkillsGrid({
           <div key={category}>
             {/* Category Header */}
             <div className="mb-4">
-              <h3 className="text-lg font-semibold text-foreground">
+              <h3 className="text-foreground text-lg font-semibold">
                 {category}
               </h3>
               <Separator className="mt-2" />
@@ -67,5 +70,5 @@ export function SkillsGrid({
         ))}
       </div>
     </div>
-  )
+  );
 }

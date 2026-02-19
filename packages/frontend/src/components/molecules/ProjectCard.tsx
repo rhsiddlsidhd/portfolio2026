@@ -69,7 +69,7 @@ export function ProjectCard({
           <img
             src={project.thumbnailUrls.default}
             alt={`${project.title} thumbnail`}
-            className="w-full h-auto object-cover rounded-t-lg" // Added some basic styling
+            className="h-auto w-full rounded-t-lg object-cover" // Added some basic styling
             loading="lazy" // Add lazy loading by default
           />
         </picture>
@@ -84,7 +84,7 @@ export function ProjectCard({
 
       <CardContent className="space-y-4">
         {/* Description */}
-        <p className="text-sm text-muted-foreground leading-relaxed">
+        <p className="text-muted-foreground text-sm leading-relaxed">
           {project.description}
         </p>
 

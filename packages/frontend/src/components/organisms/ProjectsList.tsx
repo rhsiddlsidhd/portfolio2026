@@ -35,7 +35,7 @@ export function ProjectsList({
   if (projects.length === 0) {
     return (
       <div className={className}>
-        <p className="text-center text-muted-foreground">
+        <p className="text-muted-foreground text-center">
           No projects available yet.
         </p>
       </div>

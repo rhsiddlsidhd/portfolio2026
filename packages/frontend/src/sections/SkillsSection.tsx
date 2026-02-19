@@ -1,15 +1,15 @@
-import { SectionHeader } from '@/components/molecules/SectionHeader'
-import { SkillsGrid } from '@/components/organisms/SkillsGrid'
+import { SectionHeader } from "@/components/molecules/SectionHeader";
+import { SkillsGrid } from "@/components/organisms/SkillsGrid";
 
 interface Skill {
-  id: string
-  name: string
-  category: string
-  thumbnailUrl?: string | null
+  id: string;
+  name: string;
+  category: string;
+  thumbnailUrl?: string | null;
 }
 
 interface SkillsSectionProps {
-  skills: Skill[]
+  skills: Skill[];
 }
 
 export function SkillsSection({ skills }: SkillsSectionProps) {
@@ -25,5 +25,5 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
         <SkillsGrid skills={skills} groupByCategory />
       </div>
     </section>
-  )
+  );
 }

@@ -11,5 +11,9 @@
     "lint:frontend": "npm run lint --workspace=frontend",
     "test:frontend": "npm run test --workspace=frontend",
     "start:backend": "npm run start --workspace=backend"
+  },
+  "devDependencies": {
+    "prettier": "^3.8.1",
+    "prettier-plugin-tailwindcss": "^0.7.2"
   }
 }

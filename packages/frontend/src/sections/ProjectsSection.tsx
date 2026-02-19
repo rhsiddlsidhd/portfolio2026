@@ -1,30 +1,30 @@
-import { SectionHeader } from '@/components/molecules/SectionHeader'
-import { ProjectsList } from '@/components/organisms/ProjectsList'
+import { SectionHeader } from "@/components/molecules/SectionHeader";
+import { ProjectsList } from "@/components/organisms/ProjectsList";
 
 interface Skill {
-  id: string
-  name: string
-  category: string
-  thumbnailUrl?: string | null
+  id: string;
+  name: string;
+  category: string;
+  thumbnailUrl?: string | null;
 }
 
 interface Project {
-  id: string
-  name: string
-  title: string
-  description: string
-  skills: string[]
-  thumbnailUrl?: string | null
-  deployUrl?: string | null
-  githubUrl?: string | null
-  startDate?: string | null
-  endDate?: string | null
-  role?: string
+  id: string;
+  name: string;
+  title: string;
+  description: string;
+  skills: string[];
+  thumbnailUrl?: string | null;
+  deployUrl?: string | null;
+  githubUrl?: string | null;
+  startDate?: string | null;
+  endDate?: string | null;
+  role?: string;
 }
 
 interface ProjectsSectionProps {
-  projects: Project[]
-  allSkills: Skill[]
+  projects: Project[];
+  allSkills: Skill[];
 }
 
 export function ProjectsSection({ projects, allSkills }: ProjectsSectionProps) {
@@ -40,5 +40,5 @@ export function ProjectsSection({ projects, allSkills }: ProjectsSectionProps) {
         <ProjectsList projects={projects} allSkills={allSkills} />
       </div>
     </section>
-  )
+  );
 }

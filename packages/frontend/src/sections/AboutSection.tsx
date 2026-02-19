@@ -1,7 +1,7 @@
-import { SectionHeader } from '@/components/molecules/SectionHeader'
+import { SectionHeader } from "@/components/molecules/SectionHeader";
 
 interface AboutSectionProps {
-  description: string
+  description: string;
 }
 
 export function AboutSection({ description }: AboutSectionProps) {
@@ -11,11 +11,11 @@ export function AboutSection({ description }: AboutSectionProps) {
         <SectionHeader title="About Me" className="mb-12" />
 
         <div className="mx-auto max-w-3xl">
-          <p className="text-lg leading-relaxed text-muted-foreground">
+          <p className="text-muted-foreground text-lg leading-relaxed">
             {description}
           </p>
         </div>
       </div>
     </section>
-  )
+  );
 }
