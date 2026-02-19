@@ -1,11 +1,11 @@
-import { SectionHeader } from '@/components/molecules/SectionHeader'
-import { Button } from '@/components/atoms/button'
-import { Mail, Phone, Globe } from 'lucide-react'
+import { SectionHeader } from "@/components/molecules/SectionHeader";
+import { Button } from "@/components/atoms/button";
+import { Mail, Phone, Globe } from "lucide-react";
 
 interface ContactSectionProps {
-  email: string
-  phone?: string
-  blogUrl?: string
+  email: string;
+  phone?: string;
+  blogUrl?: string;
 }
 
 export function ContactSection({ email, phone, blogUrl }: ContactSectionProps) {
@@ -49,5 +49,5 @@ export function ContactSection({ email, phone, blogUrl }: ContactSectionProps) {
         </div>
       </div>
     </section>
-  )
+  );
 }

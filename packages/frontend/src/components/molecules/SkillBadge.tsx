@@ -1,19 +1,19 @@
-import { Badge } from '@/components/atoms/badge'
+import { Badge } from "@/components/atoms/badge";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '@/components/atoms/tooltip'
+} from "@/components/atoms/tooltip";
 
 interface SkillBadgeProps {
   skill: {
-    id: string
-    name: string
-    category: string
-    thumbnailUrl?: string | null
-  }
-  showTooltip?: boolean
-  className?: string
+    id: string;
+    name: string;
+    category: string;
+    thumbnailUrl?: string | null;
+  };
+  showTooltip?: boolean;
+  className?: string;
 }
 
 export function SkillBadge({
@@ -25,10 +25,10 @@ export function SkillBadge({
     <Badge variant="secondary" className={className}>
       {skill.name}
     </Badge>
-  )
+  );
 
   if (!showTooltip) {
-    return badge
+    return badge;
   }
 
   return (
@@ -38,5 +38,5 @@ export function SkillBadge({
         <p className="text-xs">{skill.category}</p>
       </TooltipContent>
     </Tooltip>
-  )
+  );
 }

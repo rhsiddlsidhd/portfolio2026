@@ -1,10 +1,10 @@
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/atoms/avatar'
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/atoms/avatar";
 
 interface ProfileHeaderProps {
-  name: string
-  headline: string
-  thumbnailUrl?: string | null
-  className?: string
+  name: string;
+  headline: string;
+  thumbnailUrl?: string | null;
+  className?: string;
 }
 
 export function ProfileHeader({
@@ -28,16 +28,16 @@ export function ProfileHeader({
 
         {/* Name */}
         <div className="space-y-2">
-          <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
+          <h1 className="text-foreground text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
             {name}
           </h1>
 
           {/* Headline */}
-          <p className="text-lg text-muted-foreground md:text-xl lg:text-2xl">
+          <p className="text-muted-foreground text-lg md:text-xl lg:text-2xl">
             {headline}
           </p>
         </div>
       </div>
     </div>
-  )
+  );
 }

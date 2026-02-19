@@ -1,25 +1,33 @@
-import { Header, Footer } from '@/components/layout'
+import { Header, Footer } from "@/components/layout";
 import {
   HeroSection,
   AboutSection,
   SkillsSection,
   ProjectsSection,
   ContactSection,
-} from '@/sections'
+} from "@/sections";
 
-// Import data from shared package
-import userData from '../../../shared/data/user.json'
-import skillsData from '../../../shared/data/skills.json'
-import projectsData from '../../../shared/data/projects.json'
+import userData from "../../../shared/data/user.json";
+import skillsData from "../../../shared/data/skills.json";
+import projectsData from "../../../shared/data/projects.json";
+import { ThemeToggle } from "@/components/molecules/themeToggle";
+import clsx from "clsx";
 
 export function HomePage() {
   return (
     <>
-      <Header className="fixed top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60" />
-
-      <main>
+      <aside
+        className={clsx(
+          "fixed top-2 right-0 z-10 flex justify-end",
+          "max-sm:hidden",
+        )}
+      >
+        <ThemeToggle className="mr-2 cursor-pointer p-4" />
+      </aside>
+      <main className="bg-background text-foreground">
         <HeroSection user={userData} />
         <AboutSection description={userData.description} />
+        <Header className="sticky top-0 border-blue-500 py-2" />
         <SkillsSection skills={skillsData} />
         <ProjectsSection projects={projectsData} allSkills={skillsData} />
         <ContactSection
@@ -31,5 +39,5 @@ export function HomePage() {
 
       <Footer name={userData.name} />
     </>
-  )
+  );
 }

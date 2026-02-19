@@ -1,28 +1,32 @@
-import { ProfileHeader } from '@/components/molecules/ProfileHeader'
-import { Button } from '@/components/atoms/button'
-import { ArrowDown, Mail } from 'lucide-react'
+import { ProfileHeader } from "@/components/molecules/ProfileHeader";
+import { Button } from "@/components/atoms/button";
+import { ArrowDown, Mail } from "lucide-react";
 
 interface HeroContentProps {
   user: {
-    name: string
-    headline: string
-    email: string
-    thumbnailUrl?: string | null
-  }
-  showCTA?: boolean
-  className?: string
+    name: string;
+    headline: string;
+    email: string;
+    thumbnailUrl?: string | null;
+  };
+  showCTA?: boolean;
+  className?: string;
 }
 
-export function HeroContent({ user, showCTA = true, className }: HeroContentProps) {
+export function HeroContent({
+  user,
+  showCTA = true,
+  className,
+}: HeroContentProps) {
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contact')
-    contactSection?.scrollIntoView({ behavior: 'smooth' })
-  }
+    const contactSection = document.getElementById("contact");
+    contactSection?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const scrollToAbout = () => {
-    const aboutSection = document.getElementById('about')
-    aboutSection?.scrollIntoView({ behavior: 'smooth' })
-  }
+    const aboutSection = document.getElementById("about");
+    aboutSection?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <div className={className}>
@@ -51,5 +55,5 @@ export function HeroContent({ user, showCTA = true, className }: HeroContentProp
         </div>
       </div>
     </div>
-  )
+  );
 }

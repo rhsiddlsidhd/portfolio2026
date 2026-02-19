@@ -1,24 +1,8 @@
-name: Claude Code Review # Trigger CI to refresh GitHub App permissions again
+name: Claude Code Review
 
 on:
   pull_request:
     types: [labeled]
-    paths:
-      # 1. 포함할 경로들
-      - "src/**"
-      - "next.config.ts"
-      - "tsconfig.json"
-      - "package.json"
-      - "package-lock.json"
-      - ".github/workflows/**"
-
-      # 2. 위 경로 중에서 제외할 경로들
-      # 반드시 포함할 경로 뒤에 와야 합니다.
-      - "!**/*.md"
-      - "!src/**/*.test.ts"
-      - "!src/**/*.test.tsx"
-      - "!src/**/*.spec.ts"
-      - "!src/**/*.spec.tsx"
 
 jobs:
   claude-review-caller:
