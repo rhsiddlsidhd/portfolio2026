@@ -10,20 +10,25 @@ interface SkillBadgeProps {
     id: string;
     name: string;
     category: string;
-    thumbnailUrl?: string | null;
   };
   showTooltip?: boolean;
   className?: string;
 }
+
+const imageBaseUrl = "/images/skills";
 
 export function SkillBadge({
   skill,
   showTooltip = true,
   className,
 }: SkillBadgeProps) {
+  console.log(skill.id);
   const badge = (
-    <Badge variant="secondary" className={className}>
-      {skill.name}
+    <Badge data-slot="badge" variant="secondary" className={className}>
+      <img
+        className="aspect-square w-8"
+        src={`${imageBaseUrl}/${skill.id}.svg`}
+      />
     </Badge>
   );
 
@@ -35,7 +40,7 @@ export function SkillBadge({
     <Tooltip>
       <TooltipTrigger asChild>{badge}</TooltipTrigger>
       <TooltipContent>
-        <p className="text-xs">{skill.category}</p>
+        <p className="text-xs">{skill.name}</p>
       </TooltipContent>
     </Tooltip>
   );
