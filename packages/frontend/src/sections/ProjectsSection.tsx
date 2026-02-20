@@ -5,7 +5,6 @@ interface Skill {
   id: string;
   name: string;
   category: string;
-  thumbnailUrl?: string | null;
 }
 
 interface Project {

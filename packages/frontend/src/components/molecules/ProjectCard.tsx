@@ -10,6 +10,7 @@ import { Button } from "@/components/atoms/button";
 import { SkillBadge } from "./SkillBadge";
 import { ExternalLink, Github } from "lucide-react";
 import { IProject } from "../../../shared/src/types/project"; // Import IProject
+import { Badge } from "../atoms/badge";
 
 interface Skill {
   id: string;
@@ -76,7 +77,10 @@ export function ProjectCard({
       )}
 
       <CardHeader>
-        <CardTitle className="text-xl">{project.title}</CardTitle>
+        <CardTitle className="text-xl">{project.title} </CardTitle>
+        <Badge data-slot="badge" variant="secondary">
+          {project.name}
+        </Badge>
         {project.role && (
           <CardDescription className="text-xs">{project.role}</CardDescription>
         )}
@@ -92,7 +96,7 @@ export function ProjectCard({
         {projectSkills.length > 0 && (
           <div className="flex flex-wrap gap-2">
             {projectSkills.map((skill) => (
-              <SkillBadge key={skill.id} skill={skill} showTooltip={false} />
+              <SkillBadge key={skill.id} skill={skill} />
             ))}
           </div>
         )}
@@ -120,7 +124,6 @@ export function ProjectCard({
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Github />
                 GitHub
               </a>
             </Button>

@@ -44,7 +44,22 @@ export function ProjectsList({
 
   return (
     <div className={className}>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Mobile: Horizontal scroll */}
+      <div className="md:hidden">
+        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4">
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              allSkills={allSkills}
+              className="w-[70vw] shrink-0 snap-start pt-0"
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop: Grid */}
+      <div className="hidden gap-6 sm:grid-cols-2 md:grid lg:grid-cols-4">
         {projects.map((project) => (
           <ProjectCard
             key={project.id}
