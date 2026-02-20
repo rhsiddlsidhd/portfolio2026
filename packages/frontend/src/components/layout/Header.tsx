@@ -1,5 +1,10 @@
 import clsx from "clsx";
-import { Dropdown, DropdownMenus, DropdownTrigger } from "../atoms/dropdown";
+import {
+  Dropdown,
+  DropdownMenus,
+  DropdownOverlay,
+  DropdownTrigger,
+} from "../atoms/dropdown";
 import { ThemeToggle } from "../molecules/themeToggle";
 import useMobile from "@/hooks/useMobile";
 
@@ -20,7 +25,7 @@ export function Header({ className }: HeaderProps) {
     <header className={clsx(className)}>
       <ul
         className={clsx(
-          "border-border bg-accent/50 text-accent-foreground m-auto flex w-fit items-center gap-4 border-2 px-4 py-2 backdrop-blur-2xl max-sm:w-9/10 max-sm:justify-between",
+          "border-border bg-accent/50 text-accent-foreground relative z-50 m-auto flex w-fit items-center gap-4 border-2 px-4 py-2 backdrop-blur-2xl max-sm:w-9/10 max-sm:justify-between",
           "rounded-4xl",
         )}
       >
@@ -38,6 +43,7 @@ export function Header({ className }: HeaderProps) {
       <Dropdown>
         <DropdownMenus menus={navItems} className={clsx(`space-y-4`)} />
       </Dropdown>
+      <DropdownOverlay />
     </header>
   );
 }
