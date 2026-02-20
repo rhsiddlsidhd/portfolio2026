@@ -10,7 +10,7 @@ interface ProjectsSectionProps {
 
 export function ProjectsSection({ projects, allSkills }: ProjectsSectionProps) {
   return (
-    <section id="projects" className="py-20">
+    <section id="projects" className="overflow-hidden py-20">
       <div className="container mx-auto px-4 md:px-8">
         <SectionHeader
           title="Projects"

@@ -29,7 +29,11 @@ export function HeroContent({
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex min-h-[80vh] flex-col items-center justify-center space-y-8">
           {/* Profile Header */}
-          <ProfileHeader name={user.name} headline={user.headline} />
+          <ProfileHeader
+            name={user.name}
+            headline={user.headline}
+            id={user.id}
+          />
 
           {/* CTA Buttons */}
           {showCTA && (

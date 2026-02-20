@@ -1,10 +1,16 @@
+import { imageBaseUrl } from "@/constants/path";
+import { Avatar, AvatarFallback, AvatarImage } from "../atoms/avatar";
+import { User } from "lucide-react";
+
 interface ProfileHeaderProps {
+  id: string;
   name: string;
   headline: string;
   className?: string;
 }
 
 export function ProfileHeader({
+  id,
   name,
   headline,
   className,
@@ -14,13 +20,16 @@ export function ProfileHeader({
       <div className="flex flex-col items-center gap-6 text-center">
         {/* Avatar */}
 
-        {/* <Avatar className="size-24 md:size-32">
-            <AvatarImage src={thumbnailUrl} alt={name} />
-            <AvatarFallback className="text-2xl font-semibold">
-              {name.charAt(0)}
-            </AvatarFallback>
-          </Avatar>
-         */}
+        <Avatar className="size-24 md:size-32">
+          <AvatarImage
+            src={`${imageBaseUrl}/users/${id}.webp`}
+            alt={name}
+            className="object-cover"
+          />
+          <AvatarFallback>
+            <User className="text-muted-foreground size-10" />
+          </AvatarFallback>
+        </Avatar>
 
         {/* Name */}
         <div className="space-y-2">

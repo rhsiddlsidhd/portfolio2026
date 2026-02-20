@@ -114,7 +114,12 @@ export function SkillsGrid({
             className="animate-fadeIn flex flex-wrap gap-2"
           >
             {currentSkills.map((skill) => (
-              <SkillBadge key={skill.id} skill={skill} showTooltip={true} />
+              <SkillBadge
+                key={skill.id}
+                skill={skill}
+                showTooltip={true}
+                className="p-4"
+              />
             ))}
           </div>
         </div>
@@ -127,7 +132,12 @@ export function SkillsGrid({
           className="animate-fadeIn flex flex-wrap gap-2"
         >
           {currentSkills.map((skill) => (
-            <SkillBadge key={skill.id} skill={skill} showTooltip={true} />
+            <SkillBadge
+              key={skill.id}
+              skill={skill}
+              showTooltip={true}
+              className="px-4 py-2"
+            />
           ))}
         </div>
       </div>
