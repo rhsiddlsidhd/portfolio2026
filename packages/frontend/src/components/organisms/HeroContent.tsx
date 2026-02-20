@@ -1,14 +1,10 @@
 import { ProfileHeader } from "@/components/molecules/ProfileHeader";
 import { Button } from "@/components/atoms/button";
 import { ArrowDown, Mail } from "lucide-react";
+import type { IUser } from "../../../../shared/src/types/user";
 
 interface HeroContentProps {
-  user: {
-    name: string;
-    headline: string;
-    email: string;
-    thumbnailUrl?: string | null;
-  };
+  user: IUser;
   showCTA?: boolean;
   className?: string;
 }
@@ -33,11 +29,7 @@ export function HeroContent({
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex min-h-[80vh] flex-col items-center justify-center space-y-8">
           {/* Profile Header */}
-          <ProfileHeader
-            name={user.name}
-            headline={user.headline}
-            thumbnailUrl={user.thumbnailUrl}
-          />
+          <ProfileHeader name={user.name} headline={user.headline} />
 
           {/* CTA Buttons */}
           {showCTA && (

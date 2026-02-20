@@ -1,15 +1,10 @@
 import { SectionHeader } from "@/components/molecules/SectionHeader";
 import { SkillsGrid } from "@/components/organisms/SkillsGrid";
-
-interface Skill {
-  id: string;
-  name: string;
-  category: string;
-  thumbnailUrl?: string | null;
-}
+import { SkillsFilterProvider } from "@/context/skillsFilter.context";
+import type { ISkill } from "../../../shared/src/types/skill";
 
 interface SkillsSectionProps {
-  skills: Skill[];
+  skills: ISkill[];
 }
 
 export function SkillsSection({ skills }: SkillsSectionProps) {
@@ -22,7 +17,9 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
           className="mb-12"
         />
 
-        <SkillsGrid skills={skills} groupByCategory />
+        <SkillsFilterProvider initialValue={undefined}>
+          <SkillsGrid skills={skills} groupByCategory />
+        </SkillsFilterProvider>
       </div>
     </section>
   );

@@ -1,30 +1,11 @@
 import { SectionHeader } from "@/components/molecules/SectionHeader";
 import { ProjectsList } from "@/components/organisms/ProjectsList";
-
-interface Skill {
-  id: string;
-  name: string;
-  category: string;
-  thumbnailUrl?: string | null;
-}
-
-interface Project {
-  id: string;
-  name: string;
-  title: string;
-  description: string;
-  skills: string[];
-  thumbnailUrl?: string | null;
-  deployUrl?: string | null;
-  githubUrl?: string | null;
-  startDate?: string | null;
-  endDate?: string | null;
-  role?: string;
-}
+import type { IProject } from "../../../shared/src/types/project";
+import type { ISkill } from "../../../shared/src/types/skill";
 
 interface ProjectsSectionProps {
-  projects: Project[];
-  allSkills: Skill[];
+  projects: IProject[];
+  allSkills: ISkill[];
 }
 
 export function ProjectsSection({ projects, allSkills }: ProjectsSectionProps) {
