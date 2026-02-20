@@ -22,7 +22,7 @@ export function Header({ className }: HeaderProps) {
   ];
 
   return (
-    <header className={clsx(className)}>
+    <header className={clsx("relative z-50", className)}>
       <ul
         className={clsx(
           "border-border bg-accent/50 text-accent-foreground relative z-50 m-auto flex w-fit items-center gap-4 border-2 px-4 py-2 backdrop-blur-2xl max-sm:w-9/10 max-sm:justify-between",

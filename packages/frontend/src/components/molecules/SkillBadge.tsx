@@ -4,30 +4,25 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/atoms/tooltip";
+import { imageBaseUrl } from "@/constants/path";
+import type { ISkill } from "../../../../shared/src/types/skill";
 
 interface SkillBadgeProps {
-  skill: {
-    id: string;
-    name: string;
-    category: string;
-  };
+  skill: ISkill;
   showTooltip?: boolean;
   className?: string;
 }
-
-const imageBaseUrl = "/images/skills";
 
 export function SkillBadge({
   skill,
   showTooltip = true,
   className,
 }: SkillBadgeProps) {
-  console.log(skill.id);
   const badge = (
     <Badge data-slot="badge" variant="secondary" className={className}>
       <img
         className="aspect-square w-8"
-        src={`${imageBaseUrl}/${skill.id}.svg`}
+        src={`${imageBaseUrl}/skills/${skill.id}.svg`}
       />
     </Badge>
   );

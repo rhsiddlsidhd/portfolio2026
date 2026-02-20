@@ -26,7 +26,7 @@ export function HomePage() {
       <main className="bg-background text-foreground">
         <HeroSection user={userData} />
         <AboutSection description={userData.description} />
-        <Header className="sticky top-0 border-blue-500 py-2" />
+        <Header className="sticky top-2 border-blue-500 py-2" />
         <SkillsSection skills={skillsData} />
         <ProjectsSection projects={projectsData} allSkills={skillsData} />
         <ContactSection

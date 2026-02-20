@@ -3,16 +3,10 @@
 import { SkillBadge } from "@/components/molecules/SkillBadge";
 import { Button } from "@/components/atoms/button";
 import { useSkillsFilter } from "@/context/skillsFilter.context";
-
-interface Skill {
-  id: string;
-  name: string;
-  category: string;
-  thumbnailUrl?: string | null;
-}
+import type { ISkill } from "../../../../shared/src/types/skill";
 
 interface SkillsGridProps {
-  skills: Skill[];
+  skills: ISkill[];
   groupByCategory?: boolean;
   className?: string;
 }
@@ -56,7 +50,7 @@ export function SkillsGrid({
       acc[category].push(skill);
       return acc;
     },
-    {} as Record<string, Skill[]>,
+    {} as Record<string, ISkill[]>,
   );
 
   const categories = Object.keys(groupedSkills).sort((a, b) => {

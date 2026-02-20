@@ -1,15 +1,10 @@
 import { SectionHeader } from "@/components/molecules/SectionHeader";
 import { SkillsGrid } from "@/components/organisms/SkillsGrid";
 import { SkillsFilterProvider } from "@/context/skillsFilter.context";
-
-interface Skill {
-  id: string;
-  name: string;
-  category: string;
-}
+import type { ISkill } from "../../../shared/src/types/skill";
 
 interface SkillsSectionProps {
-  skills: Skill[];
+  skills: ISkill[];
 }
 
 export function SkillsSection({ skills }: SkillsSectionProps) {

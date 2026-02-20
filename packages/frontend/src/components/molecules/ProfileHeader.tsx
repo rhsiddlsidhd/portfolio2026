@@ -1,30 +1,26 @@
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/atoms/avatar";
-
 interface ProfileHeaderProps {
   name: string;
   headline: string;
-  thumbnailUrl?: string | null;
   className?: string;
 }
 
 export function ProfileHeader({
   name,
   headline,
-  thumbnailUrl,
   className,
 }: ProfileHeaderProps) {
   return (
     <div className={className}>
       <div className="flex flex-col items-center gap-6 text-center">
         {/* Avatar */}
-        {thumbnailUrl && (
-          <Avatar className="size-24 md:size-32">
+
+        {/* <Avatar className="size-24 md:size-32">
             <AvatarImage src={thumbnailUrl} alt={name} />
             <AvatarFallback className="text-2xl font-semibold">
               {name.charAt(0)}
             </AvatarFallback>
           </Avatar>
-        )}
+         */}
 
         {/* Name */}
         <div className="space-y-2">

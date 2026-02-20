@@ -13,21 +13,6 @@
       "mongodb",
       "nextjs"
     ],
-    "thumbnailUrls": {
-      "webp": {
-        "w320": "/images/projects/project-1/webp/tieKnot_project_320w.webp",
-        "w640": "/images/projects/project-1/webp/tieKnot_project_640w.webp",
-        "w960": "/images/projects/project-1/webp/tieKnot_project_960w.webp",
-        "w1280": "/images/projects/project-1/webp/tieKnot_project_1280w.webp"
-      },
-      "jpeg": {
-        "w320": "/images/projects/project-1/jpg/tieKnot_project_320w.jpeg",
-        "w640": "/images/projects/project-1/jpg/tieKnot_project_640w.jpeg",
-        "w960": "/images/projects/project-1/jpg/tieKnot_project_960w.jpeg",
-        "w1280": "/images/projects/project-1/jpg/tieKnot_project_1280w.jpeg"
-      },
-      "default": "/images/projects/project-1/jpg/tieKnot_project_1280w.jpeg"
-    },
     "deployUrl": null,
     "githubUrl": null,
     "startDate": null,
@@ -40,21 +25,6 @@
     "title": "Portfolio2026",
     "description": "CSR 기반의 가벼운 SPA 포트폴리오로, GitHub 리포지토리를 활용한 Vercel 자동 배포 환경에서 운영되며, CSR 환경에서 이미지 렌더링 최적화, 크로스 브라우징 호환성 확보, 인터랙티브 애니메이션 성능 개선 등 실제 프론트엔드 개발 시 마주하는 다양한 문제들을 해결하고 그 과정을 수치적 데이터와 함께 증명한 사례들을 담은 프로젝트입니다.",
     "skills": ["typescript", "tailwindcss", "react", "swr", "github"],
-    "thumbnailUrls": {
-      "webp": {
-        "w320": "/images/projects/project-2/webp/portfolio_project_320w.webp",
-        "w640": "/images/projects/project-2/webp/portfolio_project_640w.webp",
-        "w960": "/images/projects/project-2/webp/portfolio_project_960w.webp",
-        "w1280": "/images/projects/project-2/webp/portfolio_project_1280w.webp"
-      },
-      "jpeg": {
-        "w320": "/images/projects/project-2/jpg/portfolio_project_320w.jpeg",
-        "w640": "/images/projects/project-2/jpg/portfolio_project_640w.jpeg",
-        "w960": "/images/projects/project-2/jpg/portfolio_project_960w.jpeg",
-        "w1280": "/images/projects/project-2/jpg/portfolio_project_1280w.jpeg"
-      },
-      "default": "/images/projects/project-2/jpg/portfolio_project_1280w.jpeg"
-    },
     "deployUrl": null,
     "githubUrl": null,
     "startDate": null,
