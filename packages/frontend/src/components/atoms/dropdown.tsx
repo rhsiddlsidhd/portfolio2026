@@ -3,16 +3,13 @@ import { Menu, XIcon } from "lucide-react";
 import clsx from "clsx";
 import { useDropdownStore } from "@/store/dropdown.store";
 
-interface DropdownTriggerProps {
+type DropdownTriggerProps = {
   className?: string;
-}
+};
 
 const DropdownTrigger = ({ className }: DropdownTriggerProps) => {
   const toggleDropdown = useDropdownStore((state) => state.toggleDropdown);
   const isOpen = useDropdownStore((state) => state.isOpen);
-  useEffect(() => {
-    console.log(isOpen);
-  }, [isOpen]);
   return (
     <div className={clsx("relative h-4 w-4 p-2", className)}>
       <XIcon
@@ -54,10 +51,10 @@ type Menus = {
   href: string;
 }[];
 
-interface DropdownMenusProps {
+type DropdownMenusProps = {
   menus: Menus;
   className?: string;
-}
+};
 
 const DropdownMenus = ({ menus, className }: DropdownMenusProps) => {
   const closeDropdown = useDropdownStore((state) => state.closeDropdown);
