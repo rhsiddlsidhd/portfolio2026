@@ -17,7 +17,7 @@ export function HomePage() {
     <section className="relative">
       <aside
         className={clsx(
-          "fixed top-2 right-0 z-10 flex justify-end",
+          "fixed top-2 right-0 z-60 flex justify-end",
           "max-sm:hidden",
         )}
       >

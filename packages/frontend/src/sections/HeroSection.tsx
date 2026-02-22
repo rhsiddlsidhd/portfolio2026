@@ -7,7 +7,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ user }: HeroSectionProps) {
   return (
-    <section className="min-h-screen">
+    <section>
       <HeroContent user={user} />
     </section>
   );

@@ -34,7 +34,6 @@ export function HeroContent({
             headline={user.headline}
             id={user.id}
           />
-
           {/* CTA Buttons */}
           {showCTA && (
             <div className="flex flex-col items-center gap-4 sm:flex-row">
