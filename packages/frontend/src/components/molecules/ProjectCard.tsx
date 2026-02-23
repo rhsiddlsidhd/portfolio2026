@@ -40,6 +40,8 @@ type ProjectCardProps = {
   project: IProject;
   allSkills: ISkill[];
   className?: string;
+  inView?: boolean;
+  onLoad?: () => void;
 };
 
 /** 프로젝트 정보와 사용 기술을 카드 형태로 표시하는 컴포넌트 */
@@ -47,6 +49,8 @@ export function ProjectCard({
   project,
   allSkills,
   className,
+  inView = true,
+  onLoad,
 }: ProjectCardProps) {
   const projectSkills = project.skills
     .map((skillId) => allSkills.find((s) => s.id === skillId))
@@ -59,7 +63,7 @@ export function ProjectCard({
     <Card className={className}>
       <picture>
         <source
-          srcSet={thumbnails.webp}
+          srcSet={inView ? thumbnails.webp : undefined}
           sizes="(min-width: 1536px) 485px,
                  (min-width: 1280px) 400px,
                  (min-width: 1024px) 314px,
@@ -69,7 +73,7 @@ export function ProjectCard({
           type="image/webp"
         />
         <source
-          srcSet={thumbnails.jpg}
+          srcSet={inView ? thumbnails.jpg : undefined}
           sizes="(min-width: 1536px) 485px,
                  (min-width: 1280px) 400px,
                  (min-width: 1024px) 314px,
@@ -79,10 +83,12 @@ export function ProjectCard({
           type="image/jpeg"
         />
         <img
-          src={thumbnails.default}
+          src={inView ? thumbnails.default : undefined}
           alt={`${project.title} thumbnail`}
           className="h-auto w-full rounded-t-lg object-cover"
           loading="lazy"
+          onLoad={onLoad}
+          onError={onLoad}
         />
       </picture>
 
@@ -103,7 +109,7 @@ export function ProjectCard({
         {projectSkills.length > 0 && (
           <div className="flex flex-wrap gap-2">
             {projectSkills.map((skill) => (
-              <SkillBadge key={skill.id} skill={skill} />
+              <SkillBadge key={skill.id} skill={skill} className="px-4 py-2" />
             ))}
           </div>
         )}

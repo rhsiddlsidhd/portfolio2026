@@ -26,11 +26,14 @@ export function HeroContent({
 
   return (
     <div className={className}>
-      <div className="container mx-auto px-4 md:px-8">
+      <div className="container mx-auto px-4 duration-600 md:px-8">
         <div className="flex min-h-[80vh] flex-col items-center justify-center space-y-8">
           {/* Profile Header */}
-          <ProfileHeader name={user.name} headline={user.headline} />
-
+          <ProfileHeader
+            name={user.name}
+            headline={user.headline}
+            id={user.id}
+          />
           {/* CTA Buttons */}
           {showCTA && (
             <div className="flex flex-col items-center gap-4 sm:flex-row">
