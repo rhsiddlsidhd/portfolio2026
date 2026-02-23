@@ -13,7 +13,6 @@ import { ExternalLink } from "lucide-react";
 import type { IProject } from "../../../../shared/src/types/project";
 import type { ISkill } from "../../../../shared/src/types/skill";
 import { imageBaseUrl } from "@/constants/path";
-import { useImaged } from "@/context/imgLoad.context";
 
 type ThumbnailSrc = {
   webp: string;
@@ -41,6 +40,8 @@ type ProjectCardProps = {
   project: IProject;
   allSkills: ISkill[];
   className?: string;
+  inView?: boolean;
+  onLoad?: () => void;
 };
 
 /** 프로젝트 정보와 사용 기술을 카드 형태로 표시하는 컴포넌트 */
@@ -48,8 +49,9 @@ export function ProjectCard({
   project,
   allSkills,
   className,
+  inView = true,
+  onLoad,
 }: ProjectCardProps) {
-  const { onLoad, inView } = useImaged();
   const projectSkills = project.skills
     .map((skillId) => allSkills.find((s) => s.id === skillId))
     .filter((s): s is ISkill => s !== undefined);

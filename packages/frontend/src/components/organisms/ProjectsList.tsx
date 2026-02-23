@@ -9,6 +9,8 @@ interface ProjectsListProps {
   className?: string;
 }
 
+const stagger = 150;
+
 export function ProjectsList({
   projects,
   allSkills,
@@ -31,17 +33,20 @@ export function ProjectsList({
         <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4">
           {projects.map((project, index) => (
             <ScrollReveal
-              requiredImg={true}
-              delay={index * 600}
+              waitForImg={true}
+              delay={index * stagger}
               key={project.id}
               options={{ threshold: 0, rootMargin: "0px 100px 0px 100px" }}
             >
-              <ProjectCard
-                key={project.id}
-                project={project}
-                allSkills={allSkills}
-                className="w-[70vw] shrink-0 snap-start pt-0"
-              />
+              {({ inView, onLoad }) => (
+                <ProjectCard
+                  project={project}
+                  allSkills={allSkills}
+                  className="w-[70vw] shrink-0 snap-start pt-0"
+                  inView={inView}
+                  onLoad={onLoad}
+                />
+              )}
             </ScrollReveal>
           ))}
         </div>
@@ -51,16 +56,20 @@ export function ProjectsList({
       <div className="hidden gap-6 sm:grid-cols-2 md:grid lg:grid-cols-4">
         {projects.map((project, index) => (
           <ScrollReveal
-            requiredImg={true}
-            delay={index * 600}
+            waitForImg={true}
+            delay={index * stagger}
             key={project.id}
             options={{ threshold: 0.5, rootMargin: "0px 0px 200px 0px" }}
           >
-            <ProjectCard
-              project={project}
-              allSkills={allSkills}
-              className="pt-0"
-            />
+            {({ inView, onLoad }) => (
+              <ProjectCard
+                project={project}
+                allSkills={allSkills}
+                className="pt-0"
+                inView={inView}
+                onLoad={onLoad}
+              />
+            )}
           </ScrollReveal>
         ))}
       </div>

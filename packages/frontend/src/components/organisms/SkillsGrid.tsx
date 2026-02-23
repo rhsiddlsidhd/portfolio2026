@@ -21,6 +21,8 @@ const categoryLabels: Record<string, string> = {
   tool: "Tool",
 };
 
+const stagger = 150;
+
 export function SkillsGrid({
   skills,
   groupByCategory = true,
@@ -115,7 +117,7 @@ export function SkillsGrid({
             className="animate-fadeIn flex flex-wrap gap-2"
           >
             {currentSkills.map((skill, index) => (
-              <ScrollReveal key={skill.id} delay={index * 100}>
+              <ScrollReveal key={skill.id} delay={index * stagger}>
                 <SkillBadge skill={skill} showTooltip={true} className="p-4" />
               </ScrollReveal>
             ))}
@@ -130,7 +132,7 @@ export function SkillsGrid({
           className="animate-fadeIn flex flex-wrap gap-2"
         >
           {currentSkills.map((skill, index) => (
-            <ScrollReveal key={skill.id} delay={index * 100}>
+            <ScrollReveal key={skill.id} delay={index * stagger}>
               <SkillBadge
                 skill={skill}
                 showTooltip={true}

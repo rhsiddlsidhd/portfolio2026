@@ -1,44 +1,42 @@
-import { ImgLoadProvider, useImaged } from "@/context/imgLoad.context";
+import { RevealImgProvider, useRevealImg } from "@/context/revealImg.context";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import clsx from "clsx";
-import React, { useEffect } from "react";
+import React from "react";
 import type { IntersectionOptions } from "react-intersection-observer";
 
+type ScrollRevealRenderProps = { inView: boolean; onLoad: () => void };
+
 type ScrollRevealProps = {
-  children: React.ReactNode;
-  requiredImg?: boolean;
+  children:
+    | React.ReactNode
+    | ((props: ScrollRevealRenderProps) => React.ReactNode);
+  waitForImg?: boolean;
   delay?: number;
   options?: IntersectionOptions;
 };
 
 const ScrollReveal = ({
   children,
-  requiredImg = false,
+  waitForImg = false,
   delay = 0,
   options,
 }: ScrollRevealProps) => {
   return (
-    <ImgLoadProvider initialValue={!requiredImg}>
-      <ScrollRevealContent delay={delay} options={options}>
+    <RevealImgProvider initialValue={!waitForImg}>
+      <ScrollRevealInner delay={delay} options={options}>
         {children}
-      </ScrollRevealContent>
-    </ImgLoadProvider>
+      </ScrollRevealInner>
+    </RevealImgProvider>
   );
 };
 
-const ScrollRevealContent = ({
+const ScrollRevealInner = ({
   children,
   delay = 0,
   options,
-}: Omit<ScrollRevealProps, "requiredImg">) => {
-  const { isLoaded, setInView } = useImaged();
+}: Omit<ScrollRevealProps, "waitForImg">) => {
+  const { isLoaded, onLoad } = useRevealImg();
   const { ref, inView } = useScrollReveal(options);
-
-  useEffect(() => {
-    if (inView) {
-      setInView(true);
-    }
-  }, [inView, setInView]);
 
   return (
     <div
@@ -51,7 +49,9 @@ const ScrollRevealContent = ({
           : "translate-y-6 opacity-0",
       )}
     >
-      {children}
+      {typeof children === "function"
+        ? children({ inView, onLoad })
+        : children}
     </div>
   );
 };

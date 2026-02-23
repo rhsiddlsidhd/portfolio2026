@@ -25,16 +25,14 @@ export function HomePage() {
         <ThemeToggle className="mr-2 cursor-pointer p-4" />
       </aside>
       <main className="bg-background text-foreground">
-        <ScrollReveal>
-          <HeroSection user={userData} />
-        </ScrollReveal>
+        <HeroSection user={userData} />
         <ScrollReveal>
           <AboutSection description={userData.description} />
         </ScrollReveal>
         <Header className="sticky top-2 py-2" />
-        <ScrollReveal>
-          <SkillsSection skills={skillsData} />
-        </ScrollReveal>
+
+        <SkillsSection skills={skillsData} />
+
         <ProjectsSection projects={projectsData} allSkills={skillsData} />
         <ScrollReveal>
           <ContactSection
