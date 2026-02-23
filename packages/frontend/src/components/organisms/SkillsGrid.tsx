@@ -4,6 +4,7 @@ import { SkillBadge } from "@/components/molecules/SkillBadge";
 import { Button } from "@/components/atoms/button";
 import { useSkillsFilter } from "@/context/skillsFilter.context";
 import type { ISkill } from "../../../../shared/src/types/skill";
+import ScrollReveal from "./ScrollReveal";
 
 interface SkillsGridProps {
   skills: ISkill[];
@@ -113,13 +114,10 @@ export function SkillsGrid({
             key={state.selectedCategory}
             className="animate-fadeIn flex flex-wrap gap-2"
           >
-            {currentSkills.map((skill) => (
-              <SkillBadge
-                key={skill.id}
-                skill={skill}
-                showTooltip={true}
-                className="p-4"
-              />
+            {currentSkills.map((skill, index) => (
+              <ScrollReveal key={skill.id} delay={index * 100}>
+                <SkillBadge skill={skill} showTooltip={true} className="p-4" />
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -131,13 +129,14 @@ export function SkillsGrid({
           key={state.selectedCategory}
           className="animate-fadeIn flex flex-wrap gap-2"
         >
-          {currentSkills.map((skill) => (
-            <SkillBadge
-              key={skill.id}
-              skill={skill}
-              showTooltip={true}
-              className="px-4 py-2"
-            />
+          {currentSkills.map((skill, index) => (
+            <ScrollReveal key={skill.id} delay={index * 100}>
+              <SkillBadge
+                skill={skill}
+                showTooltip={true}
+                className="px-4 py-2"
+              />
+            </ScrollReveal>
           ))}
         </div>
       </div>

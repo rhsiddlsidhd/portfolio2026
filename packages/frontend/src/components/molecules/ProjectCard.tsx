@@ -13,6 +13,7 @@ import { ExternalLink } from "lucide-react";
 import type { IProject } from "../../../../shared/src/types/project";
 import type { ISkill } from "../../../../shared/src/types/skill";
 import { imageBaseUrl } from "@/constants/path";
+import { useImaged } from "@/context/imgLoad.context";
 
 type ThumbnailSrc = {
   webp: string;
@@ -48,6 +49,7 @@ export function ProjectCard({
   allSkills,
   className,
 }: ProjectCardProps) {
+  const { onLoad, inView } = useImaged();
   const projectSkills = project.skills
     .map((skillId) => allSkills.find((s) => s.id === skillId))
     .filter((s): s is ISkill => s !== undefined);
@@ -59,7 +61,7 @@ export function ProjectCard({
     <Card className={className}>
       <picture>
         <source
-          srcSet={thumbnails.webp}
+          srcSet={inView ? thumbnails.webp : undefined}
           sizes="(min-width: 1536px) 485px,
                  (min-width: 1280px) 400px,
                  (min-width: 1024px) 314px,
@@ -69,7 +71,7 @@ export function ProjectCard({
           type="image/webp"
         />
         <source
-          srcSet={thumbnails.jpg}
+          srcSet={inView ? thumbnails.jpg : undefined}
           sizes="(min-width: 1536px) 485px,
                  (min-width: 1280px) 400px,
                  (min-width: 1024px) 314px,
@@ -79,10 +81,12 @@ export function ProjectCard({
           type="image/jpeg"
         />
         <img
-          src={thumbnails.default}
+          src={inView ? thumbnails.default : undefined}
           alt={`${project.title} thumbnail`}
           className="h-auto w-full rounded-t-lg object-cover"
           loading="lazy"
+          onLoad={onLoad}
+          onError={onLoad}
         />
       </picture>
 

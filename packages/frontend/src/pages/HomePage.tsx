@@ -11,6 +11,7 @@ import skillsData from "../../../shared/data/skills.json";
 import projectsData from "../../../shared/data/projects.json";
 import { ThemeToggle } from "@/components/molecules/themeToggle";
 import clsx from "clsx";
+import ScrollReveal from "@/components/organisms/ScrollReveal";
 
 export function HomePage() {
   return (
@@ -24,16 +25,24 @@ export function HomePage() {
         <ThemeToggle className="mr-2 cursor-pointer p-4" />
       </aside>
       <main className="bg-background text-foreground">
-        <HeroSection user={userData} />
-        <AboutSection description={userData.description} />
-        <Header className="sticky top-2 border-blue-500 py-2" />
-        <SkillsSection skills={skillsData} />
+        <ScrollReveal>
+          <HeroSection user={userData} />
+        </ScrollReveal>
+        <ScrollReveal>
+          <AboutSection description={userData.description} />
+        </ScrollReveal>
+        <Header className="sticky top-2 py-2" />
+        <ScrollReveal>
+          <SkillsSection skills={skillsData} />
+        </ScrollReveal>
         <ProjectsSection projects={projectsData} allSkills={skillsData} />
-        <ContactSection
-          email={userData.email}
-          phone={userData.phone}
-          blogUrl={userData.blogUrl}
-        />
+        <ScrollReveal>
+          <ContactSection
+            email={userData.email}
+            phone={userData.phone}
+            blogUrl={userData.blogUrl}
+          />
+        </ScrollReveal>
       </main>
 
       <Footer name={userData.name} />
