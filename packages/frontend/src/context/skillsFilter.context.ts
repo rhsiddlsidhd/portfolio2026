@@ -44,8 +44,7 @@ const useSkillsFilterReducer = () => {
 };
 
 // 5. Create Context
-const [SkillsFilterProvider, useSkillsFilter] = createStateContext(
-  useSkillsFilterReducer,
-);
+const [SkillsFilterProvider, useSkillsFilter] =
+  createStateContext(useSkillsFilterReducer);
 
 export { SkillsFilterProvider, useSkillsFilter };
