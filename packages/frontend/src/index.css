@@ -145,4 +145,28 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Badge 내부 이미지 다크 모드 대응 */
+  [data-slot="badge"] img {
+    filter: invert(0);
+  }
+
+  .dark [data-slot="badge"] img {
+    filter: invert(1);
+  }
+}
+
+@layer utilities {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 600ms ease-in-out;
+  }
 }

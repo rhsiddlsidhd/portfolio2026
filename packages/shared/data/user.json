@@ -1,10 +1,11 @@
 {
+  "id": "avatar",
   "name": "신영재",
   "email": "devshin2842@gmail.com",
   "phone": "01045954647",
   "blogUrl": "https://velog.io/@dev-bear/posts",
-  "headline": "체계적인 컴포넌트 설계로 확장 가능한 UI를 만드는 프론트엔드 개발자",
-  "description": "Bottom-up 방식의 컴포넌트 구조로 재사용성과 유지보수성을 극대화합니다. Atomic Design을 기반으로 유연하고 확장 가능한 인터페이스를 설계합니다.",
-  "thumbnailUrl": null,
+
+  "headline": "\"왜 이 구조여야 하는가\"를 고민하고 실행하는 프론트엔드 개발자",
+  "description": "기능을 완성하는 것보다 왜 이 구조인지를 먼저 생각합니다. CSR의 한계를 인식해 렌더링 전략을 바꾸고, Atomic Design 기반으로 컴포넌트 계층을 설계하며, 선택의 결과는 수치로 검증하는 방식으로 개발합니다. 지금 아는 것 안에서 최선의 판단을 하되, 그 판단에는 항상 이유가 있어야 한다고 믿습니다.",
   "resumeUrl": null
 }

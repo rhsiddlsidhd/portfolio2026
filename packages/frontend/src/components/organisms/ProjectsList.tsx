@@ -1,31 +1,15 @@
 import { ProjectCard } from "@/components/molecules/ProjectCard";
-
-interface Skill {
-  id: string;
-  name: string;
-  category: string;
-  thumbnailUrl?: string | null;
-}
-
-interface Project {
-  id: string;
-  name: string;
-  title: string;
-  description: string;
-  skills: string[];
-  thumbnailUrl?: string | null;
-  deployUrl?: string | null;
-  githubUrl?: string | null;
-  startDate?: string | null;
-  endDate?: string | null;
-  role?: string;
-}
+import type { IProject } from "../../../../shared/src/types/project";
+import type { ISkill } from "../../../../shared/src/types/skill";
+import ScrollReveal from "./ScrollReveal";
 
 interface ProjectsListProps {
-  projects: Project[];
-  allSkills: Skill[];
+  projects: IProject[];
+  allSkills: ISkill[];
   className?: string;
 }
+
+const stagger = 150;
 
 export function ProjectsList({
   projects,
@@ -44,14 +28,49 @@ export function ProjectsList({
 
   return (
     <div className={className}>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project) => (
-          <ProjectCard
+      {/* Mobile: Horizontal scroll */}
+      <div className="md:hidden">
+        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4">
+          {projects.map((project, index) => (
+            <ScrollReveal
+              waitForImg={true}
+              delay={index * stagger}
+              key={project.id}
+              options={{ threshold: 0, rootMargin: "0px 100px 0px 100px" }}
+            >
+              {({ inView, onLoad }) => (
+                <ProjectCard
+                  project={project}
+                  allSkills={allSkills}
+                  className="w-[70vw] shrink-0 snap-start pt-0"
+                  inView={inView}
+                  onLoad={onLoad}
+                />
+              )}
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop: Grid */}
+      <div className="hidden gap-6 sm:grid-cols-2 md:grid lg:grid-cols-4">
+        {projects.map((project, index) => (
+          <ScrollReveal
+            waitForImg={true}
+            delay={index * stagger}
             key={project.id}
-            project={project}
-            allSkills={allSkills}
-            className="pt-0"
-          />
+            options={{ threshold: 0.5, rootMargin: "0px 0px 200px 0px" }}
+          >
+            {({ inView, onLoad }) => (
+              <ProjectCard
+                project={project}
+                allSkills={allSkills}
+                className="pt-0"
+                inView={inView}
+                onLoad={onLoad}
+              />
+            )}
+          </ScrollReveal>
         ))}
       </div>
     </div>
