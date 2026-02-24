@@ -17,11 +17,7 @@ import {
   User,
   Target,
 } from "lucide-react";
-<<<<<<< HEAD:src/pages/Project.tsx
 import skillsData from "@/data/skills.json";
-=======
-import skillsData from "../../../shared/data/skills.json";
->>>>>>> f38c20fa4a0c3f156b5e2fc17dc880c66df66462:packages/frontend/src/pages/Project.tsx
 import { createProjectThumbnailSrc } from "@/components/molecules/ProjectCard";
 
 const formatDate = (date?: string | null) =>
@@ -89,41 +85,42 @@ const Project = () => {
         {/* 스크롤 영역 */}
         <div className="flex-1 overflow-y-auto">
           {/* 썸네일 + name overlay */}
-
-          <div className="relative">
-            <picture>
-              <source
-                srcSet={thumbnails.webp}
-                sizes="(min-width: 1536px) 485px,
+          {project.thumbnailUrl ? (
+            <div className="relative">
+              <picture>
+                <source
+                  srcSet={thumbnails.webp}
+                  sizes="(min-width: 1536px) 485px,
                  (min-width: 1280px) 400px,
                  (min-width: 1024px) 314px,
                  (min-width: 768px) 356px,
                  (min-width: 640px) 292px,
                  70vw"
-                type="image/webp"
-              />
-              <source
-                srcSet={thumbnails.jpg}
-                sizes="(min-width: 1536px) 485px,
+                  type="image/webp"
+                />
+                <source
+                  srcSet={thumbnails.jpg}
+                  sizes="(min-width: 1536px) 485px,
                  (min-width: 1280px) 400px,
                  (min-width: 1024px) 314px,
                  (min-width: 768px) 356px,
                  (min-width: 640px) 292px,
                  70vw"
-                type="image/jpeg"
-              />
-              <img
-                src={thumbnails.default}
-                alt={`${project.title} thumbnail`}
-                className="h-48 w-full object-cover"
-                loading="lazy"
-              />
-            </picture>
-            <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
-            <span className="absolute right-4 bottom-6 text-xs font-bold tracking-wide text-white/90">
-              {project.title}
-            </span>
-          </div>
+                  type="image/jpeg"
+                />
+                <img
+                  src={thumbnails.default}
+                  alt={`${project.title} thumbnail`}
+                  className="h-48 w-full object-cover"
+                  loading="lazy"
+                />
+              </picture>
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
+              <span className="absolute right-4 bottom-6 text-xs font-bold tracking-wide text-white/90">
+                {project.title}
+              </span>
+            </div>
+          ) : null}
 
           <div className="space-y-6 p-4 sm:p-6">
             {/* 제목 + 설명 */}

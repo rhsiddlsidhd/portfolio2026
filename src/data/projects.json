@@ -51,6 +51,7 @@
     "title": "Portfolio2026",
     "description": "CSR 환경에서 이미지 렌더링 최적화, 인터랙티브 애니메이션 성능 개선 등 실제 프론트엔드 개발 시 마주하는 문제들을 수치로 증명한 프로젝트입니다.",
     "skills": ["typescript", "tailwindcss", "react", "github", "vercel"],
+    "thumbnailUrl": "/images/projects/Portfolio2026/webp/Portfolio2026_1280w.webp",
     "deployUrl": null,
     "githubUrl": "https://github.com/rhsiddlsidhd/portfolio2026",
     "startDate": "2026-01-10",
