@@ -5,6 +5,7 @@ import type { ISkill } from "@/types/skill";
 import { Badge } from "@/components/atoms/badge";
 import { Button } from "@/components/atoms/button";
 import { SkillBadge } from "@/components/molecules/SkillBadge";
+import { ChallengeImageCarousel } from "@/components/molecules/ChallengeImageCarousel";
 import {
   ExternalLink,
   Github,
@@ -249,16 +250,13 @@ const Project = () => {
                             </p>
                           </div>
                         )}
-                        <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
-                          <img
-                            src={`/images/challenges/${challenge.id}.webp`}
-                            alt={`${challenge.id} evidence`}
-                            className="w-full rounded-lg object-cover"
-                            onError={(e) => {
-                              e.currentTarget.style.display = "none";
-                            }}
+                        {challenge.imgs && challenge.imgs.length > 0 && (
+                          <ChallengeImageCarousel
+                            imgs={challenge.imgs}
+                            challengeId={challenge.id}
+                            projectTitle={project.title}
                           />
-                        </div>
+                        )}
                       </div>
                     ))}
                   </div>
