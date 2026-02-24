@@ -1,5 +1,3 @@
-"use client";
-
 import { SkillBadge } from "@/components/molecules/SkillBadge";
 import { Button } from "@/components/atoms/button";
 import { useSkillsFilter } from "@/context/skillsFilter.context";
@@ -70,7 +68,7 @@ export function SkillsGrid({
     <div className={className}>
       {/* Mobile: 가로 스크롤 탭 */}
       <div className="mb-6 md:hidden">
-        <div className="flex gap-2 overflow-x-auto pb-2">
+        <div className="scroll-hide flex gap-2 overflow-x-auto pb-4">
           {categories.map((category) => (
             <Button
               key={category}
