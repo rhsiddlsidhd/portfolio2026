@@ -6,6 +6,7 @@ import {
 } from "@/components/atoms/tooltip";
 import { imageBaseUrl } from "@/constants/path";
 import type { ISkill } from "../../../../shared/src/types/skill";
+import clsx from "clsx";
 
 interface SkillBadgeProps {
   skill: ISkill;
@@ -19,9 +20,13 @@ export function SkillBadge({
   className,
 }: SkillBadgeProps) {
   const badge = (
-    <Badge data-slot="badge" variant="secondary" className={className}>
+    <Badge
+      data-slot="badge"
+      variant="secondary"
+      className={clsx("p-2", className)}
+    >
       <img
-        className="aspect-square w-8"
+        className="aspect-square w-6"
         src={`${imageBaseUrl}/skills/${skill.id}.svg`}
       />
     </Badge>

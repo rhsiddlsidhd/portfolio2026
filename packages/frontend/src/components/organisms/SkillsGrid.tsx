@@ -1,5 +1,3 @@
-"use client";
-
 import { SkillBadge } from "@/components/molecules/SkillBadge";
 import { Button } from "@/components/atoms/button";
 import { useSkillsFilter } from "@/context/skillsFilter.context";
@@ -118,7 +116,7 @@ export function SkillsGrid({
           >
             {currentSkills.map((skill, index) => (
               <ScrollReveal key={skill.id} delay={index * stagger}>
-                <SkillBadge skill={skill} showTooltip={true} className="p-4" />
+                <SkillBadge skill={skill} showTooltip={true} />
               </ScrollReveal>
             ))}
           </div>
@@ -133,11 +131,7 @@ export function SkillsGrid({
         >
           {currentSkills.map((skill, index) => (
             <ScrollReveal key={skill.id} delay={index * stagger}>
-              <SkillBadge
-                skill={skill}
-                showTooltip={true}
-                className="px-4 py-2"
-              />
+              <SkillBadge skill={skill} showTooltip={true} />
             </ScrollReveal>
           ))}
         </div>

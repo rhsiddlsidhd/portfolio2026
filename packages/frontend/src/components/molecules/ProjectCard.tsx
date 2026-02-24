@@ -14,6 +14,7 @@ import type { IProject } from "../../../../shared/src/types/project";
 import type { ISkill } from "../../../../shared/src/types/skill";
 import { imageBaseUrl } from "@/constants/path";
 import { useNavigate } from "react-router";
+import clsx from "clsx";
 
 type ThumbnailSrc = {
   webp: string;
@@ -23,7 +24,7 @@ type ThumbnailSrc = {
 
 const THUMBNAIL_WIDTHS = [1280, 960, 640, 320] as const;
 
-const createProjectThumbnailSrc = (title: string): ThumbnailSrc => {
+export const createProjectThumbnailSrc = (title: string): ThumbnailSrc => {
   const generateSrcSet = (ext: string): string =>
     THUMBNAIL_WIDTHS.map(
       (w) =>
@@ -63,7 +64,13 @@ export function ProjectCard({
 
   return (
     <Card
-      className={className}
+      className={clsx(
+        "cursor-pointer transition-all duration-300 ease-out",
+        "md:hover:border-primary/20 md:hover:scale-[1.02] md:hover:shadow-xl",
+        "active:scale-[0.97] active:brightness-95",
+        "focus-within:ring-ring focus-within:ring-2 focus-within:outline-none",
+        className,
+      )}
       onClick={() => router(`/project/${project.id}`)}
     >
       <picture>
@@ -113,8 +120,9 @@ export function ProjectCard({
         </p>
         {projectSkills.length > 0 && (
           <div className="flex flex-wrap gap-2">
+            {/*  */}
             {projectSkills.map((skill) => (
-              <SkillBadge key={skill.id} skill={skill} className="px-4 py-2" />
+              <SkillBadge key={skill.id} skill={skill} />
             ))}
           </div>
         )}
