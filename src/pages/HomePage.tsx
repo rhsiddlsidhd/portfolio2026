@@ -6,9 +6,9 @@ import {
   ProjectsSection,
   ContactSection,
 } from "@/sections";
-import userData from "../../../shared/data/user.json";
-import skillsData from "../../../shared/data/skills.json";
-import projectsData from "../../../shared/data/projects.json";
+import userData from "@/data/user.json";
+import skillsData from "@/data/skills.json";
+import projectsData from "@/data/projects.json";
 import { ThemeToggle } from "@/components/molecules/themeToggle";
 import clsx from "clsx";
 import ScrollReveal from "@/components/organisms/ScrollReveal";

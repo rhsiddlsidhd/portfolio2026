@@ -5,7 +5,7 @@ import {
   TooltipTrigger,
 } from "@/components/atoms/tooltip";
 import { imageBaseUrl } from "@/constants/path";
-import type { ISkill } from "../../../../shared/src/types/skill";
+import type { ISkill } from "@/types/skill";
 import clsx from "clsx";
 
 interface SkillBadgeProps {

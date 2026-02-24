@@ -1,7 +1,7 @@
 import { SectionHeader } from "@/components/molecules/SectionHeader";
 import { SkillsGrid } from "@/components/organisms/SkillsGrid";
 import { SkillsFilterProvider } from "@/context/skillsFilter.context";
-import type { ISkill } from "../../../shared/src/types/skill";
+import type { ISkill } from "@/types/skill";
 import ScrollReveal from "@/components/organisms/ScrollReveal";
 
 interface SkillsSectionProps {

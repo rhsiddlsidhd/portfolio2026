@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLoaderData, useNavigate } from "react-router";
-import type { IProject } from "../../../shared/src/types/project";
-import type { ISkill } from "../../../shared/src/types/skill";
+import type { IProject } from "@/types/project";
+import type { ISkill } from "@/types/skill";
 import { Badge } from "@/components/atoms/badge";
 import { Button } from "@/components/atoms/button";
 import { SkillBadge } from "@/components/molecules/SkillBadge";
@@ -17,7 +17,7 @@ import {
   User,
   Target,
 } from "lucide-react";
-import skillsData from "../../../shared/data/skills.json";
+import skillsData from "@/data/skills.json";
 import { createProjectThumbnailSrc } from "@/components/molecules/ProjectCard";
 
 const formatDate = (date?: string | null) =>

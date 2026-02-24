@@ -1,5 +1,5 @@
 import { HeroContent } from "@/components/organisms/HeroContent";
-import type { IUser } from "../../../shared/src/types/user";
+import type { IUser } from "@/types/user";
 
 interface HeroSectionProps {
   user: IUser;

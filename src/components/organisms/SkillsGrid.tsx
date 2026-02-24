@@ -1,7 +1,7 @@
 import { SkillBadge } from "@/components/molecules/SkillBadge";
 import { Button } from "@/components/atoms/button";
 import { useSkillsFilter } from "@/context/skillsFilter.context";
-import type { ISkill } from "../../../../shared/src/types/skill";
+import type { ISkill } from "@/types/skill";
 import ScrollReveal from "./ScrollReveal";
 
 interface SkillsGridProps {

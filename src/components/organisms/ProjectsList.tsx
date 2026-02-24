@@ -1,6 +1,6 @@
 import { ProjectCard } from "@/components/molecules/ProjectCard";
-import type { IProject } from "../../../../shared/src/types/project";
-import type { ISkill } from "../../../../shared/src/types/skill";
+import type { IProject } from "@/types/project";
+import type { ISkill } from "@/types/skill";
 import ScrollReveal from "./ScrollReveal";
 
 interface ProjectsListProps {

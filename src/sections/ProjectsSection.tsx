@@ -1,7 +1,7 @@
 import { SectionHeader } from "@/components/molecules/SectionHeader";
 import { ProjectsList } from "@/components/organisms/ProjectsList";
-import type { IProject } from "../../../shared/src/types/project";
-import type { ISkill } from "../../../shared/src/types/skill";
+import type { IProject } from "@/types/project";
+import type { ISkill } from "@/types/skill";
 import ScrollReveal from "@/components/organisms/ScrollReveal";
 
 interface ProjectsSectionProps {

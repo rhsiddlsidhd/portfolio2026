@@ -2,14 +2,10 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
-import projects from "../../shared/data/projects.json";
-import axiosInstance from "./api/axios";
-import { setupInterceptors } from "./api/interceptors";
+import projects from "@/data/projects.json";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { HomePage } from "./pages/HomePage.tsx";
 import Project from "./pages/Project.tsx";
-
-setupInterceptors(axiosInstance);
 
 const router = createBrowserRouter([
   {

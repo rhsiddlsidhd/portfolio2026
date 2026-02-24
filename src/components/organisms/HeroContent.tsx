@@ -1,7 +1,7 @@
 import { ProfileHeader } from "@/components/molecules/ProfileHeader";
 import { Button } from "@/components/atoms/button";
 import { ArrowDown, Mail } from "lucide-react";
-import type { IUser } from "../../../../shared/src/types/user";
+import type { IUser } from "@/types/user";
 
 interface HeroContentProps {
   user: IUser;

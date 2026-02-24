@@ -11,7 +11,6 @@ export interface IProject {
   title: string;
   description: string; // 리스트용 간단한 설명
   skills: string[]; // 사용된 기술 ID 목록
-  thumbnailUrl?: string | null; // 프로젝트 썸네일 이미지 경로
   deployUrl?: string | null; // 배포된 서비스 URL
   githubUrl?: string | null; // GitHub 저장소 URL
   startDate?: string | null; // 프로젝트 시작일 (YYYY-MM-DD)

@@ -1,7 +1,6 @@
 import { imageBaseUrl } from "@/constants/path";
 import { Avatar, AvatarFallback, AvatarImage } from "../atoms/avatar";
 import { User } from "lucide-react";
-import { useMemo } from "react";
 
 interface ProfileHeaderProps {
   id: string;
