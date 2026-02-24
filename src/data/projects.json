@@ -1,0 +1,85 @@
+[
+  {
+    "id": "project-1",
+    "name": "MOBILE_INVITATION",
+    "title": "TieKnot",
+    "description": "CSR의 한계를 인식하고, 페이지별 렌더링 전략을 설계하여 SEO와 초기 로딩 성능을 개선한 Next.js 기반 풀스택 1인 개발 프로젝트입니다.",
+    "skills": [
+      "typescript",
+      "tailwindcss",
+      "swr",
+      "zustand",
+      "mongoose",
+      "mongodb",
+      "nextjs",
+      "vercel",
+      "github"
+    ],
+    "deployUrl": null,
+    "githubUrl": null,
+    "startDate": "2024-03-01",
+    "endDate": "2024-05-15",
+    "role": "풀스택 개발",
+    "details": {
+      "background": "기존 CSR 기반의 모바일 청첩장이 검색 엔진 최적화(SEO)와 카카오톡 공유 시 메타데이터 노출에 한계가 있음을 발견하고, 이를 해결하기 위해 서버 사이드 렌더링(SSR)과 정적 사이트 생성(SSG)을 적재적소에 배치하는 설계를 시도했습니다.",
+      "keyFeatures": [
+        "동적 경로를 활용한 개별 청첩장 생성",
+        "이미지 업로드 및 관리 (Cloudinary 연동)",
+        "카카오톡 공유 및 메타데이터 동적 생성",
+        "방명록 및 참석 확인 기능"
+      ],
+      "challenges": [
+        {
+          "id": "project-1-challenge-1",
+          "problem": "동적으로 생성되는 청첩장 페이지에서 카카오톡 공유 시 OpenGraph 데이터가 즉각적으로 반영되지 않는 문제",
+          "solution": "Next.js의 generateMetadata API를 활용하여 각 청첩장 ID에 맞는 메타데이터를 서버 측에서 주입하도록 처리",
+          "impact": "카카오톡 및 SNS 공유 시 사용자별 맞춤형 썸네일과 설명이 100% 노출됨"
+        },
+        {
+          "id": "project-1-challenge-2",
+          "problem": "이미지 중심의 서비스 특성상 초기 로딩 속도가 느려지는 현상",
+          "solution": "Next.js Image 컴포넌트의 priority 속성과 뷰포트 기반 지연 로딩을 적용하고, WebP 포맷으로 자동 변환",
+          "impact": "Lighthouse 성능 점수 75점에서 92점으로 향상"
+        }
+      ],
+      "retrospect": "단순히 '동작하는 것'을 넘어, 사용자에게 어떻게 더 빠르고 가독성 있게 정보를 전달할 수 있을지에 대한 아키텍처적 고민의 중요성을 배운 프로젝트였습니다."
+    }
+  },
+  {
+    "id": "project-2",
+    "name": "자기소개 포트폴리오",
+    "title": "Portfolio2026",
+    "description": "CSR 환경에서 이미지 렌더링 최적화, 인터랙티브 애니메이션 성능 개선 등 실제 프론트엔드 개발 시 마주하는 문제들을 수치로 증명한 프로젝트입니다.",
+    "skills": ["typescript", "tailwindcss", "react", "github", "vercel"],
+    "thumbnailUrl": "/images/projects/Portfolio2026/webp/Portfolio2026_1280w.webp",
+    "deployUrl": "https://portfolio2026-2nbc.vercel.app/",
+    "githubUrl": "https://github.com/rhsiddlsidhd/portfolio2026",
+    "startDate": "2026-01-10",
+    "endDate": null,
+    "role": "프론트엔드 개발",
+    "details": {
+      "background": "자신을 가장 잘 드러낼 수 있는 공간인 포트폴리오를, 단순한 정보 나열이 아닌 '기술적 문제 해결'을 증명하는 무대로 만들고자 시작했습니다. CSR의 가벼움을 유지하면서도 성능 최적화를 극대화하는 것을 목표로 했습니다.",
+      "keyFeatures": [
+        "React Router Data API를 활용한 데이터 로딩 최적화",
+        "모노레포 구조(Frontend, Backend, Shared)를 통한 코드 재사용성 확보",
+        "Framermotion을 활용한 인터랙티브 애니메이션",
+        "다크/라이트 모드 지원 및 테마 시스템 구축"
+      ],
+      "challenges": [
+        {
+          "id": "project-2-challenge-1",
+          "problem": "다양한 디바이스와 브라우저 환경에서 이미지 로딩 시 발생하는 레이아웃 시프트(CLS)",
+          "solution": "이미지 비율 고정(aspect-ratio) 및 Blur-up placeholder 기법을 도입하고, srcset을 활용한 반응형 이미지 서빙",
+          "impact": "CLS 점수 0.15에서 0으로 개선"
+        },
+        {
+          "id": "project-2-challenge-2",
+          "problem": "많은 양의 애니메이션이 적용되었을 때의 프레임 저하 현상",
+          "solution": "React Intersection Observer를 활용하여 뷰포트에 노출된 요소에만 애니메이션을 제한적으로 적용",
+          "impact": "저사양 기기에서도 60FPS의 매끄러운 스크롤 애니메이션 유지"
+        }
+      ],
+      "retrospect": "프론트엔드 개발자로서 '성능'과 '사용자 경험'이 단순한 수치가 아닌 코드 한 줄의 결정에서 비롯된다는 확신을 갖게 된 프로젝트입니다."
+    }
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "id": "html",
+    "name": "HTML",
+    "category": "frontend"
+  },
+  {
+    "id": "css",
+    "name": "CSS",
+    "category": "frontend"
+  },
+  {
+    "id": "javascript",
+    "name": "JavaScript",
+    "category": "language"
+  },
+  {
+    "id": "typescript",
+    "name": "TypeScript",
+    "category": "language"
+  },
+  {
+    "id": "react",
+    "name": "React",
+    "category": "frontend"
+  },
+  {
+    "id": "nextjs",
+    "name": "Next.js",
+    "category": "frontend"
+  },
+  {
+    "id": "mongodb",
+    "name": "MongoDB",
+    "category": "backend"
+  },
+  {
+    "id": "express",
+    "name": "Express",
+    "category": "backend"
+  },
+  {
+    "id": "mongoose",
+    "name": "Mongoose",
+    "category": "backend"
+  },
+  {
+    "id": "tailwindcss",
+    "name": "Tailwind CSS",
+    "category": "frontend"
+  },
+  {
+    "id": "styledcomponents",
+    "name": "Styled Components",
+    "category": "frontend"
+  },
+  {
+    "id": "swr",
+    "name": "SWR",
+    "category": "frontend"
+  },
+  {
+    "id": "axios",
+    "name": "Axios",
+    "category": "frontend"
+  },
+  {
+    "id": "tanstack",
+    "name": "TanStack Query",
+    "category": "frontend"
+  },
+  {
+    "id": "redux",
+    "name": "Redux",
+    "category": "frontend"
+  },
+  {
+    "id": "zustand",
+    "name": "Zustand",
+    "category": "frontend"
+  },
+  {
+    "id": "github",
+    "name": "GitHub",
+    "category": "tool"
+  },
+  {
+    "id": "vercel",
+    "name": "Vercel",
+    "category": "tool"
+  },
+  {
+    "id": "netlify",
+    "name": "Netlify",
+    "category": "tool"
+  },
+  {
+    "id": "notion",
+    "name": "Notion",
+    "category": "tool"
+  },
+  {
+    "id": "discord",
+    "name": "Discord",
+    "category": "tool"
+  }
+]

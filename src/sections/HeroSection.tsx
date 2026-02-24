@@ -1,0 +1,14 @@
+import { HeroContent } from "@/components/organisms/HeroContent";
+import type { IUser } from "@/types/user";
+
+interface HeroSectionProps {
+  user: IUser;
+}
+
+export function HeroSection({ user }: HeroSectionProps) {
+  return (
+    <section>
+      <HeroContent user={user} />
+    </section>
+  );
+}
