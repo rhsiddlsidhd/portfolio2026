@@ -17,7 +17,11 @@ import {
   User,
   Target,
 } from "lucide-react";
+<<<<<<< HEAD:src/pages/Project.tsx
 import skillsData from "@/data/skills.json";
+=======
+import skillsData from "../../../shared/data/skills.json";
+>>>>>>> f38c20fa4a0c3f156b5e2fc17dc880c66df66462:packages/frontend/src/pages/Project.tsx
 import { createProjectThumbnailSrc } from "@/components/molecules/ProjectCard";
 
 const formatDate = (date?: string | null) =>
