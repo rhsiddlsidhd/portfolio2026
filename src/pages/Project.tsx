@@ -85,7 +85,7 @@ const Project = () => {
         {/* 스크롤 영역 */}
         <div className="flex-1 overflow-y-auto">
           {/* 썸네일 + name overlay */}
-          {project.thumbnailUrl ? (
+          
             <div className="relative">
               <picture>
                 <source
@@ -120,7 +120,7 @@ const Project = () => {
                 {project.title}
               </span>
             </div>
-          ) : null}
+          
 
           <div className="space-y-6 p-4 sm:p-6">
             {/* 제목 + 설명 */}
@@ -128,7 +128,7 @@ const Project = () => {
               <div className="text-primary flex items-center gap-2 text-sm font-semibold tracking-wider uppercase">
                 <Target className="h-4 w-4" />
                 <span>Overview</span>
-                <Badge variant="secondary">{project.name}</Badge>
+                <Badge variant="outline">{project.name}</Badge>
               </div>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 {project.description}
