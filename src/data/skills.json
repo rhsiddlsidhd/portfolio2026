@@ -80,6 +80,16 @@
     "category": "frontend"
   },
   {
+    "id": "framer-motion",
+    "name": "Framer Motion",
+    "category": "frontend"
+  },
+  {
+    "id": "zod",
+    "name": "Zod",
+    "category": "frontend"
+  },
+  {
     "id": "github",
     "name": "GitHub",
     "category": "tool"
@@ -92,6 +102,26 @@
   {
     "id": "netlify",
     "name": "Netlify",
+    "category": "tool"
+  },
+  {
+    "id": "cloudinary",
+    "name": "Cloudinary",
+    "category": "tool"
+  },
+  {
+    "id": "portone",
+    "name": "PortOne",
+    "category": "tool"
+  },
+  {
+    "id": "kakao-maps-api",
+    "name": "Kakao Maps API",
+    "category": "tool"
+  },
+  {
+    "id": "github-actions",
+    "name": "GitHub Actions",
     "category": "tool"
   },
   {

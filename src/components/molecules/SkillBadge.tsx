@@ -7,6 +7,7 @@ import {
 import { imageBaseUrl } from "@/constants/path";
 import type { ISkill } from "@/types/skill";
 import clsx from "clsx";
+import { useState } from "react";
 
 interface SkillBadgeProps {
   skill: ISkill;
@@ -19,16 +20,26 @@ export function SkillBadge({
   showTooltip = true,
   className,
 }: SkillBadgeProps) {
+  const [hasError, setHasError] = useState(false);
+
   const badge = (
     <Badge
       data-slot="badge"
       variant="secondary"
       className={clsx("p-2", className)}
     >
-      <img
-        className="aspect-square w-6"
-        src={`${imageBaseUrl}/skills/${skill.id}.svg`}
-      />
+      {hasError ? (
+        <span className="h-6 text-[10px] font-bold uppercase leading-none flex items-center">
+          {skill.id}
+        </span>
+      ) : (
+        <img
+          className="aspect-square w-6"
+          src={`${imageBaseUrl}/skills/${skill.id}.svg`}
+          alt={skill.name}
+          onError={() => setHasError(true)}
+        />
+      )}
     </Badge>
   );
 

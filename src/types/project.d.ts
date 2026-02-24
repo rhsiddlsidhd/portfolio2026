@@ -3,6 +3,7 @@ export interface IChallenge {
   problem: string; // 마주한 문제점
   solution: string; // 해결 방법
   impact?: string | null; // 해결 후의 성과 (수치적 데이터 등)
+  imgs?: string[]; // 문제 해결 과정을 설명하는 이미지 파일명 목록
 }
 
 export interface IProject {
