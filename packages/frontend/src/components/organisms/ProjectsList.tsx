@@ -30,7 +30,7 @@ export function ProjectsList({
     <div className={className}>
       {/* Mobile: Horizontal scroll */}
       <div className="md:hidden">
-        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4">
+        <div className="scroll-hide flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4">
           {projects.map((project, index) => (
             <ScrollReveal
               waitForImg={true}

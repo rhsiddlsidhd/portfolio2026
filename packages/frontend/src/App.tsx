@@ -1,10 +1,10 @@
 import { TooltipProvider } from "@/components/atoms/tooltip";
-import { HomePage } from "@/pages/HomePage";
+import { Outlet } from "react-router";
 
 function App() {
   return (
     <TooltipProvider>
-      <HomePage />
+      <Outlet />
     </TooltipProvider>
   );
 }

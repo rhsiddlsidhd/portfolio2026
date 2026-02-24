@@ -70,7 +70,7 @@ export function SkillsGrid({
     <div className={className}>
       {/* Mobile: 가로 스크롤 탭 */}
       <div className="mb-6 md:hidden">
-        <div className="flex gap-2 overflow-x-auto pb-2">
+        <div className="scroll-hide flex gap-2 overflow-x-auto pb-4">
           {categories.map((category) => (
             <Button
               key={category}

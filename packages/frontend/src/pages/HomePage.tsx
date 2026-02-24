@@ -12,6 +12,7 @@ import projectsData from "../../../shared/data/projects.json";
 import { ThemeToggle } from "@/components/molecules/themeToggle";
 import clsx from "clsx";
 import ScrollReveal from "@/components/organisms/ScrollReveal";
+import { Outlet } from "react-router";
 
 export function HomePage() {
   return (
@@ -42,8 +43,8 @@ export function HomePage() {
           />
         </ScrollReveal>
       </main>
-
       <Footer name={userData.name} />
+      <Outlet />
     </section>
   );
 }

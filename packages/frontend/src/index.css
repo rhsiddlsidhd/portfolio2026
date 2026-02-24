@@ -166,7 +166,32 @@ body {
     }
   }
 
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
   .animate-fadeIn {
     animation: fadeIn 600ms ease-in-out;
+  }
+  .animate-fadeOut {
+    animation: fadeOut 600ms ease-in-out;
+  }
+
+  .scroll-hide {
+    /* IE and Edge */
+    -ms-overflow-style: none;
+
+    /* Firefox */
+    scrollbar-width: none;
+
+    /* Chrome, Safari, Opera */
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }

@@ -13,6 +13,7 @@ import { ExternalLink } from "lucide-react";
 import type { IProject } from "../../../../shared/src/types/project";
 import type { ISkill } from "../../../../shared/src/types/skill";
 import { imageBaseUrl } from "@/constants/path";
+import { useNavigate } from "react-router";
 
 type ThumbnailSrc = {
   webp: string;
@@ -52,6 +53,7 @@ export function ProjectCard({
   inView = true,
   onLoad,
 }: ProjectCardProps) {
+  const router = useNavigate();
   const projectSkills = project.skills
     .map((skillId) => allSkills.find((s) => s.id === skillId))
     .filter((s): s is ISkill => s !== undefined);
@@ -60,7 +62,10 @@ export function ProjectCard({
   const thumbnails = createProjectThumbnailSrc(project.title);
 
   return (
-    <Card className={className}>
+    <Card
+      className={className}
+      onClick={() => router(`/project/${project.id}`)}
+    >
       <picture>
         <source
           srcSet={inView ? thumbnails.webp : undefined}
@@ -123,6 +128,7 @@ export function ProjectCard({
                 href={project.deployUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
               >
                 <ExternalLink />
                 Live Demo
@@ -135,6 +141,7 @@ export function ProjectCard({
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
               >
                 GitHub
               </a>

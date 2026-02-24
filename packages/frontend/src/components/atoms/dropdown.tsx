@@ -95,7 +95,7 @@ const DropdownOverlay = () => {
     <div
       className={clsx(
         isOpen &&
-          "bg-background/50 fixed top-0 left-0 z-40 h-full w-full backdrop-blur-xs",
+          "bg-background/50 fixed top-0 left-0 h-full w-full backdrop-blur-xs",
       )}
     />
   );
