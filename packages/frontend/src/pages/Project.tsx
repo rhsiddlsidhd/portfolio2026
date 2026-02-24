@@ -5,8 +5,20 @@ import type { ISkill } from "../../../shared/src/types/skill";
 import { Badge } from "@/components/atoms/badge";
 import { Button } from "@/components/atoms/button";
 import { SkillBadge } from "@/components/molecules/SkillBadge";
-import { ExternalLink, Github, ArrowLeft, CalendarDays } from "lucide-react";
+import {
+  ExternalLink,
+  Github,
+  ArrowLeft,
+  CalendarDays,
+  Zap,
+  Layers,
+  Lightbulb,
+  ListChecks,
+  User,
+  Target,
+} from "lucide-react";
 import skillsData from "../../../shared/data/skills.json";
+import { createProjectThumbnailSrc } from "@/components/molecules/ProjectCard";
 
 const formatDate = (date?: string | null) =>
   date ? date.slice(0, 7).replace("-", ".") : "진행 중";
@@ -14,6 +26,7 @@ const formatDate = (date?: string | null) =>
 const Project = () => {
   const project = useLoaderData() as IProject;
   const navigate = useNavigate();
+  const thumbnails = createProjectThumbnailSrc(project.title);
 
   const projectSkills = project.skills
     .map((id) => skillsData.find((s) => s.id === id))
@@ -32,7 +45,7 @@ const Project = () => {
       onClick={() => navigate(-1)}
     >
       <div
-        className="bg-background text-foreground relative flex h-[85vh] w-9/10 max-w-3xl flex-col overflow-hidden rounded-2xl shadow-2xl"
+        className="bg-accent text-foreground relative flex h-[85vh] w-9/10 max-w-3xl flex-col overflow-hidden rounded-2xl shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* 고정 헤더 */}
@@ -71,89 +84,140 @@ const Project = () => {
 
         {/* 스크롤 영역 */}
         <div className="flex-1 overflow-y-auto">
-          {/* 썸네일 */}
-          {project.thumbnailUrl && (
-            <img
-              src={project.thumbnailUrl}
-              alt={project.title}
-              className="h-48 w-full object-cover"
-            />
-          )}
-
-          <div className="space-y-10 p-4 sm:p-6">
-            {/* 기본 정보 */}
-            <div className="space-y-2">
-              <Badge variant="secondary">{project.name}</Badge>
-              <div className="text-muted-foreground flex items-center gap-1 text-xs">
-                <CalendarDays className="h-3 w-3 shrink-0" />
-                <span>
-                  {formatDate(project.startDate)} –{" "}
-                  {formatDate(project.endDate)}
-                </span>
-              </div>
-              <h1 className="text-2xl font-bold sm:text-3xl">
+          {/* 썸네일 + name overlay */}
+          {project.thumbnailUrl ? (
+            <div className="relative">
+              <picture>
+                <source
+                  srcSet={thumbnails.webp}
+                  sizes="(min-width: 1536px) 485px,
+                 (min-width: 1280px) 400px,
+                 (min-width: 1024px) 314px,
+                 (min-width: 768px) 356px,
+                 (min-width: 640px) 292px,
+                 70vw"
+                  type="image/webp"
+                />
+                <source
+                  srcSet={thumbnails.jpg}
+                  sizes="(min-width: 1536px) 485px,
+                 (min-width: 1280px) 400px,
+                 (min-width: 1024px) 314px,
+                 (min-width: 768px) 356px,
+                 (min-width: 640px) 292px,
+                 70vw"
+                  type="image/jpeg"
+                />
+                <img
+                  src={thumbnails.default}
+                  alt={`${project.title} thumbnail`}
+                  className="h-48 w-full object-cover"
+                  loading="lazy"
+                />
+              </picture>
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
+              <span className="absolute right-4 bottom-6 text-xs font-bold tracking-wide text-white/90">
                 {project.title}
-              </h1>
-              <p className="text-muted-foreground text-sm">{project.role}</p>
+              </span>
+            </div>
+          ) : null}
+
+          <div className="space-y-6 p-4 sm:p-6">
+            {/* 제목 + 설명 */}
+            <div className="space-y-2">
+              <div className="text-primary flex items-center gap-2 text-sm font-semibold tracking-wider uppercase">
+                <Target className="h-4 w-4" />
+                <span>Overview</span>
+                <Badge variant="secondary">{project.name}</Badge>
+              </div>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 {project.description}
               </p>
             </div>
 
-            {/* 기술 스택 */}
-            {projectSkills.length > 0 && (
-              <section>
-                <h2 className="mb-3 text-xs font-semibold tracking-widest uppercase">
-                  기술 스택
-                </h2>
-                <div className="flex flex-wrap gap-2">
-                  {projectSkills.map((skill) => (
-                    <SkillBadge
-                      key={skill.id}
-                      skill={skill}
-                      className="px-3 py-1"
-                    />
-                  ))}
+            {/* Info Box */}
+            <div className="border-border divide-border divide-y overflow-hidden rounded-2xl border">
+              {/* 기간 + 역할 */}
+              <div className="divide-border grid grid-cols-2 divide-x">
+                <div className="flex flex-col gap-1.5 p-4">
+                  <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
+                    <CalendarDays className="h-3.5 w-3.5" />
+                    기간
+                  </div>
+                  <p className="text-sm">
+                    {formatDate(project.startDate)} –{" "}
+                    {formatDate(project.endDate)}
+                  </p>
                 </div>
-              </section>
-            )}
+                <div className="flex flex-col gap-1.5 p-4">
+                  <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
+                    <User className="h-3.5 w-3.5" />
+                    역할
+                  </div>
+                  <p className="text-sm">{project.role}</p>
+                </div>
+              </div>
 
-            {project.details && (
-              <>
-                {/* 개발 배경 */}
-                <section>
-                  <h2 className="mb-3 text-xs font-semibold tracking-widest uppercase">
+              {/* 기술 스택 */}
+              {projectSkills.length > 0 && (
+                <div className="space-y-3 p-4">
+                  <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
+                    <Layers className="h-3.5 w-3.5" />
+                    기술 스택
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {projectSkills.map((skill) => (
+                      <SkillBadge key={skill.id} skill={skill} />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* 개발 배경 */}
+              {project.details?.background && (
+                <div className="space-y-2 p-4">
+                  <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
+                    <Lightbulb className="h-3.5 w-3.5" />
                     개발 배경
-                  </h2>
+                  </div>
                   <p className="text-muted-foreground text-sm leading-relaxed">
                     {project.details.background}
                   </p>
-                </section>
+                </div>
+              )}
 
-                {/* 핵심 기능 */}
-                <section>
-                  <h2 className="mb-3 text-xs font-semibold tracking-widest uppercase">
-                    핵심 기능
-                  </h2>
-                  <ul className="space-y-2">
-                    {project.details.keyFeatures.map((feature, i) => (
-                      <li
-                        key={i}
-                        className="text-muted-foreground flex items-start gap-2 text-sm"
-                      >
-                        <span className="text-primary mt-0.5 select-none">
-                          ·
-                        </span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </section>
+              {/* 핵심 기능 */}
+              {project.details?.keyFeatures &&
+                project.details.keyFeatures.length > 0 && (
+                  <div className="space-y-2 p-4">
+                    <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
+                      <ListChecks className="h-3.5 w-3.5" />
+                      핵심 기능
+                    </div>
+                    <ul className="space-y-1.5">
+                      {project.details.keyFeatures.map((feature, i) => (
+                        <li
+                          key={i}
+                          className="text-muted-foreground flex items-start gap-2 text-sm"
+                        >
+                          <span className="text-primary mt-0.5 select-none">
+                            ·
+                          </span>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+            </div>
 
+            {/* 도전 과제 + 회고 */}
+            {project.details && (
+              <>
                 {/* 도전 과제 */}
                 <section>
                   <h2 className="mb-3 text-xs font-semibold tracking-widest uppercase">
-                    도전 과제
+                    <Zap className="inline-block h-4 w-4" /> 도전 과제
                   </h2>
                   <div className="space-y-4">
                     {project.details.challenges.map((challenge, i) => (
