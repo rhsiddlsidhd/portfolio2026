@@ -1,4 +1,4 @@
-### 5.3. Storybook — UI 테스트
+### 5.4. Storybook — UI 테스트
 
 #### 목적
 
