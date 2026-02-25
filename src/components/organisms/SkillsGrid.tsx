@@ -1,6 +1,7 @@
 import { SkillBadge } from "@/components/molecules/SkillBadge";
 import { Button } from "@/components/atoms/button";
-import { useSkillsFilter } from "@/context/skillsFilter.context";
+import { useSkills } from "@/hooks/useSkills";
+import { CATEGORY_LABELS, SKILL_STAGGER_DELAY } from "@/constants/skill";
 import type { ISkill } from "@/types/skill";
 import ScrollReveal from "./ScrollReveal";
 
@@ -10,23 +11,13 @@ interface SkillsGridProps {
   className?: string;
 }
 
-const categoryOrder = ["language", "frontend", "backend", "tool"];
-
-const categoryLabels: Record<string, string> = {
-  language: "Language",
-  frontend: "Frontend",
-  backend: "Backend",
-  tool: "Tool",
-};
-
-const stagger = 150;
-
 export function SkillsGrid({
   skills,
   groupByCategory = true,
   className,
 }: SkillsGridProps) {
-  const [state, dispatch] = useSkillsFilter();
+  const { categories, currentSkills, selectedCategory, selectCategory } =
+    useSkills(skills);
 
   if (!groupByCategory) {
     // 카테고리 구분 없이 전체 스킬을 그리드로 표시
@@ -41,29 +32,6 @@ export function SkillsGrid({
     );
   }
 
-  // 카테고리별로 그룹핑
-  const groupedSkills = skills.reduce(
-    (acc, skill) => {
-      const category = skill.category;
-      if (!acc[category]) {
-        acc[category] = [];
-      }
-      acc[category].push(skill);
-      return acc;
-    },
-    {} as Record<string, ISkill[]>,
-  );
-
-  const categories = Object.keys(groupedSkills).sort((a, b) => {
-    const indexA = categoryOrder.indexOf(a);
-    const indexB = categoryOrder.indexOf(b);
-    if (indexA === -1) return 1;
-    if (indexB === -1) return -1;
-    return indexA - indexB;
-  });
-
-  const currentSkills = groupedSkills[state.selectedCategory] || [];
-
   return (
     <div className={className}>
       {/* Mobile: 가로 스크롤 탭 */}
@@ -72,16 +40,12 @@ export function SkillsGrid({
           {categories.map((category) => (
             <Button
               key={category}
-              variant={
-                state.selectedCategory === category ? "default" : "secondary"
-              }
+              variant={selectedCategory === category ? "default" : "secondary"}
               size="sm"
-              onClick={() =>
-                dispatch({ type: "SELECT_CATEGORY", payload: category })
-              }
+              onClick={() => selectCategory(category)}
               className="whitespace-nowrap"
             >
-              {categoryLabels[category] || category}
+              {CATEGORY_LABELS[category] || category}
             </Button>
           ))}
         </div>
@@ -94,16 +58,12 @@ export function SkillsGrid({
           {categories.map((category) => (
             <Button
               key={category}
-              variant={
-                state.selectedCategory === category ? "default" : "secondary"
-              }
+              variant={selectedCategory === category ? "default" : "secondary"}
               size="default"
-              onClick={() =>
-                dispatch({ type: "SELECT_CATEGORY", payload: category })
-              }
+              onClick={() => selectCategory(category)}
               className="w-full justify-start"
             >
-              {categoryLabels[category] || category}
+              {CATEGORY_LABELS[category] || category}
             </Button>
           ))}
         </div>
@@ -111,11 +71,11 @@ export function SkillsGrid({
         {/* 우측 80%: 스킬 그리드 */}
         <div className="w-4/5">
           <div
-            key={state.selectedCategory}
+            key={selectedCategory}
             className="animate-fadeIn flex flex-wrap gap-2"
           >
             {currentSkills.map((skill, index) => (
-              <ScrollReveal key={skill.id} delay={index * stagger}>
+              <ScrollReveal key={skill.id} delay={index * SKILL_STAGGER_DELAY}>
                 <SkillBadge skill={skill} showTooltip={true} />
               </ScrollReveal>
             ))}
@@ -126,11 +86,11 @@ export function SkillsGrid({
       {/* Mobile: 스킬 그리드 (탭 아래) */}
       <div className="md:hidden">
         <div
-          key={state.selectedCategory}
+          key={selectedCategory}
           className="animate-fadeIn flex flex-wrap gap-2"
         >
           {currentSkills.map((skill, index) => (
-            <ScrollReveal key={skill.id} delay={index * stagger}>
+            <ScrollReveal key={skill.id} delay={index * SKILL_STAGGER_DELAY}>
               <SkillBadge skill={skill} showTooltip={true} />
             </ScrollReveal>
           ))}

@@ -5,17 +5,54 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/atoms/carousel";
+import { imageBaseUrl } from "@/constants/path";
+import { cn } from "@/lib/utils";
 
 interface ChallengeImageCarouselProps {
   imgs: string[];
   challengeId: string;
-  projectTitle:string;
+  projectId: string;
 }
+
+const isVideo = (filename: string) => filename.endsWith(".webm");
+
+const ChallengeMedia = ({
+  src,
+  alt,
+}: {
+  src: string;
+  alt: string;
+}) => {
+  if (isVideo(src)) {
+    return (
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="w-full rounded-lg"
+      >
+        <source src={src} type="video/webm" />
+      </video>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className="w-full rounded-lg object-cover"
+      onError={(e) => {
+        e.currentTarget.style.display = "none";
+      }}
+    />
+  );
+};
 
 export function ChallengeImageCarousel({
   imgs,
   challengeId,
-  projectTitle
+  projectId,
 }: ChallengeImageCarouselProps) {
   if (imgs.length === 0) return null;
 
@@ -27,13 +64,9 @@ export function ChallengeImageCarousel({
           <CarouselContent>
             {imgs.map((img, i) => (
               <CarouselItem key={i}>
-                <img
-                  src={`/images/challenges/${projectTitle}/${img}`}
+                <ChallengeMedia
+                  src={`${imageBaseUrl}/challenges/${projectId}/${img}`}
                   alt={`${challengeId} evidence ${i + 1}`}
-                  className="w-full rounded-lg object-cover"
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                  }}
                 />
               </CarouselItem>
             ))}
@@ -48,16 +81,12 @@ export function ChallengeImageCarousel({
       </div>
 
       {/* Desktop: grid */}
-      <div className="hidden grid-cols-2 gap-4 sm:grid">
+      <div className={cn(`hidden grid-cols-2 gap-4 sm:grid`, imgs.length === 1 && 'grid-cols-1')}>
         {imgs.map((img, i) => (
-          <img
+          <ChallengeMedia
             key={i}
-            src={`/images/challenges/${projectTitle}/${img}`}
+            src={`${imageBaseUrl}/challenges/${projectId}/${img}`}
             alt={`${challengeId} evidence ${i + 1}`}
-            className="w-full rounded-lg object-cover"
-            onError={(e) => {
-              e.currentTarget.style.display = "none";
-            }}
           />
         ))}
       </div>

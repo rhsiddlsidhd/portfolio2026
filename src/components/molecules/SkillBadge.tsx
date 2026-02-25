@@ -6,7 +6,7 @@ import {
 } from "@/components/atoms/tooltip";
 import { imageBaseUrl } from "@/constants/path";
 import type { ISkill } from "@/types/skill";
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 import { useState } from "react";
 
 interface SkillBadgeProps {
@@ -26,7 +26,7 @@ export function SkillBadge({
     <Badge
       data-slot="badge"
       variant="secondary"
-      className={clsx("p-2", className)}
+      className={cn("p-2", className)}
     >
       {hasError ? (
         <span className="h-6 text-[10px] font-bold uppercase leading-none flex items-center">

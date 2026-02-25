@@ -2,14 +2,13 @@ import { ProjectCard } from "@/components/molecules/ProjectCard";
 import type { IProject } from "@/types/project";
 import type { ISkill } from "@/types/skill";
 import ScrollReveal from "./ScrollReveal";
+import { STAGGER_DELAY } from "@/constants/ui";
 
 interface ProjectsListProps {
   projects: IProject[];
   allSkills: ISkill[];
   className?: string;
 }
-
-const stagger = 150;
 
 export function ProjectsList({
   projects,
@@ -34,7 +33,7 @@ export function ProjectsList({
           {projects.map((project, index) => (
             <ScrollReveal
               waitForImg={true}
-              delay={index * stagger}
+              delay={index * STAGGER_DELAY}
               key={project.id}
               options={{ threshold: 0, rootMargin: "0px 100px 0px 100px" }}
             >
@@ -57,7 +56,7 @@ export function ProjectsList({
         {projects.map((project, index) => (
           <ScrollReveal
             waitForImg={true}
-            delay={index * stagger}
+            delay={index * STAGGER_DELAY}
             key={project.id}
             options={{ threshold: 0.5, rootMargin: "0px 0px 200px 0px" }}
           >

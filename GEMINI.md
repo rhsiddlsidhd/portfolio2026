@@ -7,35 +7,36 @@ Gemini CLI는 이 파일의 내용을 항상 참고하여 일관성 있는 작�
 
 ## 역할 정의
 
-Gemini CLI는 이 프로젝트의 **비즈니스 로직, 데이터 연동, 유틸리티 구현 및 로직 테스트**를 전담합니다.
+Gemini CLI는 이 프로젝트의 **UI 컴포넌트 구현(atoms~pages) 및 로직 영역(hooks, api, utils 등)**을 전담합니다.
 
 ## 담당 영역
 
-- `packages/backend/` — Node.js 서버 로직, API 구현
-- `packages/shared/` — 공유 타입 정의, 유틸리티 함수 구현 (백엔드/프론트엔드 공통)
-- `packages/frontend/src/hooks/` — 커스텀 훅 설계·구현 (데이터 페칭, 상태 관리 등)
-- `packages/frontend/src/api/` — axios 인스턴스 구성, API 함수 작성, 에러 핸들링
-- `packages/frontend/src/utils/` — 순수 유틸리티 함수 (부수효과 없는 헬퍼)
-- `packages/frontend/src/context/` — Context API 프로바이더 설계·구현
-- `packages/frontend/src/types/` — 타입 정의 (API 응답, 도메인 모델, 공유 타입)
-- `packages/frontend/src/constants/` — 상수 정의 (API 엔드포인트, 에러 메시지, 라우트 경로)
-- `*.test.ts` / `*.test.tsx` — Vitest 단위·통합 테스트 작성
+- `src/components/atoms/` — shadcn/ui 컴포넌트 검색, 설치, 초기 구성 및 커스터마이징
+- `src/components/molecules/` — atom 조합 컴포넌트 설계·구현
+- `src/components/organisms/` — 복합 UI 영역 설계·구현
+- `src/components/layout/` — Header, Footer 등 레이아웃 컴포넌트
+- `src/pages/` — 페이지 컴포넌트 구조 설계·구현
+- `src/styles/` — Tailwind 테마, 디자인 토큰, 전역 스타일
+- `src/hooks/` — 커스텀 훅 설계·구현
+- `src/api/` — API 클라이언트 구성, 요청 함수 작성, 에러 핸들링
+- `src/utils/` — 순수 유틸리티 함수 구현
+- `src/context/` — Context API 프로바이더 설계·구현
+- `src/types/` — 타입 정의 (API 응답, 도메인 모델, 공유 타입)
+- `src/constants/` — 상수 정의 (API 엔드포인트, 에러 메시지, 라우트 경로)
 - 디버깅 및 성능 개선
 
 ## 접근 금지 영역
 
-아래 폴더의 파일은 **읽기 전용**으로 취급하고 import만 사용합니다. 직접 추가·수정하지 않습니다.
+아래 파일들은 **읽기 전용**으로 취급하며 직접 추가하거나 수정하지 않습니다.
 
-- `packages/frontend/src/components/` — Claude Code 담당 (atoms, molecules, organisms, layout 전체)
-- `packages/frontend/src/pages/` — Claude Code 담당
-- `packages/frontend/src/styles/` — Claude Code 담당
-- `packages/frontend/*.stories.tsx` — Claude Code 담당
+- `*.test.ts` / `*.test.tsx` — Claude Code 담당
+- `*.stories.tsx` — Claude Code 담당
 
 ## 행동 규칙
 
-- 새로운 UI 컴포넌트가 필요한 경우: 직접 생성하지 않고 **사용자에게 Claude Code로 추가를 요청하라고 안내**
-- Storybook story 작성이 필요한 경우: 직접 생성하지 않고 **사용자에게 Claude Code로 작성을 요청하라고 안내**
-- 스타일(Tailwind 클래스, CSS 변수) 수정이 필요한 경우: **사용자에게 Claude Code로 수정을 요청하라고 안내**
+- **테스트 요청:** 컴포넌트나 로직 구현 완료 후, 사용자에게 **Claude Code로 테스트 코드 작성 및 코드 리뷰를 요청**하라고 안내합니다.
+- **버그 수정:** 버그 수정 시 Claude Code의 리뷰 피드백을 우선적으로 고려하며, 수정 후 다시 리뷰를 요청하도록 안내합니다.
+- **shadcn/ui:** 필요한 경우 `npx shadcn-ui@latest add` 명령어를 직접 실행하여 UI 라이브러리를 구축합니다.
 
 ## 참조 문서
 

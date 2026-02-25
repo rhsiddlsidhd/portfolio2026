@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 import {
   Dropdown,
   DropdownMenus,
@@ -22,26 +22,26 @@ export function Header({ className }: HeaderProps) {
   ];
 
   return (
-    <header className={clsx("relative z-50 mb-12", "relative z-50", className)}>
+    <header className={cn("relative z-50 mb-12", className)}>
       <ul
-        className={clsx(
+        className={cn(
           "border-border bg-accent/50 text-accent-foreground relative z-50 m-auto flex w-fit items-center gap-4 border-2 px-4 py-2 backdrop-blur-2xl max-sm:w-9/10 max-sm:justify-between",
           "rounded-4xl",
         )}
       >
         <DropdownMenus
           menus={navItems}
-          className={clsx(`flex gap-4`, isMobile && "hidden")}
+          className={cn("flex gap-4", isMobile && "hidden")}
         />
         <ThemeToggle
-          className={clsx("cursor-pointer", !isMobile && "hidden")}
+          className={cn("cursor-pointer", !isMobile && "hidden")}
         />
         <DropdownTrigger
-          className={clsx("cursor-pointer", !isMobile && "hidden")}
+          className={cn("cursor-pointer", !isMobile && "hidden")}
         />
       </ul>
       <Dropdown>
-        <DropdownMenus menus={navItems} className={clsx(`space-y-4`)} />
+        <DropdownMenus menus={navItems} className={cn("space-y-4")} />
       </Dropdown>
       <DropdownOverlay />
     </header>

@@ -7,45 +7,51 @@ Claude Code는 이 파일의 내용을 항상 참고하여 일관성 있는 작�
 
 ## 역할 정의
 
-Claude Code는 이 프로젝트의 **UI 구조 설계 및 컴포넌트 구현**을 전담합니다.
+Claude Code는 이 프로젝트의 **테스트 코드 작성 및 코드 리뷰**를 전담합니다.
 
 ## 담당 영역
 
-- `src/components/atoms/` — shadcn/ui 컴포넌트 검색, 설치(`npx shadcn-ui@latest add`), 초기 구성 및 커스터마이징
-- `src/components/molecules/` — atom 조합 컴포넌트 설계·구현
-- `src/components/organisms/` — 복합 UI 영역 설계·구현
-- `src/components/layout/` — Header, Footer 등 레이아웃 컴포넌트
-- `src/pages/` — 페이지 컴포넌트 구조 설계·구현
-- `src/styles/` — Tailwind 테마, 디자인 토큰, 전역 스타일
+- `*.test.ts` — Vitest 단위 테스트 작성
+- `*.test.tsx` — Vitest + React Testing Library 통합 테스트 작성
 - `*.stories.tsx` — Storybook story 작성 (UI 시각 테스트)
+- **코드 리뷰** — Gemini CLI가 구현한 컴포넌트 및 로직 코드 리뷰
 
-## 접근 금지 영역
+## 읽기 권한 (테스트·리뷰 목적)
 
-아래 폴더의 파일은 **읽기 전용**으로 취급하고 import만 사용합니다. 직접 추가·수정하지 않습니다.
+아래 폴더는 테스트 작성 및 코드 리뷰를 위해 **읽기 전용**으로 접근합니다. 직접 추가·수정하지 않습니다.
 
+- `src/components/` — Gemini CLI 담당 (UI 컴포넌트 구현)
+- `src/pages/` — Gemini CLI 담당
 - `src/hooks/` — Gemini CLI 담당
 - `src/api/` — Gemini CLI 담당
 - `src/utils/` — Gemini CLI 담당
 - `src/context/` — Gemini CLI 담당
-- `src/types/` — Gemini CLI 담당 (단, 컴포넌트 Props 타입은 컴포넌트 파일 내에서 직접 정의 가능)
+- `src/types/` — Gemini CLI 담당
 - `src/constants/` — Gemini CLI 담당
-- `*.test.ts` / `*.test.tsx` — Gemini CLI 담당
+- `src/styles/` — Gemini CLI 담당
 
 ## 행동 규칙
 
+- UI 컴포넌트 구현이 필요한 경우: 직접 생성하지 않고 **사용자에게 Gemini CLI로 구현을 요청하라고 안내**
 - 새로운 커스텀 훅이 필요한 경우: 직접 생성하지 않고 **사용자에게 Gemini CLI로 추가를 요청하라고 안내**
 - API 함수가 필요한 경우: 직접 생성하지 않고 **사용자에게 Gemini CLI로 추가를 요청하라고 안내**
-- Vitest 테스트 작성이 필요한 경우: **사용자에게 Gemini CLI로 작성을 요청하라고 안내**
+- 버그를 발견한 경우: 직접 수정하지 않고 **코드 리뷰 형태로 문제를 명시하고 Gemini CLI에 수정을 요청하라고 안내**
 
 ## 참조 문서
 
-컴포넌트 작업 시 아래 문서를 반드시 참조합니다.
+작업 시 아래 문서를 반드시 참조합니다.
 
+### 프로젝트 구조
 - [AI 역할 분담](./docs/02_architecture_ai_responsibilities.md)
 - [폴더 구조](./docs/02_architecture_folder_structure.md)
-- [컴포넌트 작성 스타일](./docs/03_coding_conventions_component_style.md)
+
+### 코딩 컨벤션 (테스트 코드 작성 기준)
 - [네이밍 규칙](./docs/03_coding_conventions_naming_rules.md)
 - [타입스크립트 규칙](./docs/03_coding_conventions_typescript.md)
-- [스타일링 방식](./docs/04_styling_guide_method.md)
-- [디자인 시스템](./docs/04_styling_guide_design_system.md)
-- [Storybook 전략](./docs/05_testing_strategy_storybook.md)
+
+### 테스트 전략
+- [테스트 전략 개요](./docs/05_testing_strategy_overview.md)
+- [Vitest 단위 테스트](./docs/05_testing_strategy_vitest.md)
+- [Vitest + RTL 통합 테스트](./docs/05_testing_strategy_rtl.md)
+- [Storybook UI 테스트](./docs/05_testing_strategy_storybook.md)
+- [테스트 제외 대상](./docs/05_testing_strategy_exclusion.md)

@@ -23,6 +23,5 @@ export interface IProject {
     background: string; // 프로젝트 개발 배경
     keyFeatures: string[]; // 핵심 기능 목록
     challenges: IChallenge[]; // 도전 과제 및 문제 해결 경험
-    retrospect: string; // 프로젝트 회고 및 배운 점
   };
 }

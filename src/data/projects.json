@@ -1,8 +1,8 @@
 [
   {
-    "id": "TieKnot",
-    "name": "MOBILE_INVITATION",
-    "title": "TieKnot",
+    "id": "tieknot",
+    "name": "TieKnot",
+    "title": "모바일 청첩장 이커머스",
     "description": "원하는 템플릿을 선택하고 커플 정보를 입력해 모바일 청첩장을 제작·공유할 수 있는 풀스택 이커머스 플랫폼",
     "skills": [
       "typescript",
@@ -70,17 +70,16 @@
           "solution": "잘못된 `repositories` 입력을 제거하고 워크플로우 경로 패턴을 부정 패턴(negative glob)으로 수정했습니다. 실패하는 권한 검증 스텝을 제거하고, 재사용 가능한 워크플로우(reusable workflow)로 구조를 리팩터링해 중복을 제거했습니다.",
           "impact": "모든 PR에서 Claude AI 코드 리뷰와 Slack 알림이 안정적으로 동작하게 되어 팀 내 코드 리뷰 자동화가 정착했습니다."
         }
-      ],
-      "retrospect": "가족 행사용 아이디어에서 시작한 프로젝트가 인증·결제·이미지 관리·CI/CD 자동화까지 갖춘 풀스택 서비스로 성장했습니다. 특히 결제 검증 로직 설계와 타입 안전성 확보 과정에서 '작동하는 코드'와 '신뢰할 수 있는 코드'의 차이를 체감했습니다. Next.js App Router의 서버 액션과 SSG/SSR 혼합 전략을 실무처럼 적용하며 렌더링 전략 선택 기준을 확립했고, GitHub Actions 자동화를 통해 개발 워크플로우 전반을 스스로 설계하는 경험을 쌓을 수 있었습니다. 향후 방명록·음악 재생 등 미완 기능을 완성하고 성능 모니터링을 추가할 계획입니다."
+      ]
     }
   },
   {
-    "id": "project-2",
-    "name": "자기소개 포트폴리오",
-    "title": "Portfolio2026",
+    "id": "portfolio-2026",
+    "name": "Portfolio2026",
+    "title": "자기소개 포트폴리오",
     "description": "CSR 환경에서 이미지 렌더링 최적화, 인터랙티브 애니메이션 성능 개선 등 실제 프론트엔드 개발 시 마주하는 문제들을 수치로 증명한 프로젝트입니다.",
     "skills": ["typescript", "tailwindcss", "react", "github", "vercel"],
-    "thumbnailUrl": "/images/projects/Portfolio2026/webp/Portfolio2026_1280w.webp",
+    "thumbnailUrl": "/images/projects/portfolio-2026/portfolio-2026_1280w.webp",
     "deployUrl": "https://portfolio2026-2nbc.vercel.app/",
     "githubUrl": "https://github.com/rhsiddlsidhd/portfolio2026",
     "startDate": "2026-01-10",
@@ -99,13 +98,15 @@
           "id": "challenge-1",
           "problem": "이미지가 로드되기 전에 ScrollReveal 애니메이션이 실행되어, 이미지 없는 카드가 먼저 노출되는 시각적 깜빡임 발생",
           "solution": "waitForImg 플래그와 React Context(revealImg.context), Render Props 패턴을 조합하여 이미지 onLoad 콜백 시점까지 애니메이션 실행을 지연",
-          "impact": "이미지 로드 완료 후 애니메이션이 실행되어 깜빡임 없는 부드러운 카드 등장 효과 구현"
+          "impact": "이미지 로드 완료 후 애니메이션이 실행되어 깜빡임 없는 부드러운 카드 등장 효과 구현",
+          "imgs": ["scrollReveal-before.webm", "scrollReveal-after.webm"]
         },
         {
           "id": "challenge-2",
-          "problem": "컴포넌트 마운트 후 useEffect에서 데이터를 fetch하는 구조로, 렌더링 → 빈 화면 → 데이터 로드 → 재렌더링의 워터폴 발생",
-          "solution": "React Router의 Data API(loader)를 활용하여 컴포넌트 렌더링 전 라우팅 단계에서 데이터를 미리 준비, useLoaderData()로 마운트 즉시 데이터 사용",
-          "impact": "렌더링 워터폴 제거로 프로젝트 상세 페이지 진입 시 빈 화면 없이 데이터가 즉시 노출"
+          "problem": "컴포넌트 마운트 후 useEffect에서 데이터를 찾는 구조로 인해 '렌더링 → 빈 화면 → 데이터 로드 → 리렌더링'이 순차적으로 일어나는 불필요한 추가 렌더링(Cascading Renders) 및 시각적 깜빡임 발생",
+          "solution": "React Router의 Data API(loader)를 도입하여 데이터 준비 책임을 라우터 레이어로 위임하고, 컴포넌트는 첫 번째 렌더링 사이클부터 완성된 데이터를 즉시 사용하도록 구조 개선",
+          "impact": "데이터 준비와 UI 렌더링의 책임을 명확히 분리하여 코드의 순수성을 높였으며, 첫 렌더링 시점에 모든 정보를 노출함으로써 사용자 경험(UX) 향상 및 검색 엔진(SEO) 수집 효율 증대",
+          "imgs": ["issue-react-router.webp"]
         },
         {
           "id": "challenge-3",
@@ -114,8 +115,7 @@
           "impact": "초기 로드 시 네트워크 요청을 당장 필요한 이미지로 한정하여 불필요한 네트워크 의존성을 줄이고, LCP 대상 이미지의 우선 로드를 보장",
           "imgs": ["img-lazy-loading-before.webp", "img-lazy-loading-after.webp"]
         }
-      ],
-      "retrospect": "프론트엔드 개발자로서 '성능'과 '사용자 경험'이 단순한 수치가 아닌 코드 한 줄의 결정에서 비롯된다는 확신을 갖게 된 프로젝트입니다."
+      ]
     }
   }
 ]
