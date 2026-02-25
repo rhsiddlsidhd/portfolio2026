@@ -1,6 +1,6 @@
 import { RevealImgProvider, useRevealImg } from "@/context/revealImg.context";
 import useScrollReveal from "@/hooks/useScrollReveal";
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 import React from "react";
 import type { IntersectionOptions } from "react-intersection-observer";
 
@@ -42,7 +42,7 @@ const ScrollRevealInner = ({
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={clsx(
+      className={cn(
         "relative transition-all duration-700 ease-out",
         inView && isLoaded
           ? "translate-y-0 opacity-100"

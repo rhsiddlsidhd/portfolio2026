@@ -12,31 +12,8 @@ import { SkillBadge } from "./SkillBadge";
 import { ExternalLink } from "lucide-react";
 import type { IProject } from "@/types/project";
 import type { ISkill } from "@/types/skill";
-import { imageBaseUrl } from "@/constants/path";
 import { useNavigate } from "react-router";
-import clsx from "clsx";
-
-type ThumbnailSrc = {
-  webp: string;
-  jpg: string;
-  default: string;
-};
-
-const THUMBNAIL_WIDTHS = [1280, 960, 640, 320] as const;
-
-export const createProjectThumbnailSrc = (title: string): ThumbnailSrc => {
-  const generateSrcSet = (ext: string): string =>
-    THUMBNAIL_WIDTHS.map(
-      (w) =>
-        `${imageBaseUrl}/projects/${title}/${ext}/${title}_${w}w.${ext} ${w}w`,
-    ).join(", ");
-
-  return {
-    webp: generateSrcSet("webp"),
-    jpg: generateSrcSet("jpg"),
-    default: `${imageBaseUrl}/projects/${title}/jpg/${title}_1280w.jpg`,
-  };
-};
+import { createProjectThumbnailSrc, cn } from "@/lib/utils";
 
 type ProjectCardProps = {
   project: IProject;
@@ -60,11 +37,11 @@ export function ProjectCard({
     .filter((s): s is ISkill => s !== undefined);
 
   const hasLinks = project.deployUrl || project.githubUrl;
-  const thumbnails = createProjectThumbnailSrc(project.title);
+  const thumbnails = createProjectThumbnailSrc(project.id);
 
   return (
     <Card
-      className={clsx(
+      className={cn(
         "cursor-pointer transition-all duration-300 ease-out",
         "md:hover:border-primary/20 md:hover:scale-[1.02] md:hover:shadow-xl",
         "active:scale-[0.97] active:brightness-95",
@@ -73,36 +50,21 @@ export function ProjectCard({
       )}
       onClick={() => router(`/project/${project.id}`)}
     >
-      <picture>
-        <source
-          srcSet={inView ? thumbnails.webp : undefined}
-          sizes="(min-width: 1536px) 485px,
-                 (min-width: 1280px) 400px,
-                 (min-width: 1024px) 314px,
-                 (min-width: 768px) 356px,
-                 (min-width: 640px) 292px,
-                 70vw"
-          type="image/webp"
-        />
-        <source
-          srcSet={inView ? thumbnails.jpg : undefined}
-          sizes="(min-width: 1536px) 485px,
-                 (min-width: 1280px) 400px,
-                 (min-width: 1024px) 314px,
-                 (min-width: 768px) 356px,
-                 (min-width: 640px) 292px,
-                 70vw"
-          type="image/jpeg"
-        />
-        <img
-          src={inView ? thumbnails.default : undefined}
-          alt={`${project.title} thumbnail`}
-          className="h-auto w-full rounded-t-lg object-cover"
-          loading="lazy"
-          onLoad={onLoad}
-          onError={onLoad}
-        />
-      </picture>
+      <img
+        srcSet={inView ? thumbnails.webp : undefined}
+        sizes="(min-width: 1536px) 485px,
+               (min-width: 1280px) 400px,
+               (min-width: 1024px) 314px,
+               (min-width: 768px) 356px,
+               (min-width: 640px) 292px,
+               70vw"
+        src={inView ? thumbnails.default : undefined}
+        alt={`${project.title} thumbnail`}
+        className="h-auto w-full rounded-t-lg object-cover"
+        loading="lazy"
+        onLoad={onLoad}
+        onError={onLoad}
+      />
 
       <CardHeader>
         <CardTitle className="text-xl">{project.title}</CardTitle>
