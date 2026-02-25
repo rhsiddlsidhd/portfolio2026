@@ -19,7 +19,7 @@ import {
   Target,
 } from "lucide-react";
 import skillsData from "@/data/skills.json";
-import { createProjectThumbnailSrc } from "@/components/molecules/ProjectCard";
+import { createProjectThumbnailSrc } from "@/lib/utils";
 
 const formatDate = (date?: string | null) =>
   date ? date.slice(0, 7).replace("-", ".") : "진행 중";
@@ -27,7 +27,7 @@ const formatDate = (date?: string | null) =>
 const Project = () => {
   const project = useLoaderData() as IProject;
   const navigate = useNavigate();
-  const thumbnails = createProjectThumbnailSrc(project.title);
+  const thumbnails = createProjectThumbnailSrc(project.id);
 
   const projectSkills = project.skills
     .map((id) => skillsData.find((s) => s.id === id))
@@ -88,34 +88,19 @@ const Project = () => {
           {/* 썸네일 + name overlay */}
           
             <div className="relative">
-              <picture>
-                <source
-                  srcSet={thumbnails.webp}
-                  sizes="(min-width: 1536px) 485px,
+              <img
+                srcSet={thumbnails.webp}
+                sizes="(min-width: 1536px) 485px,
                  (min-width: 1280px) 400px,
                  (min-width: 1024px) 314px,
                  (min-width: 768px) 356px,
                  (min-width: 640px) 292px,
                  70vw"
-                  type="image/webp"
-                />
-                <source
-                  srcSet={thumbnails.jpg}
-                  sizes="(min-width: 1536px) 485px,
-                 (min-width: 1280px) 400px,
-                 (min-width: 1024px) 314px,
-                 (min-width: 768px) 356px,
-                 (min-width: 640px) 292px,
-                 70vw"
-                  type="image/jpeg"
-                />
-                <img
-                  src={thumbnails.default}
-                  alt={`${project.title} thumbnail`}
-                  className="h-48 w-full object-cover"
-                  loading="lazy"
-                />
-              </picture>
+                src={thumbnails.default}
+                alt={`${project.title} thumbnail`}
+                className="h-48 w-full object-cover"
+                loading="lazy"
+              />
               <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
               <span className="absolute right-4 bottom-6 text-xs font-bold tracking-wide text-white/90">
                 {project.title}
@@ -254,7 +239,7 @@ const Project = () => {
                           <ChallengeImageCarousel
                             imgs={challenge.imgs}
                             challengeId={challenge.id}
-                            projectTitle={project.title}
+                            projectId={project.id}
                           />
                         )}
                       </div>

@@ -5,17 +5,18 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/atoms/carousel";
+import { imageBaseUrl } from "@/constants/path";
 
 interface ChallengeImageCarouselProps {
   imgs: string[];
   challengeId: string;
-  projectTitle:string;
+  projectId: string;
 }
 
 export function ChallengeImageCarousel({
   imgs,
   challengeId,
-  projectTitle
+  projectId,
 }: ChallengeImageCarouselProps) {
   if (imgs.length === 0) return null;
 
@@ -28,7 +29,7 @@ export function ChallengeImageCarousel({
             {imgs.map((img, i) => (
               <CarouselItem key={i}>
                 <img
-                  src={`/images/challenges/${projectTitle}/${img}`}
+                  src={`${imageBaseUrl}/challenges/${projectId}/${img}`}
                   alt={`${challengeId} evidence ${i + 1}`}
                   className="w-full rounded-lg object-cover"
                   onError={(e) => {
@@ -52,7 +53,7 @@ export function ChallengeImageCarousel({
         {imgs.map((img, i) => (
           <img
             key={i}
-            src={`/images/challenges/${projectTitle}/${img}`}
+            src={`${imageBaseUrl}/challenges/${projectId}/${img}`}
             alt={`${challengeId} evidence ${i + 1}`}
             className="w-full rounded-lg object-cover"
             onError={(e) => {

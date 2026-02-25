@@ -1,8 +1,8 @@
 [
   {
-    "id": "TieKnot",
-    "name": "MOBILE_INVITATION",
-    "title": "TieKnot",
+    "id": "tieknot",
+    "name": "TieKnot",
+    "title": "모바일 청첩장 이커머스",
     "description": "원하는 템플릿을 선택하고 커플 정보를 입력해 모바일 청첩장을 제작·공유할 수 있는 풀스택 이커머스 플랫폼",
     "skills": [
       "typescript",
@@ -75,12 +75,12 @@
     }
   },
   {
-    "id": "project-2",
-    "name": "자기소개 포트폴리오",
-    "title": "Portfolio2026",
+    "id": "portfolio-2026",
+    "name": "Portfolio2026",
+    "title": "자기소개 포트폴리오",
     "description": "CSR 환경에서 이미지 렌더링 최적화, 인터랙티브 애니메이션 성능 개선 등 실제 프론트엔드 개발 시 마주하는 문제들을 수치로 증명한 프로젝트입니다.",
     "skills": ["typescript", "tailwindcss", "react", "github", "vercel"],
-    "thumbnailUrl": "/images/projects/Portfolio2026/webp/Portfolio2026_1280w.webp",
+    "thumbnailUrl": "/images/projects/portfolio-2026/portfolio-2026_1280w.webp",
     "deployUrl": "https://portfolio2026-2nbc.vercel.app/",
     "githubUrl": "https://github.com/rhsiddlsidhd/portfolio2026",
     "startDate": "2026-01-10",
