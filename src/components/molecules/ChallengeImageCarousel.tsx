@@ -6,6 +6,7 @@ import {
   CarouselNext,
 } from "@/components/atoms/carousel";
 import { imageBaseUrl } from "@/constants/path";
+import { cn } from "@/lib/utils";
 
 interface ChallengeImageCarouselProps {
   imgs: string[];
@@ -80,7 +81,7 @@ export function ChallengeImageCarousel({
       </div>
 
       {/* Desktop: grid */}
-      <div className="hidden grid-cols-2 gap-4 sm:grid">
+      <div className={cn(`hidden grid-cols-2 gap-4 sm:grid`, imgs.length === 1 && 'grid-cols-1')}>
         {imgs.map((img, i) => (
           <ChallengeMedia
             key={i}

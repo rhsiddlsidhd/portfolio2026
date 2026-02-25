@@ -1,6 +1,7 @@
 import { TooltipProvider } from "@/components/atoms/tooltip";
 import { Outlet } from "react-router";
 
+
 function App() {
   return (
     <TooltipProvider>

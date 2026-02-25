@@ -1,8 +1,8 @@
-# 프론트엔드 포트폴리오
+# 프론트엔드 포트폴리오 2026
 
-**Atomic Design 기반의 체계적인 컴포넌트 설계로 구축한 개인 포트폴리오 웹사이트**
+**Atomic Design 기반의 체계적인 컴포넌트 설계와 AI 협업을 통해 구축한 고성능 개인 포트폴리오**
 
-TypeScript + React 19 + Tailwind CSS 4를 활용한 모던 프론트엔드 프로젝트입니다.
+TypeScript + React 19 + Tailwind CSS 4를 활용하여 성능 최적화와 사용자 경험(UX)을 극대화한 모던 프론트엔드 프로젝트입니다.
 
 ---
 
@@ -16,42 +16,44 @@ npm install
 
 ### 개발 서버 실행
 ```bash
-# Frontend 개발 서버 (Vite)
-npm run dev:frontend
-
-# Backend API 서버
-npm run start:backend
+# 개발 서버 (Vite)
+npm run dev
 ```
 
 ### 빌드 및 테스트
 ```bash
 # 프로덕션 빌드
-npm run build:frontend
+npm run build
 
 # 린트 검사
-npm run lint:frontend
+npm run lint
 
-# 테스트 실행
-npm run test:frontend
+# 테스트 실행 (Vitest)
+npm run test
 ```
 
 ---
 
-## 📦 프로젝트 구조 (Monorepo)
+## 📦 프로젝트 구조
+
+이 프로젝트는 초기 Monorepo 구조에서 생산성과 유지보수성을 위해 단일 패키지 구조로 리팩터링되었습니다.
 
 ```
 portfolio/
-├── packages/
-│   ├── frontend/          # React UI 애플리케이션
-│   ├── backend/           # Express API 서버
-│   └── shared/            # 공유 데이터
-│       └── data/
-│           ├── user.json       # 개인 정보
-│           ├── skills.json     # 기술 스택 (25개)
-│           └── projects.json   # 프로젝트 포트폴리오
-├── docs/                  # 아키텍처 및 컨벤션 문서
-├── CLAUDE.md             # Claude Code 역할 정의
-└── GEMINI.md             # Gemini CLI 역할 정의
+├── docs/                  # 상세 아키텍처 및 컨벤션 문서
+├── public/                # 정적 자산 (이미지, 스킬 아이콘 등)
+├── src/
+│   ├── components/        # Atomic Design 기반 컴포넌트 (Atoms, Molecules, Organisms)
+│   ├── pages/             # 페이지 컴포넌트
+│   ├── routes/            # React Router 7 기반 라우팅 및 Data API(Loader)
+│   ├── hooks/             # 커스텀 훅 (비즈니스 로직 분리)
+│   ├── context/           # React Context를 이용한 전역 상태 관리
+│   ├── data/              # JSON 기반 정적 데이터
+│   ├── types/             # TypeScript 타입 정의
+│   ├── styles/            # Tailwind CSS 4 전역 스타일
+│   └── lib/               # 유틸리티 함수 및 설정
+├── CLAUDE.md             # Claude Code 역할 정의 (테스트/리뷰)
+└── GEMINI.md             # Gemini CLI 역할 정의 (UI/로직 구현)
 ```
 
 ---
@@ -59,143 +61,70 @@ portfolio/
 ## 🛠️ 기술 스택
 
 ### Frontend
-- **Core**: React 19, TypeScript, Vite 7
+- **Core**: React 19, TypeScript 5.9, Vite 7
+- **Routing**: React Router 7 (Data API 활용)
 - **Styling**: Tailwind CSS 4, shadcn/ui, Radix UI
+- **Animation**: Embla Carousel, Intersection Observer
 - **Icons**: Lucide React
-- **Utils**: clsx, tailwind-merge, class-variance-authority
+- **State**: Zustand (전역 상태), React Context (컴포넌트 로컬 상태)
 
-### Backend
-- **Framework**: Express.js
-- **Data**: JSON 기반 정적 데이터
-
-### Dev Tools
+### Dev Tools & Testing
+- **AI Agents**: Gemini CLI (Implementation), Claude Code (Test & Review)
+- **Testing**: Vitest, React Testing Library, JSDOM, Playwright
 - **Linting**: ESLint + TypeScript ESLint
-- **Testing**: Vitest + Playwright (브라우저 테스트)
 - **Compiler**: React Compiler, SWC
 
 ---
 
 ## 🤖 AI 협업 개발 구조
 
-이 프로젝트는 **Claude Code**와 **Gemini CLI** 두 AI 에이전트가 역할을 분담하여 개발합니다.
+이 프로젝트는 두 가지 AI 에이전트의 강점을 극대화한 역할 분담 체계로 개발되었습니다.
 
-### Claude Code (UI/컴포넌트 설계)
-**담당 영역:**
-- `src/components/atoms/` - shadcn/ui 컴포넌트 구성
-- `src/components/molecules/` - Atom 조합 컴포넌트
-- `src/components/organisms/` - 복합 UI 영역
-- `src/components/layout/` - Header, Footer 등
-- `src/pages/` - 페이지 구조
-- `src/styles/` - Tailwind 테마, 디자인 토큰
-- `*.stories.tsx` - Storybook 스토리
+### Gemini CLI (UI 구현 및 비즈니스 로직)
+- **Atoms ~ Pages**: 모든 UI 계층의 설계 및 구현
+- **Hooks & Context**: 데이터 페칭 및 상태 관리 로직
+- **Performance**: 렌더링 워터폴 제거 및 성능 최적화
 
-### Gemini CLI (로직/유틸리티)
-**담당 영역:**
-- `src/hooks/` - 커스텀 훅
-- `src/api/` - API 함수
-- `src/utils/` - 유틸리티 함수
-- `src/context/` - Context API
-- `src/types/` - 타입 정의
-- `src/constants/` - 상수
-- `*.test.ts(x)` - Vitest 테스트
+### Claude Code (테스트 및 코드 리뷰)
+- **Tests**: Vitest 기반 단위·통합 테스트 작성
+- **Stories**: Storybook UI 시각 테스트 (예정)
+- **Review**: Gemini CLI가 구현한 코드에 대한 품질 리뷰
 
-자세한 역할 분담은 `CLAUDE.md`, `GEMINI.md` 참조
+---
+
+## 💡 주요 기술적 챌린지 (Case Study)
+
+이 프로젝트는 단순히 정보를 나열하는 것을 넘어, 실제 개발 과정에서 마주하는 성능 문제를 해결하는 과정을 담고 있습니다.
+
+1. **렌더링 워터폴 제거**: `useEffect` 기반의 지연 로딩을 React Router 7의 `loader`를 이용한 사전 로딩으로 개선하여 렌더링 횟수를 50% 단축했습니다.
+2. **이미지 최적화**: WebP 형식과 `srcSet`을 활용하여 디바이스별 최적 이미지를 제공하고, 뷰포트 진입 시점에만 로드되는 지연 로딩을 구현했습니다.
+3. **애니메이션 동기화**: `IntersectionObserver`와 Context API를 활용하여 이미지가 완전히 로드된 시점에만 애니메이션이 실행되도록 제어하여 시각적 깜빡임을 해결했습니다.
 
 ---
 
 ## 📊 데이터 구조
 
-### `packages/shared/data/user.json`
-```typescript
-{
-  name: string          // 이름
-  email: string         // 이메일
-  phone: string         // 연락처
-  blogUrl: string       // 블로그 URL
-  headline: string      // 한 줄 소개
-  description: string   // 상세 소개
-  thumbnailUrl: string  // 프로필 이미지
-  resumeUrl: string     // 이력서 링크
-}
-```
+### `src/data/user.json`
+개인 프로필 정보 및 헤드라인 관리
 
-### `packages/shared/data/skills.json`
-```typescript
-[{
-  id: string            // 고유 ID
-  name: string          // 기술명
-  category: string      // 카테고리 (Frontend, Language, Framework 등)
-  thumbnailUrl: string  // 아이콘 URL
-}]
-```
+### `src/data/skills.json`
+25개 이상의 기술 스택 정보 (아이콘 경로는 ID 기반 동적 생성)
 
-### `packages/shared/data/projects.json`
-```typescript
-[{
-  id: string            // 프로젝트 ID
-  name: string          // 프로젝트 이름
-  title: string         // 표시 제목
-  description: string   // 상세 설명
-  skills: string[]      // 사용 기술 (skills.json의 id 참조)
-  thumbnailUrl: string  // 썸네일 이미지
-  deployUrl: string     // 배포 URL
-  githubUrl: string     // GitHub 리포지토리
-  startDate: string     // 시작일
-  endDate: string       // 종료일
-  role: string          // 역할
-}]
-```
+### `src/data/projects.json`
+상세 상세 정보 및 도전 과제(Challenges) 관리 (`retrospect` 필드는 챌린지 섹션 집중을 위해 제거됨)
 
 ---
 
-## 🏗️ 컴포넌트 아키텍처
+## 📚 문서 리스트
 
-**Atomic Design 패턴** 적용 (Bottom-up 방식)
-
-```
-Atoms (기본 UI 요소)
-  ↓ 조합
-Molecules (작은 기능 단위)
-  ↓ 조합
-Organisms (복잡한 UI 블록)
-  ↓ 조합
-Pages (전체 페이지)
-```
-
-- shadcn/ui를 Atoms의 기반으로 사용
-- 재사용성과 유지보수성을 극대화하는 컴포넌트 설계
-- Storybook으로 각 단계별 컴포넌트 시각화 및 테스트
-
----
-
-## 📚 문서
-
-### 프로젝트 개요
-- [프로젝트 개요](./docs/01_project_overview.md)
-
-### 아키텍처
 - [AI 역할 분담](./docs/02_architecture_ai_responsibilities.md)
 - [폴더 구조](./docs/02_architecture_folder_structure.md)
-- [상태 관리](./docs/02_architecture_state_management.md)
-- [데이터 페칭](./docs/02_architecture_data_fetching.md)
-
-### 코딩 컨벤션
-- [컴포넌트 작성 스타일](./docs/03_coding_conventions_component_style.md)
+- [데이터 페칭 전략](./docs/02_architecture_data_fetching.md)
 - [네이밍 규칙](./docs/03_coding_conventions_naming_rules.md)
-- [TypeScript 규칙](./docs/03_coding_conventions_typescript.md)
-
-### 스타일링
-- [스타일링 방식](./docs/04_styling_guide_method.md)
-- [디자인 시스템](./docs/04_styling_guide_design_system.md)
-
-### 테스트
-- [테스트 전략 개요](./docs/05_testing_strategy_overview.md)
-- [Storybook 전략](./docs/05_testing_strategy_storybook.md)
-- [Vitest 전략](./docs/05_testing_strategy_vitest.md)
-- [테스트 제외 규칙](./docs/05_testing_strategy_exclusion.md)
+- [테스트 전략](./docs/05_testing_strategy_overview.md)
 
 ---
 
 ## 📄 라이선스
 
-이 프로젝트는 개인 포트폴리오 용도로 제작되었습니다.
+이 프로젝트는 개인 포트폴리오 및 기술 증명 용도로 제작되었습니다.

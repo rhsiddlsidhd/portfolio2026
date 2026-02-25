@@ -21,24 +21,28 @@ import {
 import skillsData from "@/data/skills.json";
 import { createProjectThumbnailSrc } from "@/lib/utils";
 
+
 const formatDate = (date?: string | null) =>
   date ? date.slice(0, 7).replace("-", ".") : "진행 중";
 
 const Project = () => {
   const project = useLoaderData() as IProject;
-  const navigate = useNavigate();
-  const thumbnails = createProjectThumbnailSrc(project.id);
+ 
+  
+   const navigate = useNavigate();
 
-  const projectSkills = project.skills
-    .map((id) => skillsData.find((s) => s.id === id))
-    .filter((s): s is ISkill => s !== undefined);
-
-  useEffect(() => {
+    useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "";
     };
   }, []);
+
+   const thumbnails = createProjectThumbnailSrc(project.id);
+
+  const projectSkills = project.skills
+    .map((id) => skillsData.find((s) => s.id === id))
+    .filter((s): s is ISkill => s !== undefined);
 
   return (
     <div
@@ -245,16 +249,6 @@ const Project = () => {
                       </div>
                     ))}
                   </div>
-                </section>
-
-                {/* 회고 */}
-                <section>
-                  <h2 className="mb-3 text-xs font-semibold tracking-widest uppercase">
-                    회고
-                  </h2>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {project.details.retrospect}
-                  </p>
                 </section>
               </>
             )}
