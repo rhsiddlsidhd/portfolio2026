@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { useState, useEffect } from 'react';
 import { createMemoryRouter, RouterProvider, useLoaderData } from 'react-router';
+import type { LoaderFunctionArgs } from 'react-router';
 import type { IProject } from '@/types/project';
 import projectsData from '@/data/projects.json';
 
@@ -83,7 +84,7 @@ const LoaderProjectPage = () => {
 const testRoutes = [
   {
     path: '/project/:id',
-    loader: async ({ params }: { params: Record<string, string> }) => {
+    loader: async ({ params }: LoaderFunctionArgs) => {
       const project = (projectsData as IProject[]).find((p) => p.id === params.id);
       if (!project) throw new Response('Not Found', { status: 404 });
       return project;
