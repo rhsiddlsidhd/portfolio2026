@@ -55,7 +55,7 @@ export function ProjectsList({
       <div className="hidden gap-6 sm:grid-cols-2 md:grid lg:grid-cols-4">
         {projects.map((project, index) => (
           <ScrollReveal
-            waitForImg={false}
+            waitForImg={true}
             delay={index * STAGGER_DELAY}
             key={project.id}
             options={{ threshold: 0.5, rootMargin: "0px 0px 200px 0px" }}
