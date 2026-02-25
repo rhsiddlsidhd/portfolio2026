@@ -1,3 +1,4 @@
+import { STAGGER_VISIBLE_THRESHOLD } from "@/constants/ui";
 import {
   useInView,
   type IntersectionOptions,
@@ -5,7 +6,7 @@ import {
 
 const useScrollReveal = (options?: IntersectionOptions) => {
   const { ref, inView } = useInView({
-    threshold: 0.3,
+    threshold: STAGGER_VISIBLE_THRESHOLD,
     triggerOnce: true,
     ...options,
   });

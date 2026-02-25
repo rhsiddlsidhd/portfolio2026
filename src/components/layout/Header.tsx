@@ -22,7 +22,7 @@ export function Header({ className }: HeaderProps) {
   ];
 
   return (
-    <header className={cn("relative z-50 mb-12", "relative z-50", className)}>
+    <header className={cn("relative z-50 mb-12", className)}>
       <ul
         className={cn(
           "border-border bg-accent/50 text-accent-foreground relative z-50 m-auto flex w-fit items-center gap-4 border-2 px-4 py-2 backdrop-blur-2xl max-sm:w-9/10 max-sm:justify-between",
