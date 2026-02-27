@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 import ScrollReveal from "@/components/organisms/ScrollReveal";
 import { Outlet } from "react-router";
 
+
 export function HomePage() {
   return (
     <section className="relative">
@@ -25,6 +26,7 @@ export function HomePage() {
       >
         <ThemeToggle className="mr-2 cursor-pointer p-4" />
       </aside>
+      
       <main className="bg-background text-foreground">
         <HeroSection user={userData} />
         <ScrollReveal>
