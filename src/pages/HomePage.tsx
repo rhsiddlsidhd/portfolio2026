@@ -18,6 +18,13 @@ import { Outlet } from "react-router";
 export function HomePage() {
   return (
     <section className="relative">
+      <title>신영재 | Frontend Developer</title>
+      <meta name="author" content="신영재" />
+      <meta
+        name="keywords"
+        content="프론트엔드 개발자, React, TypeScript, Next.js, 포트폴리오"
+      />
+
       <aside
         className={cn(
           "fixed top-2 right-0 z-60 flex justify-end",
