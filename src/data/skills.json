@@ -2,136 +2,163 @@
   {
     "id": "html",
     "name": "HTML",
-    "category": "frontend"
+    "category": "frontend",
+    "hasIcon": true
   },
   {
     "id": "css",
     "name": "CSS",
-    "category": "frontend"
+    "category": "frontend",
+    "hasIcon": true
   },
   {
     "id": "javascript",
     "name": "JavaScript",
-    "category": "language"
+    "category": "language",
+    "hasIcon": true
   },
   {
     "id": "typescript",
     "name": "TypeScript",
-    "category": "language"
+    "category": "language",
+    "hasIcon": true
   },
   {
     "id": "react",
     "name": "React",
-    "category": "frontend"
+    "category": "frontend",
+    "hasIcon": true
   },
   {
     "id": "nextjs",
     "name": "Next.js",
-    "category": "frontend"
+    "category": "frontend",
+    "hasIcon": true
   },
   {
     "id": "mongodb",
     "name": "MongoDB",
-    "category": "backend"
+    "category": "backend",
+    "hasIcon": true
   },
   {
     "id": "express",
     "name": "Express",
-    "category": "backend"
+    "category": "backend",
+    "hasIcon": true
   },
   {
     "id": "mongoose",
     "name": "Mongoose",
-    "category": "backend"
+    "category": "backend",
+    "hasIcon": true
   },
   {
     "id": "tailwindcss",
     "name": "Tailwind CSS",
-    "category": "frontend"
+    "category": "frontend",
+    "hasIcon": true
   },
   {
     "id": "styledcomponents",
     "name": "Styled Components",
-    "category": "frontend"
+    "category": "frontend",
+    "hasIcon": true
   },
   {
     "id": "swr",
     "name": "SWR",
-    "category": "frontend"
+    "category": "frontend",
+    "hasIcon": true
   },
   {
     "id": "axios",
     "name": "Axios",
-    "category": "frontend"
+    "category": "frontend",
+    "hasIcon": true
   },
   {
     "id": "tanstack",
     "name": "TanStack Query",
-    "category": "frontend"
+    "category": "frontend",
+    "hasIcon": true
   },
   {
     "id": "redux",
     "name": "Redux",
-    "category": "frontend"
+    "category": "frontend",
+    "hasIcon": true
   },
   {
     "id": "zustand",
     "name": "Zustand",
-    "category": "frontend"
+    "category": "frontend",
+    "hasIcon": true
   },
   {
     "id": "framer-motion",
     "name": "Framer Motion",
-    "category": "frontend"
+    "category": "frontend",
+    "hasIcon": false
   },
   {
     "id": "zod",
     "name": "Zod",
-    "category": "frontend"
+    "category": "frontend",
+    "hasIcon": true
   },
   {
     "id": "github",
     "name": "GitHub",
-    "category": "tool"
+    "category": "tool",
+    "hasIcon": true
   },
   {
     "id": "vercel",
     "name": "Vercel",
-    "category": "tool"
+    "category": "tool",
+    "hasIcon": true
   },
   {
     "id": "netlify",
     "name": "Netlify",
-    "category": "tool"
+    "category": "tool",
+    "hasIcon": true
   },
   {
     "id": "cloudinary",
     "name": "Cloudinary",
-    "category": "tool"
+    "category": "tool",
+    "hasIcon": true
   },
   {
     "id": "portone",
     "name": "PortOne",
-    "category": "tool"
+    "category": "tool",
+    "hasIcon": false
   },
   {
     "id": "kakao-maps-api",
     "name": "Kakao Maps API",
-    "category": "tool"
+    "category": "tool",
+    "hasIcon": true
   },
   {
     "id": "github-actions",
     "name": "GitHub Actions",
-    "category": "tool"
+    "category": "tool",
+    "hasIcon": true
   },
   {
     "id": "notion",
     "name": "Notion",
-    "category": "tool"
+    "category": "tool",
+    "hasIcon": true
   },
   {
     "id": "discord",
     "name": "Discord",
-    "category": "tool"
+    "category": "tool",
+    "hasIcon": true
   }
 ]

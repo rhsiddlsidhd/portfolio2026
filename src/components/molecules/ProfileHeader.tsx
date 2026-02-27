@@ -20,7 +20,7 @@ export function ProfileHeader({
   className,
 }: ProfileHeaderProps) {
   const newHeadLine = createHeadline(headline);
-  console.log({ newHeadLine });
+  
   return (
     <div className={className}>
       <div className="flex flex-col items-center gap-6 text-center">
