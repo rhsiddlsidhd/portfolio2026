@@ -23,7 +23,7 @@ const TypingText = ({ text }: { text: string }) => {
   return (
     <div className="flex items-start gap-2 font-mono text-sm">
       <span className="mt-px shrink-0 select-none text-chart-2">›</span>
-      <span className="min-w-0 flex-1 wrap-break-words text-foreground">
+      <span className="min-w-0 flex-1 break-words text-foreground">
         {displayedText}
         {index < cleanText.length && (
           <span className="ml-0.5 inline-block h-3.25 w-1.5 translate-y-0.5 animate-pulse bg-chart-2 align-text-bottom" />

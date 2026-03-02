@@ -10,7 +10,7 @@
         "커밋 메세지 생성 및 커밋"
     ],
     "accent": "blue",
-    "imgs": ["frontend-design-before.webp", "frontend-design-after.webp"]
+    "imgs": ["git-commit-active.webp", "git-commit-m.webp","git-commit-result.webp"]
   },{
      "id": "frontend-design",
     "title": "프론트엔드 디자인",
@@ -34,6 +34,18 @@
         "PR 생성"
     ],
     "accent": "amber",
-    "imgs": ["frontend-design-before.webp", "frontend-design-after.webp"]
+    "imgs": ["pr-creator-active.webp", "pr-creator-result.webp"]
+  },{
+     "id": "code-review",
+    "title": "코드 리뷰",
+    "description": "CLAUDE SKILL을 활용해 코드 리뷰",
+    "model": "claude",
+    "workflow": [
+        "/code-review",
+        "CLAUDE SKILL 활성화",
+        "PR 분석 및 리뷰 댓글 작성"
+    ],
+    "accent": "orange",
+    "imgs": ["code-review-ing.webp", "code-review-score.webp","code-review-comment.webp"]
   }
 ]

@@ -48,15 +48,16 @@ export function AIUsageSection() {
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 ">
           {aiUsageData.map((item, i) => (
             <ScrollReveal key={item.id} delay={i * 80}>
-              <Link to={`/ai/${item.id}`} className="block h-full">
+              
                 <li
                   className={[
-                    "group relative h-full rounded-lg border border-border bg-card p-6 space-y-2",
+                    "group relative h-full rounded-lg border border-border bg-card p-6",
                     "transition-all duration-300 hover:shadow-md hover:border-chart-2/50",
                     "before:absolute before:left-0 before:top-4 before:h-8 before:w-[3px] before:rounded-r-full",
                     ACCENT_MAP[item.accent] || "before:bg-muted",
                   ].join(" ")}
                 >
+                  <Link to={`/ai/${item.id}`} className="block h-full space-y-2">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="font-mono text-xs font-semibold tracking-widest text-muted-foreground">
                       {String(i + 1).padStart(2, "0")}
@@ -71,8 +72,9 @@ export function AIUsageSection() {
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                     {item.description}
                   </p>
+                  </Link>
                 </li>
-              </Link>
+              
             </ScrollReveal>
           ))}
         </ul>
