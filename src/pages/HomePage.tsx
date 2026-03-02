@@ -13,9 +13,12 @@ import { ThemeToggle } from "@/components/molecules/themeToggle";
 import { cn } from "@/lib/utils";
 import ScrollReveal from "@/components/organisms/ScrollReveal";
 import { Outlet } from "react-router";
+import { AIUsageSection } from "@/sections/AIUsageSection";
+
 
 
 export function HomePage() {
+
   return (
     <section className="relative">
       <title>신영재 | Frontend Developer</title>
@@ -44,6 +47,9 @@ export function HomePage() {
         <SkillsSection skills={skillsData} />
 
         <ProjectsSection projects={projectsData} allSkills={skillsData} />
+
+        <AIUsageSection/>
+        
         <ScrollReveal>
           <ContactSection
             email={userData.email}
@@ -51,6 +57,7 @@ export function HomePage() {
             blogUrl={userData.blogUrl}
           />
         </ScrollReveal>
+        
       </main>
       <Footer name={userData.name} />
       <Outlet />

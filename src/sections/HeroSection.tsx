@@ -7,8 +7,42 @@ interface HeroSectionProps {
 
 export function HeroSection({ user }: HeroSectionProps) {
   return (
-    <section>
+    <section className="relative overflow-hidden">
+      {/* Decorative background layer */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        {/* Subtle grid lines */}
+        <div
+          className="absolute inset-0 opacity-[0.055] dark:opacity-[0.035]"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, currentColor 1px, transparent 1px),
+              linear-gradient(to bottom, currentColor 1px, transparent 1px)
+            `,
+            backgroundSize: "64px 64px",
+          }}
+        />
+        {/* Glow — top right */}
+        <div className="absolute -right-32 -top-32 size-[500px] rounded-full bg-chart-2/25 blur-2xl dark:bg-chart-2/15" />
+        {/* Glow — bottom left */}
+        <div className="absolute -bottom-24 -left-24 size-[350px] rounded-full bg-chart-1/20 blur-2xl dark:bg-chart-1/12" />
+        {/* Glow — center accent */}
+        <div className="absolute left-1/3 top-1/4 size-[260px] rounded-full bg-chart-2/10 blur-3xl dark:bg-chart-2/8" />
+        {/* Bottom divider */}
+        <div className="absolute bottom-0 left-1/2 h-px w-4/5 -translate-x-1/2 bg-gradient-to-r from-transparent via-muted-foreground/30 to-transparent" />
+      </div>
+
       <HeroContent user={user} />
+
+      {/* Scroll indicator */}
+      <div
+        aria-hidden
+        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 animate-bounce flex-col items-center gap-2"
+      >
+        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+          scroll
+        </span>
+        <div className="h-8 w-px bg-gradient-to-b from-muted-foreground/50 to-transparent" />
+      </div>
     </section>
   );
 }

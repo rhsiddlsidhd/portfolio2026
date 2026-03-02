@@ -1,0 +1,27 @@
+[
+  {
+    "id": "auto-commit",
+    "title": "자동 커밋",
+    "description": "Claude Code의 스킬을 활용해 커밋 메세지를 자동으로 생성합니다.",
+    "model": "claude",
+    "workflow": [
+        "/commit",
+        "CLAUDE SKILL 활성화",
+        "커밋 메세지 생성 및 커밋"
+    ],
+    "accent": "before:bg-blue-500",
+    "imgs": ["frontend-design-before.webp", "frontend-design-after.webp"]
+  },{
+     "id": "frontend-design",
+    "title": "프론트엔드 디자인",
+    "description": "평범한 AI 느낌을 피하고 실제로 기억에 남는 프론트엔드를 만드는 스킬",
+    "model": "claude",
+    "workflow": [
+        "**.스킬 컴포넌트 생성/디자인",
+        "CLAUDE SKILL 활성화",
+        "컴포넌트 생성 및 디자인"
+    ],
+    "accent": "before:bg-red-500",
+    "imgs": ["frontend-design-before.webp", "frontend-design-after.webp"]
+  }
+]

@@ -21,24 +21,21 @@ import {
 import skillsData from "@/data/skills.json";
 import { createProjectThumbnailSrc } from "@/lib/utils";
 
-
 const formatDate = (date?: string | null) =>
   date ? date.slice(0, 7).replace("-", ".") : "진행 중";
 
 const Project = () => {
   const project = useLoaderData() as IProject;
- 
-  
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    useEffect(() => {
+  useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "";
     };
   }, []);
 
-   const thumbnails = createProjectThumbnailSrc(project.id);
+  const thumbnails = createProjectThumbnailSrc(project.id);
 
   const projectSkills = project.skills
     .map((id) => skillsData.find((s) => s.id === id))
@@ -46,13 +43,16 @@ const Project = () => {
 
   return (
     <div
-      className="fixed inset-0 z-100 flex items-center justify-center bg-black/40 backdrop-blur-sm"
+      className="fixed inset-0 z-100 flex items-center justify-center bg-black/55 backdrop-blur-md"
       onClick={() => navigate(-1)}
     >
       <div
-        className="bg-accent text-foreground relative flex h-[85vh] w-9/10 max-w-3xl flex-col overflow-hidden rounded-2xl shadow-2xl"
+        className="bg-card text-foreground relative flex h-[90vh] w-9/10 max-w-3xl flex-col overflow-hidden rounded-2xl shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Top accent gradient line */}
+        <div className="absolute top-0 left-0 right-0 z-10 h-0.5 bg-gradient-to-r from-transparent via-chart-2 to-transparent" />
+
         {/* 고정 헤더 */}
         <div className="border-border flex shrink-0 items-center justify-between border-b px-4 py-3 sm:px-6 sm:py-4">
           <Button variant="ghost" size="sm" onClick={() => navigate(-1)}>
@@ -89,62 +89,71 @@ const Project = () => {
 
         {/* 스크롤 영역 */}
         <div className="flex-1 overflow-y-auto">
-          {/* 썸네일 + name overlay */}
-          
-            <div className="relative">
-              <img
-                srcSet={thumbnails.webp}
-                sizes="(min-width: 1536px) 485px,
-                 (min-width: 1280px) 400px,
-                 (min-width: 1024px) 314px,
-                 (min-width: 768px) 356px,
-                 (min-width: 640px) 292px,
-                 70vw"
-                src={thumbnails.default}
-                alt={`${project.title} thumbnail`}
-                className="h-48 w-full object-cover"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
-              <span className="absolute right-4 bottom-6 text-xs font-bold tracking-wide text-white/90">
+          {/* 썸네일 + title overlay */}
+          <div className="relative">
+            <img
+              srcSet={thumbnails.webp}
+              sizes="(min-width: 1536px) 485px,
+                     (min-width: 1280px) 400px,
+                     (min-width: 1024px) 314px,
+                     (min-width: 768px) 356px,
+                     (min-width: 640px) 292px,
+                     70vw"
+              src={thumbnails.default}
+              alt={`${project.title} thumbnail`}
+              className="h-48 w-full object-cover sm:h-60"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-white/55 mb-1">
+                {project.name}
+              </p>
+              <h1 className="text-xl font-bold text-white sm:text-2xl">
                 {project.title}
-              </span>
+              </h1>
             </div>
-          
+          </div>
 
           <div className="space-y-6 p-4 sm:p-6">
-            {/* 제목 + 설명 */}
-            <div className="space-y-2">
-              <div className="text-primary flex items-center gap-2 text-sm font-semibold tracking-wider uppercase">
-                <Target className="h-4 w-4" />
-                <span>Overview</span>
-                <Badge variant="outline">{project.name}</Badge>
+            {/* Overview */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <Target className="h-3.5 w-3.5 text-chart-2 shrink-0" />
+                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+                  Overview
+                </span>
+                <Badge variant="outline" className="ml-auto shrink-0">
+                  {project.name}
+                </Badge>
               </div>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {project.description}
-              </p>
+              <div className="border-l-2 border-chart-2 pl-4">
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {project.description}
+                </p>
+              </div>
             </div>
 
             {/* Info Box */}
-            <div className="border-border divide-border divide-y overflow-hidden rounded-2xl border">
+            <div className="border-border divide-border divide-y overflow-hidden rounded-xl border">
               {/* 기간 + 역할 */}
               <div className="divide-border grid grid-cols-2 divide-x">
                 <div className="flex flex-col gap-1.5 p-4">
                   <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
-                    <CalendarDays className="h-3.5 w-3.5" />
+                    <CalendarDays className="h-3.5 w-3.5 shrink-0" />
                     기간
                   </div>
-                  <p className="text-sm">
+                  <p className="text-sm font-medium">
                     {formatDate(project.startDate)} –{" "}
                     {formatDate(project.endDate)}
                   </p>
                 </div>
                 <div className="flex flex-col gap-1.5 p-4">
                   <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
-                    <User className="h-3.5 w-3.5" />
+                    <User className="h-3.5 w-3.5 shrink-0" />
                     역할
                   </div>
-                  <p className="text-sm">{project.role}</p>
+                  <p className="text-sm font-medium">{project.role}</p>
                 </div>
               </div>
 
@@ -152,7 +161,7 @@ const Project = () => {
               {projectSkills.length > 0 && (
                 <div className="space-y-3 p-4">
                   <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
-                    <Layers className="h-3.5 w-3.5" />
+                    <Layers className="h-3.5 w-3.5 shrink-0" />
                     기술 스택
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -167,7 +176,7 @@ const Project = () => {
               {project.details?.background && (
                 <div className="space-y-2 p-4">
                   <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
-                    <Lightbulb className="h-3.5 w-3.5" />
+                    <Lightbulb className="h-3.5 w-3.5 shrink-0" />
                     개발 배경
                   </div>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -181,7 +190,7 @@ const Project = () => {
                 project.details.keyFeatures.length > 0 && (
                   <div className="space-y-2 p-4">
                     <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
-                      <ListChecks className="h-3.5 w-3.5" />
+                      <ListChecks className="h-3.5 w-3.5 shrink-0" />
                       핵심 기능
                     </div>
                     <ul className="space-y-1.5">
@@ -190,8 +199,8 @@ const Project = () => {
                           key={i}
                           className="text-muted-foreground flex items-start gap-2 text-sm"
                         >
-                          <span className="text-primary mt-0.5 select-none">
-                            ·
+                          <span className="mt-0.5 shrink-0 select-none text-chart-2">
+                            ▸
                           </span>
                           {feature}
                         </li>
@@ -201,56 +210,68 @@ const Project = () => {
                 )}
             </div>
 
-            {/* 도전 과제 + 회고 */}
+            {/* 도전 과제 */}
             {project.details && (
-              <>
-                {/* 도전 과제 */}
-                <section>
-                  <h2 className="mb-3 text-xs font-semibold tracking-widest uppercase">
-                    <Zap className="inline-block h-4 w-4" /> 도전 과제
-                  </h2>
-                  <div className="space-y-4">
-                    {project.details.challenges.map((challenge, i) => (
-                      <div
-                        key={i}
-                        className="border-border space-y-3 rounded-xl border p-4"
-                      >
-                        <div>
-                          <span className="text-destructive text-xs font-semibold">
-                            문제
+              <section className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <Zap className="h-3.5 w-3.5 text-chart-2 shrink-0" />
+                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+                    도전 과제
+                  </span>
+                </div>
+
+                <div className="space-y-3">
+                  {project.details.challenges.map((challenge, i) => (
+                    <div
+                      key={i}
+                      className="border-border divide-border divide-y overflow-hidden rounded-xl border"
+                    >
+                      {/* 문제 */}
+                      <div className="flex gap-3 p-4">
+                        <span className="mt-0.5 shrink-0 font-mono text-[9px] font-bold uppercase tracking-widest text-destructive">
+                          문제
+                        </span>
+                        <p className="text-sm leading-relaxed">
+                          {challenge.problem}
+                        </p>
+                      </div>
+
+                      {/* 해결 */}
+                      <div className="flex gap-3 p-4">
+                        <span className="mt-0.5 shrink-0 font-mono text-[9px] font-bold uppercase tracking-widest text-chart-2">
+                          해결
+                        </span>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {challenge.solution}
+                        </p>
+                      </div>
+
+                      {/* 성과 */}
+                      {challenge.impact && (
+                        <div className="flex gap-3 bg-muted/40 p-4">
+                          <span className="mt-0.5 shrink-0 font-mono text-[9px] font-bold uppercase tracking-widest text-emerald-500">
+                            성과
                           </span>
-                          <p className="mt-0.5 text-sm">{challenge.problem}</p>
-                        </div>
-                        <div>
-                          <span className="text-xs font-semibold text-blue-500">
-                            해결
-                          </span>
-                          <p className="text-muted-foreground mt-0.5 text-sm">
-                            {challenge.solution}
+                          <p className="text-muted-foreground text-sm leading-relaxed">
+                            {challenge.impact}
                           </p>
                         </div>
-                        {challenge.impact && (
-                          <div>
-                            <span className="text-xs font-semibold text-green-500">
-                              성과
-                            </span>
-                            <p className="text-muted-foreground mt-0.5 text-sm">
-                              {challenge.impact}
-                            </p>
-                          </div>
-                        )}
-                        {challenge.imgs && challenge.imgs.length > 0 && (
+                      )}
+
+                      {/* 이미지 */}
+                      {challenge.imgs && challenge.imgs.length > 0 && (
+                        <div className="p-4">
                           <ChallengeImageCarousel
                             imgs={challenge.imgs}
                             challengeId={challenge.id}
                             projectId={project.id}
                           />
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              </>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </section>
             )}
           </div>
         </div>
