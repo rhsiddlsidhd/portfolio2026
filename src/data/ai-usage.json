@@ -2,14 +2,14 @@
   {
     "id": "auto-commit",
     "title": "자동 커밋",
-    "description": "Claude Code의 스킬을 활용해 커밋 메세지를 자동으로 생성합니다.",
-    "model": "claude",
+    "description": "GEMINI SKILLS을 활용해 커밋 메세지를 자동으로 생성합니다.",
+    "model": "gemini",
     "workflow": [
-        "/commit",
-        "CLAUDE SKILL 활성화",
+        "git-commit",
+        "GEMINI SKILL 활성화",
         "커밋 메세지 생성 및 커밋"
     ],
-    "accent": "before:bg-blue-500",
+    "accent": "blue",
     "imgs": ["frontend-design-before.webp", "frontend-design-after.webp"]
   },{
      "id": "frontend-design",
@@ -21,7 +21,19 @@
         "CLAUDE SKILL 활성화",
         "컴포넌트 생성 및 디자인"
     ],
-    "accent": "before:bg-red-500",
+    "accent": "red",
+    "imgs": ["frontend-design-before.webp", "frontend-design-after.webp"]
+  },{
+     "id": "create-pr",
+    "title": "Github PR 생성",
+    "description": "GEMINI SKILL을 활용해 일관된 구조로 PR 생성",
+    "model": "gemini",
+    "workflow": [
+        "**브랜치로 PR 생성",
+        "GEMINI SKILL 활성화",
+        "PR 생성"
+    ],
+    "accent": "amber",
     "imgs": ["frontend-design-before.webp", "frontend-design-after.webp"]
   }
 ]
