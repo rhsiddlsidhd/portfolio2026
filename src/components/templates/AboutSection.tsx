@@ -17,9 +17,9 @@ export function AboutSection({ description }: AboutSectionProps) {
       label: "풀스택 개발",
       onClick: (id:string) => navigate(`/project/${id}`),
     },
-    { id:'ai-section',
+    { id:'ai',
       label: "AI",
-      onClick: (id:string) => scrollToSection(id),
+      onClick: (id:string) => scrollToSection(`${id}-section`),
     },
   ];
 

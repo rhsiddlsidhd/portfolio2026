@@ -9,9 +9,6 @@ const useMobile = () => {
       setIsMobile(e.matches);
     };
 
-    // 초기 상태 설정
-    setIsMobile(mediaQuery.matches);
-
     // 리스너 등록
     mediaQuery.addEventListener("change", handleChange);
     return () => mediaQuery.removeEventListener("change", handleChange);
