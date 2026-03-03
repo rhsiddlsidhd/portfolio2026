@@ -27,7 +27,6 @@
 | `src/pages/` | 페이지 컴포넌트 구조 설계·구현 |
 | `src/styles/` | Tailwind 테마, 디자인 토큰, 전역 스타일 |
 | `src/hooks/` | 커스텀 훅 구현 |
-| `src/api/` | axios 인스턴스, API 호출 함수, 에러 핸들링 |
 | `src/utils/` | 유틸리티 함수 구현 |
 | `src/context/` | Context Provider 구현 |
 | `src/types/` | TypeScript 타입/인터페이스 정의 |

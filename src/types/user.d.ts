@@ -1,6 +1,7 @@
 export interface IUser {
   id: string;
   name: string;
+  job: string;
   email: string;
   phone: string;
   blogUrl: string;

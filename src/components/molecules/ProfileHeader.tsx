@@ -1,10 +1,12 @@
 import { imageBaseUrl } from "@/constants/path";
 import { Avatar, AvatarFallback, AvatarImage } from "../atoms/avatar";
+import { Badge } from "../atoms/badge";
 import { User } from "lucide-react";
 
 interface ProfileHeaderProps {
   id: string;
   name: string;
+  job: string;
   headline: string;
   className?: string;
 }
@@ -16,6 +18,7 @@ const createHeadline = (headline: string): string[] => {
 export function ProfileHeader({
   id,
   name,
+  job,
   headline,
   className,
 }: ProfileHeaderProps) {
@@ -41,9 +44,9 @@ export function ProfileHeader({
         </div>
 
         {/* Text group */}
-        <div className="space-y-2 sm:max-w-3/4">
-          {/* Headline — delayed */}
-          <p className="text-muted-foreground text-lg animate-[heroEnter_0.7s_ease-out_both] [animation-delay:180ms] md:text-xl lg:text-2xl">
+        <div className="flex flex-col items-center space-y-4">
+          {/* Headline — First text element after avatar */}
+          <p className="text-muted-foreground text-lg animate-[heroEnter_0.7s_ease-out_both] [animation-delay:150ms] md:text-xl lg:text-2xl">
             {newHeadLine.map((word, i) => (
               <span className="mr-1 inline-block" key={`${word}-${i}`}>
                 {word}
@@ -51,8 +54,18 @@ export function ProfileHeader({
             ))}
           </p>
 
-          {/* Name — most delayed */}
-          <p className="text-chart-2 text-4xl font-bold tracking-tight animate-[heroEnter_0.7s_ease-out_both] [animation-delay:330ms] md:text-5xl lg:text-6xl">
+          {/* Job badge — Connecting headline and name */}
+          <div className="animate-[heroEnter_0.7s_ease-out_both] [animation-delay:300ms]">
+            <Badge
+              variant="outline"
+              className="border-chart-2 text-chart-2 px-3 py-1 text-sm font-medium"
+            >
+              {job}
+            </Badge>
+          </div>
+
+          {/* Name — Final subject */}
+          <p className="text-chart-2 text-4xl font-bold tracking-tight animate-[heroEnter_0.7s_ease-out_both] [animation-delay:450ms] md:text-5xl lg:text-6xl">
             {name}
             <span className="text-foreground font-medium">입니다</span>
           </p>

@@ -36,22 +36,22 @@ npm run test
 
 ## 📦 프로젝트 구조
 
-이 프로젝트는 초기 Monorepo 구조에서 생산성과 유지보수성을 위해 단일 패키지 구조로 리팩터링되었습니다.
+이 프로젝트는 Atomic Design 패턴을 충실히 따르며, 관심사 분리를 통해 유지보수성을 극대화했습니다.
 
 ```
 portfolio/
-├── docs/                  # 상세 아키텍처 및 컨벤션 문서
+├── docs/                  # 상세 아키텍처 및 컨벤션 문서 (02~04)
 ├── public/                # 정적 자산 (이미지, 스킬 아이콘 등)
 ├── src/
 │   ├── components/        # Atomic Design 기반 컴포넌트 (Atoms, Molecules, Organisms)
-│   ├── pages/             # 페이지 컴포넌트
-│   ├── routes/            # React Router 7 기반 라우팅 및 Data API(Loader)
+│   ├── pages/             # 페이지 컴포넌트 및 라우트 뷰
+│   ├── routes/            # React Router 7 기반 라우팅 및 데이터 로더
 │   ├── hooks/             # 커스텀 훅 (비즈니스 로직 분리)
 │   ├── context/           # React Context를 이용한 전역 상태 관리
-│   ├── data/              # JSON 기반 정적 데이터
-│   ├── types/             # TypeScript 타입 정의
-│   ├── styles/            # Tailwind CSS 4 전역 스타일
-│   └── lib/               # 유틸리티 함수 및 설정
+│   ├── data/              # JSON 기반 정적 데이터 관리 (단일 진실 공급원)
+│   ├── types/             # TypeScript 타입/인터페이스 정의
+│   ├── styles/            # Tailwind CSS 4 전역 스타일 및 디자인 토큰
+│   └── lib/               # 유틸리티 함수 및 프로젝트 설정
 ├── CLAUDE.md             # Claude Code 역할 정의 (테스트/리뷰)
 └── GEMINI.md             # Gemini CLI 역할 정의 (UI/로직 구현)
 ```
@@ -62,33 +62,32 @@ portfolio/
 
 ### Frontend
 - **Core**: React 19, TypeScript 5.9, Vite 7
-- **Routing**: React Router 7 (Data API 활용)
-- **Styling**: Tailwind CSS 4, shadcn/ui, Radix UI
-- **Animation**: Embla Carousel, Intersection Observer
+- **Routing**: React Router 7 (Data API 및 Loader 활용)
+- **Styling**: Tailwind CSS 4 (v4 전용 문법 사용), shadcn/ui, Radix UI
+- **Animation**: Intersection Observer, CSS Transitions
 - **Icons**: Lucide React
-- **State**: Zustand (전역 상태), React Context (컴포넌트 로컬 상태)
+- **Data**: Static JSON (API 호출 없는 고성능 정적 데이터 구조)
 
 ### Dev Tools & Testing
 - **AI Agents**: Gemini CLI (Implementation), Claude Code (Test & Review)
-- **Testing**: Vitest, React Testing Library, JSDOM, Playwright
+- **Testing**: Vitest, React Testing Library
 - **Linting**: ESLint + TypeScript ESLint
-- **Compiler**: React Compiler, SWC
 
 ---
 
-## 🤖 AI 협업 개발 구조
+## 🤖 AI 협업 개발 구조 (AI-Driven Development)
 
-이 프로젝트는 두 가지 AI 에이전트의 강점을 극대화한 역할 분담 체계로 개발되었습니다.
+이 프로젝트는 두 가지 AI 에이전트의 강점을 극대화한 역할 분담 체계로 개발되었습니다. 상세 내용은 [AI 역할 분담 가이드](./docs/01_ai_responsibilities.md)를 참조하세요.
 
 ### Gemini CLI (UI 구현 및 비즈니스 로직)
 - **Atoms ~ Pages**: 모든 UI 계층의 설계 및 구현
-- **Hooks & Context**: 데이터 페칭 및 상태 관리 로직
-- **Performance**: 렌더링 워터폴 제거 및 성능 최적화
+- **Hooks & Context**: 비즈니스 로직 및 상태 관리 구현
+- **Architecture**: 컴포넌트 리팩토링 및 아키텍처 설계
 
 ### Claude Code (테스트 및 코드 리뷰)
-- **Tests**: Vitest 기반 단위·통합 테스트 작성
-- **Stories**: Storybook UI 시각 테스트 (예정)
-- **Review**: Gemini CLI가 구현한 코드에 대한 품질 리뷰
+- **Tests**: Vitest 기반 단위·통합 테스트 작성 (Gemini CLI 수정 금지 영역)
+- **Stories**: Storybook UI 시각 테스트 작성 (예정)
+- **Review**: 구현된 코드의 품질 리뷰 및 버그 리포트
 
 ---
 
@@ -98,30 +97,23 @@ portfolio/
 
 1. **렌더링 워터폴 제거**: `useEffect` 기반의 지연 로딩을 React Router 7의 `loader`를 이용한 사전 로딩으로 개선하여 렌더링 횟수를 50% 단축했습니다.
 2. **이미지 최적화**: WebP 형식과 `srcSet`을 활용하여 디바이스별 최적 이미지를 제공하고, 뷰포트 진입 시점에만 로드되는 지연 로딩을 구현했습니다.
-3. **애니메이션 동기화**: `IntersectionObserver`와 Context API를 활용하여 이미지가 완전히 로드된 시점에만 애니메이션이 실행되도록 제어하여 시각적 깜빡임을 해결했습니다.
+3. **컴포넌트 강조 전략**: `HighlightedText` Molecule을 설계하여 정적인 텍스트 내의 핵심 키워드에 동적 링크와 시각적 강조를 부여했습니다.
 
 ---
 
-## 📊 데이터 구조
+## 📚 상세 문서 가이드 (Architecture & Strategy)
 
-### `src/data/user.json`
-개인 프로필 정보 및 헤드라인 관리
+프로젝트의 세부 규칙은 `docs/` 폴더 내의 문서를 통해 관리됩니다.
 
-### `src/data/skills.json`
-25개 이상의 기술 스택 정보 (아이콘 경로는 ID 기반 동적 생성)
-
-### `src/data/projects.json`
-상세 상세 정보 및 도전 과제(Challenges) 관리 (`retrospect` 필드는 챌린지 섹션 집중을 위해 제거됨)
-
----
-
-## 📚 문서 리스트
-
-- [AI 역할 분담](./docs/02_architecture_ai_responsibilities.md)
-- [폴더 구조](./docs/02_architecture_folder_structure.md)
-- [데이터 페칭 전략](./docs/02_architecture_data_fetching.md)
-- [네이밍 규칙](./docs/03_coding_conventions_naming_rules.md)
-- [테스트 전략](./docs/05_testing_strategy_overview.md)
+- **[01. 컴포넌트 구현 규칙]** : [./docs/01_component_implementation.md](./docs/01_component_implementation.md)
+- **[01. AI 역할 분담]** : [./docs/01_ai_responsibilities.md](./docs/01_ai_responsibilities.md)
+- **[02. 스타일링 방식]** : [./docs/02_styling_method.md](./docs/02_styling_method.md)
+- **[02. 디자인 시스템]** : [./docs/02_styling_design_system.md](./docs/02_styling_design_system.md)
+- **[03. 테스트 전략]** : [./docs/03_testing_overview.md](./docs/03_testing_overview.md)
+- **[03. 단위 테스트 (Vitest)]** : [./docs/03_testing_vitest.md](./docs/03_testing_vitest.md)
+- **[03. 통합 테스트 (RTL)]** : [./docs/03_testing_rtl.md](./docs/03_testing_rtl.md)
+- **[03. UI 테스트 (Storybook)]** : [./docs/03_testing_storybook.md](./docs/03_testing_storybook.md)
+- **[03. 테스트 제외 대상]** : [./docs/03_testing_exclusion.md](./docs/03_testing_exclusion.md)
 
 ---
 

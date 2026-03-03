@@ -4,6 +4,8 @@ import type { IProject } from "@/types/project";
 import type { ISkill } from "@/types/skill";
 import { Badge } from "@/components/atoms/badge";
 import { Button } from "@/components/atoms/button";
+import { Card, CardContent } from "@/components/atoms/card";
+import { Separator } from "@/components/atoms/separator";
 import { SkillBadge } from "@/components/molecules/SkillBadge";
 import { ChallengeImageCarousel } from "@/components/molecules/ChallengeImageCarousel";
 import {
@@ -135,80 +137,90 @@ const Project = () => {
             </div>
 
             {/* Info Box */}
-            <div className="border-border divide-border divide-y overflow-hidden rounded-xl border">
-              {/* 기간 + 역할 */}
-              <div className="divide-border grid grid-cols-2 divide-x">
-                <div className="flex flex-col gap-1.5 p-4">
-                  <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
-                    <CalendarDays className="h-3.5 w-3.5 shrink-0" />
-                    기간
-                  </div>
-                  <p className="text-sm font-medium">
-                    {formatDate(project.startDate)} –{" "}
-                    {formatDate(project.endDate)}
-                  </p>
-                </div>
-                <div className="flex flex-col gap-1.5 p-4">
-                  <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
-                    <User className="h-3.5 w-3.5 shrink-0" />
-                    역할
-                  </div>
-                  <p className="text-sm font-medium">{project.role}</p>
-                </div>
-              </div>
-
-              {/* 기술 스택 */}
-              {projectSkills.length > 0 && (
-                <div className="space-y-3 p-4">
-                  <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
-                    <Layers className="h-3.5 w-3.5 shrink-0" />
-                    기술 스택
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {projectSkills.map((skill) => (
-                      <SkillBadge key={skill.id} skill={skill} />
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* 개발 배경 */}
-              {project.details?.background && (
-                <div className="space-y-2 p-4">
-                  <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
-                    <Lightbulb className="h-3.5 w-3.5 shrink-0" />
-                    개발 배경
-                  </div>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {project.details.background}
-                  </p>
-                </div>
-              )}
-
-              {/* 핵심 기능 */}
-              {project.details?.keyFeatures &&
-                project.details.keyFeatures.length > 0 && (
-                  <div className="space-y-2 p-4">
+            <Card className="border-border overflow-hidden rounded-xl border">
+              <CardContent className="p-0">
+                {/* 기간 + 역할 */}
+                <div className="grid grid-cols-2">
+                  <div className="flex flex-col gap-1.5 p-4">
                     <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
-                      <ListChecks className="h-3.5 w-3.5 shrink-0" />
-                      핵심 기능
+                      <CalendarDays className="h-3.5 w-3.5 shrink-0" />
+                      기간
                     </div>
-                    <ul className="space-y-1.5">
-                      {project.details.keyFeatures.map((feature, i) => (
-                        <li
-                          key={i}
-                          className="text-muted-foreground flex items-start gap-2 text-sm"
-                        >
-                          <span className="mt-0.5 shrink-0 select-none text-chart-2">
-                            ▸
-                          </span>
-                          {feature}
-                        </li>
+                    <p className="text-sm font-medium">
+                      {formatDate(project.startDate)} –{" "}
+                      {formatDate(project.endDate)}
+                    </p>
+                  </div>
+                  <div className="border-border flex flex-col gap-1.5 border-l p-4">
+                    <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
+                      <User className="h-3.5 w-3.5 shrink-0" />
+                      역할
+                    </div>
+                    <p className="text-sm font-medium">{project.role}</p>
+                  </div>
+                </div>
+
+                <Separator />
+
+                {/* 기술 스택 */}
+                {projectSkills.length > 0 && (
+                  <div className="space-y-3 p-4">
+                    <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
+                      <Layers className="h-3.5 w-3.5 shrink-0" />
+                      기술 스택
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {projectSkills.map((skill) => (
+                        <SkillBadge key={skill.id} skill={skill} />
                       ))}
-                    </ul>
+                    </div>
                   </div>
                 )}
-            </div>
+
+                {/* 개발 배경 */}
+                {project.details?.background && (
+                  <>
+                    <Separator />
+                    <div className="space-y-2 p-4">
+                      <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
+                        <Lightbulb className="h-3.5 w-3.5 shrink-0" />
+                        개발 배경
+                      </div>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {project.details.background}
+                      </p>
+                    </div>
+                  </>
+                )}
+
+                {/* 핵심 기능 */}
+                {project.details?.keyFeatures &&
+                  project.details.keyFeatures.length > 0 && (
+                    <>
+                      <Separator />
+                      <div className="space-y-2 p-4">
+                        <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
+                          <ListChecks className="h-3.5 w-3.5 shrink-0" />
+                          핵심 기능
+                        </div>
+                        <ul className="space-y-1.5">
+                          {project.details.keyFeatures.map((feature, i) => (
+                            <li
+                              key={i}
+                              className="text-muted-foreground flex items-start gap-2 text-sm"
+                            >
+                              <span className="mt-0.5 shrink-0 select-none text-chart-2">
+                                ▸
+                              </span>
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </>
+                  )}
+              </CardContent>
+            </Card>
 
             {/* 도전 과제 */}
             {project.details && (
@@ -222,53 +234,72 @@ const Project = () => {
 
                 <div className="space-y-3">
                   {project.details.challenges.map((challenge, i) => (
-                    <div
+                    <Card
                       key={i}
-                      className="border-border divide-border divide-y overflow-hidden rounded-xl border"
+                      className="border-border overflow-hidden rounded-xl border"
                     >
-                      {/* 문제 */}
-                      <div className="flex gap-3 p-4">
-                        <span className="mt-0.5 shrink-0 font-mono text-[9px] font-bold uppercase tracking-widest text-destructive">
-                          문제
-                        </span>
-                        <p className="text-sm leading-relaxed">
-                          {challenge.problem}
-                        </p>
-                      </div>
-
-                      {/* 해결 */}
-                      <div className="flex gap-3 p-4">
-                        <span className="mt-0.5 shrink-0 font-mono text-[9px] font-bold uppercase tracking-widest text-chart-2">
-                          해결
-                        </span>
-                        <p className="text-muted-foreground text-sm leading-relaxed">
-                          {challenge.solution}
-                        </p>
-                      </div>
-
-                      {/* 성과 */}
-                      {challenge.impact && (
-                        <div className="flex gap-3 bg-muted/40 p-4">
-                          <span className="mt-0.5 shrink-0 font-mono text-[9px] font-bold uppercase tracking-widest text-emerald-500">
-                            성과
-                          </span>
-                          <p className="text-muted-foreground text-sm leading-relaxed">
-                            {challenge.impact}
+                      <CardContent className="p-0">
+                        {/* 문제 */}
+                        <div className="flex items-start gap-4 p-4">
+                          <Badge
+                            variant="destructive"
+                            className="mt-0.5 shrink-0 text-[10px]"
+                          >
+                            문제
+                          </Badge>
+                          <p className="text-sm leading-relaxed">
+                            {challenge.problem}
                           </p>
                         </div>
-                      )}
 
-                      {/* 이미지 */}
-                      {challenge.imgs && challenge.imgs.length > 0 && (
-                        <div className="p-4">
-                          <ChallengeImageCarousel
-                            imgs={challenge.imgs}
-                            challengeId={challenge.id}
-                            projectId={project.id}
-                          />
+                        <Separator />
+
+                        {/* 해결 */}
+                        <div className="flex items-start gap-4 p-4">
+                          <Badge
+                            variant="default"
+                            className="bg-chart-2 mt-0.5 shrink-0 text-[10px] hover:bg-chart-2/90"
+                          >
+                            해결
+                          </Badge>
+                          <p className="text-muted-foreground text-sm leading-relaxed">
+                            {challenge.solution}
+                          </p>
                         </div>
-                      )}
-                    </div>
+
+                        {/* 성과 */}
+                        {challenge.impact && (
+                          <>
+                            <Separator />
+                            <div className="flex items-start gap-4 bg-muted/40 p-4">
+                              <Badge
+                                variant="secondary"
+                                className="bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 mt-0.5 shrink-0 border-none text-[10px]"
+                              >
+                                성과
+                              </Badge>
+                              <p className="text-muted-foreground text-sm leading-relaxed">
+                                {challenge.impact}
+                              </p>
+                            </div>
+                          </>
+                        )}
+
+                        {/* 이미지 */}
+                        {challenge.imgs && challenge.imgs.length > 0 && (
+                          <>
+                            <Separator />
+                            <div className="p-4">
+                              <ChallengeImageCarousel
+                                imgs={challenge.imgs}
+                                challengeId={challenge.id}
+                                projectId={project.id}
+                              />
+                            </div>
+                          </>
+                        )}
+                      </CardContent>
+                    </Card>
                   ))}
                 </div>
               </section>
@@ -281,3 +312,5 @@ const Project = () => {
 };
 
 export default Project;
+
+

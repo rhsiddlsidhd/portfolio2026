@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router";
 import { SectionHeader } from "@/components/molecules/SectionHeader";
+import { Separator } from "@/components/atoms/separator";
+import { HighlightedText, type IHighlightItem } from "@/components/molecules/HighlightedText";
 import ScrollReveal from "@/components/organisms/ScrollReveal";
 
 interface AboutSectionProps {
@@ -6,6 +9,22 @@ interface AboutSectionProps {
 }
 
 export function AboutSection({ description }: AboutSectionProps) {
+  const navigate = useNavigate();
+
+  const highlights: IHighlightItem[] = [
+    {
+      word: "풀스택 개발",
+      onClick: () => navigate("/project/tieknot"),
+    },
+    {
+      word: "AI",
+      onClick: () => {
+        const element = document.getElementById("ai-usage");
+        element?.scrollIntoView({ behavior: "smooth" });
+      },
+    },
+  ];
+
   return (
     <section id="about" className="relative overflow-hidden py-24">
       {/* Large decorative index number */}
@@ -21,22 +40,21 @@ export function AboutSection({ description }: AboutSectionProps) {
           <SectionHeader title="About Me" align="left" className="mb-10" />
         </ScrollReveal>
 
-        <ScrollReveal delay={150}>
+        <ScrollReveal>
           <div className="mx-auto max-w-3xl">
             <div className="relative border-l-2 border-chart-2 pl-6">
-              <p className="text-foreground/80 text-lg leading-[1.9]">
-                {description}
-              </p>
+              <HighlightedText
+                text={description}
+                highlights={highlights}
+                className="text-foreground/80 text-lg leading-[1.9] break-keep"
+              />
             </div>
           </div>
         </ScrollReveal>
       </div>
 
       {/* Bottom fade divider */}
-      <div
-        aria-hidden
-        className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-muted-foreground/30 to-transparent"
-      />
+      <Separator className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-muted-foreground/30 to-transparent border-none" />
     </section>
   );
 }
