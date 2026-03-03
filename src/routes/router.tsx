@@ -1,8 +1,8 @@
 import { createBrowserRouter, type LoaderFunctionArgs } from "react-router";
 import App from "@/App";
 import { HomePage } from "@/pages/HomePage";
-import Project from "@/pages/Project";
-import AIUsageDetail from "@/pages/AIUsageDetail";
+import { ProjectDetailPage } from "@/pages/ProjectDetailPage";
+import { AIDetailPage } from "@/pages/AIDetailPage";
 import projects from "@/data/projects.json";
 import aiUsage from "@/data/ai-usage.json";
 
@@ -27,7 +27,7 @@ export const routes = [
               }
               return project;
             },
-            element: <Project />,
+            element: <ProjectDetailPage />,
           },
           {
             path: "/ai/:id",
@@ -39,7 +39,7 @@ export const routes = [
               }
               return item;
             },
-            element: <AIUsageDetail />,
+            element: <AIDetailPage />,
           },
         ],
       },

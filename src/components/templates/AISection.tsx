@@ -3,6 +3,7 @@ import { SectionHeader } from "@/components/molecules/SectionHeader";
 import ScrollReveal from "@/components/organisms/ScrollReveal";
 import aiUsageData from "@/data/ai-usage.json";
 import { Link } from "react-router";
+import { SectionLayout } from "./SectionLayout";
 
 const ACCENT_MAP: Record<string, string> = {
   blue: "before:bg-blue-500",
@@ -24,22 +25,14 @@ const ACCENT_MAP: Record<string, string> = {
   fuchsia: "before:bg-fuchsia-500",
 };
 
-export function AIUsageSection() {
+export function AISection() {
   return (
-    <section id="ai-usage" className="relative py-20">
-      {/* Large decorative index number */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-6 top-6 select-none font-mono text-[7rem] font-bold leading-none text-foreground/[0.07] md:text-[9rem]"
-      >
-        04 
-      </div>
-
+    <SectionLayout id="ai-section" index="04">
       <div className="container mx-auto px-4 md:px-8">
         <ScrollReveal>
           <SectionHeader
-            title="AI 이렇게 사용하고 있어요"
-            subtitle="개발 워크플로우에 AI를 통합한 방식"
+            title="AI 인프라 활용"
+            subtitle="프롬프트 엔지니어링과 AI 에이전트를 통한 개발 생산성 극대화"
             align="left"
             className="mb-14"
           />
@@ -79,6 +72,6 @@ export function AIUsageSection() {
           ))}
         </ul>
       </div>
-    </section>
+    </SectionLayout>
   );
 }

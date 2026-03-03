@@ -3,6 +3,8 @@ import { useLoaderData, useNavigate } from "react-router";
 import { Button } from "@/components/atoms/button";
 import { Badge } from "@/components/atoms/badge";
 import { ArrowLeft, Cpu, Terminal, Workflow } from "lucide-react";
+import { MediaCarousel } from "@/components/molecules/MediaCarousel";
+import { imageBaseUrl } from "@/constants/path";
 import type { IAIUsage } from "@/types/ai-usage";
 
 const TypingText = ({ text }: { text: string }) => {
@@ -33,7 +35,7 @@ const TypingText = ({ text }: { text: string }) => {
   );
 };
 
-const AIUsageDetail = () => {
+export function AIDetailPage() {
   const data = useLoaderData() as IAIUsage;
   const navigate = useNavigate();
 
@@ -149,18 +151,13 @@ const AIUsageDetail = () => {
                 </div>
 
                 {/* Terminal body */}
-                <div className="min-h-45 p-5 font-mono text-sm">
+                <div className="w-full aspect-video p-4 flex justify-center items-center font-mono text-sm">
                   {data.imgs && data.imgs.length > 0 ? (
-                    <div className="grid gap-4 justify-center">
-                      {data.imgs.map((img, i) => (
-                        <img
-                          key={i}
-                          src={`/images/ai/${img}`}
-                          alt="Execution result"
-                          className="rounded-lg opacity-85 transition-opacity hover:opacity-100"
-                        />
-                      ))}
-                    </div>
+                    <MediaCarousel
+                      imgs={data.imgs}
+                      basePath={`${imageBaseUrl}/ai`}
+                      altPrefix={data.id}
+                    />
                   ) : (
                     <div className="space-y-2 text-zinc-400">
                       <p>
@@ -190,6 +187,4 @@ const AIUsageDetail = () => {
       </div>
     </div>
   );
-};
-
-export default AIUsageDetail;
+}

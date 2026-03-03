@@ -1,3 +1,4 @@
+import { SectionSeparator } from "@/components/molecules";
 import { HeroContent } from "@/components/organisms/HeroContent";
 import type { IUser } from "@/types/user";
 
@@ -33,16 +34,8 @@ export function HeroSection({ user }: HeroSectionProps) {
 
       <HeroContent user={user} />
 
-      {/* Scroll indicator */}
-      <div
-        aria-hidden
-        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 animate-bounce flex-col items-center gap-2"
-      >
-        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground">
-          scroll
-        </span>
-        <div className="h-8 w-px bg-gradient-to-b from-muted-foreground/50 to-transparent" />
-      </div>
+      <SectionSeparator />
+
     </section>
   );
 }

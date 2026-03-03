@@ -1,20 +1,19 @@
 import { Header, Footer } from "@/components/layout";
+import { ThemeToggle } from "@/components/molecules";
+import ScrollReveal from "@/components/organisms/ScrollReveal";
+import { cn } from "@/lib/utils";
 import {
   HeroSection,
   AboutSection,
   SkillsSection,
   ProjectsSection,
   ContactSection,
-} from "@/sections";
-import userData from "@/data/user.json";
-import skillsData from "@/data/skills.json";
-import projectsData from "@/data/projects.json";
-import { ThemeToggle } from "@/components/molecules/themeToggle";
-import { cn } from "@/lib/utils";
-import ScrollReveal from "@/components/organisms/ScrollReveal";
+  AISection,
+} from "@/components/templates";
 import { Outlet } from "react-router";
-import { AIUsageSection } from "@/sections/AIUsageSection";
-
+import userData from "../data/user.json"
+import skillData from "../data/skills.json"
+import projectData from "../data/projects.json"
 
 
 export function HomePage() {
@@ -44,11 +43,11 @@ export function HomePage() {
         </ScrollReveal>
         <Header className="sticky top-2 py-2" />
 
-        <SkillsSection skills={skillsData} />
+        <SkillsSection skills={skillData} />
 
-        <ProjectsSection projects={projectsData} allSkills={skillsData} />
+        <ProjectsSection projects={projectData} allSkills={skillData} />
 
-        <AIUsageSection/>
+        <AISection />
         
         <ScrollReveal>
           <ContactSection
