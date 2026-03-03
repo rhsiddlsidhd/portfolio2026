@@ -2,8 +2,9 @@ import { Button } from "../atoms/button";
 import type { JSX } from "react";
 
 export interface IHighlightItem {
-  word: string;
-  onClick?: () => void;
+  id:string;
+  label: string;
+  onClick?: (id:string) => void;
 }
 
 interface HighlightedTextProps {
@@ -24,7 +25,7 @@ export function HighlightedText({
   if (!highlights.length) return <span className={className}>{text}</span>;
 
   // 강조할 단어들만 추출하여 정규식 생성
-  const words = highlights.map((h) => h.word);
+  const words = highlights.map((h) => h.label);
   const regex = new RegExp(`(${words.join("|")})`, "gi");
   const parts = text.split(regex);
 
@@ -33,7 +34,7 @@ export function HighlightedText({
       {parts.map((part, i) => {
         // 현재 part가 하이라이트 대상인지 확인
         const match = highlights.find(
-          (h) => h.word.toLowerCase() === part.toLowerCase()
+          (h) => h.label.toLowerCase() === part.toLowerCase()
         );
 
         if (match) {
@@ -42,7 +43,12 @@ export function HighlightedText({
               key={i}
               variant="ghost"
               size="xs"
-              onClick={match.onClick}
+              id={match.id}
+              onClick={(e)=>{
+                 const id = e.currentTarget.id;
+                 console.log({id})
+                 if(match.onClick) match.onClick(id)
+              }}
               className="text-chart-2 hover:bg-chart-2/10 text-md h-auto rounded-sm p-2 mr-0.5 font-semibold transition-colors  focus-visible:ring-chart-2/50"
             >
               {part}

@@ -1,4 +1,4 @@
-import { Separator } from "@/components/atoms/separator";
+import { SectionSeparator } from "@/components/molecules";
 import { HeroContent } from "@/components/organisms/HeroContent";
 import type { IUser } from "@/types/user";
 
@@ -34,7 +34,7 @@ export function HeroSection({ user }: HeroSectionProps) {
 
       <HeroContent user={user} />
 
-          <Separator className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-muted-foreground/30 to-transparent border-none" />
+      <SectionSeparator />
 
     </section>
   );

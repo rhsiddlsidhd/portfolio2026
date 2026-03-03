@@ -3,6 +3,7 @@ import { ProjectsList } from "@/components/organisms/ProjectsList";
 import type { IProject } from "@/types/project";
 import type { ISkill } from "@/types/skill";
 import ScrollReveal from "@/components/organisms/ScrollReveal";
+import { SectionLayout } from "./SectionLayout";
 
 interface ProjectsSectionProps {
   projects: IProject[];
@@ -11,23 +12,15 @@ interface ProjectsSectionProps {
 
 export function ProjectsSection({ projects, allSkills }: ProjectsSectionProps) {
   return (
-    <section id="projects" className="relative overflow-hidden py-24">
-      {/* Large decorative index number */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-6 top-6 select-none font-mono text-[7rem] font-bold leading-none text-foreground/[0.07] md:text-[9rem]"
-      >
-        03
-      </div>
-
+    <SectionLayout id="projects-section" index="03">
       {/* Soft glow — left side */}
       <div className="pointer-events-none absolute -left-24 top-1/2 size-[400px] -translate-y-1/2 rounded-full bg-chart-2/20 blur-2xl" />
 
       <div className="container relative mx-auto px-4 md:px-8">
         <ScrollReveal>
           <SectionHeader
-            title="Projects"
-            subtitle="Things I've built"
+            title="프로젝트"
+            subtitle="직접 설계하고 구현한 결과물들입니다"
             align="left"
             className="mb-12"
           />
@@ -35,12 +28,6 @@ export function ProjectsSection({ projects, allSkills }: ProjectsSectionProps) {
 
         <ProjectsList projects={projects} allSkills={allSkills} />
       </div>
-
-      {/* Bottom fade divider */}
-      <div
-        aria-hidden
-        className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-muted-foreground/30 to-transparent"
-      />
-    </section>
+    </SectionLayout>
   );
 }

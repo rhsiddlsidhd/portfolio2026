@@ -11,25 +11,11 @@ interface ContactSectionProps {
 
 export function ContactSection({ email, phone, blogUrl }: ContactSectionProps) {
   return (
-    <section id="contact" className="relative overflow-hidden bg-muted/30 py-32 md:py-40">
+    <section id="contact-section" className="relative overflow-hidden bg-muted/30 py-32 md:py-40">
       
 
 
       {/* Large ghost text background */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 flex items-center justify-center select-none overflow-hidden"
-      >
-        <span className="font-mono text-[16vw] font-bold uppercase leading-none tracking-tight text-foreground/[0.08]">
-          CONTACT
-        </span>
-      </div>
-
-      {/* Top fade divider */}
-      <div
-        aria-hidden
-        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-muted-foreground/30 to-transparent"
-      />
 
       {/* Soft glow */}
       <div className="pointer-events-none absolute -right-24 top-1/2 size-[400px] -translate-y-1/2 rounded-full bg-chart-1/20 blur-2xl dark:bg-chart-1/12" />
@@ -38,11 +24,11 @@ export function ContactSection({ email, phone, blogUrl }: ContactSectionProps) {
         <ScrollReveal>
           <div className="mx-auto max-w-2xl text-center">
             <p className="mb-4 font-mono text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
-              04 — Let&apos;s connect
+              05 — 함께 이야기 나누고 싶습니다
             </p>
             <SectionHeader
-              title="Get In Touch"
-              subtitle="새로운 기회나 협업에 열려 있습니다. 언제든지 편하게 연락주세요."
+              title="연락처"
+              subtitle="새로운 기회나 협업에 언제든 열려 있습니다. 편하게 연락주세요."
               className="mb-12"
             />
           </div>
