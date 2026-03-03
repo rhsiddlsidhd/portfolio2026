@@ -1,18 +1,15 @@
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
 
 const useMobile = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(`(max-width: 640px)`);
-
-    const handleChange = (e: MediaQueryListEvent) => {
-      setIsMobile(e.matches);
-    };
-
-    // 리스너 등록
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
+  const isMobile = useSyncExternalStore(
+    (callback) => {
+      const mediaQuery = window.matchMedia("(max-width: 640px)");
+      mediaQuery.addEventListener("change", callback);
+      return () => mediaQuery.removeEventListener("change", callback);
+    },
+    () => window.matchMedia("(max-width: 640px)").matches,
+    () => false // SSR fallback
+  );
 
   return { isMobile };
 };
