@@ -160,5 +160,11 @@
     "name": "Discord",
     "category": "tool",
     "hasIcon": true
+  },
+  {
+    "id": "python",
+    "name": "PYTHON",
+    "category": "language",
+    "hasIcon": true
   }
 ]

@@ -31,6 +31,7 @@ export function HeroContent({
           {/* Profile Header — animates in first */}
           <ProfileHeader
             name={user.name}
+            job={user.job}
             headline={user.headline}
             id={user.id}
           />
