@@ -1,0 +1,42 @@
+import React from "react";
+import { cn } from "@/lib/utils";
+import { SectionSeparator } from "@/components/molecules";
+
+interface SectionLayoutProps {
+  id: string;
+  index: string;
+  children: React.ReactNode;
+  className?: string;
+  showSeparator?: boolean;
+}
+
+/**
+ * 포트폴리오의 각 섹션에 공통적으로 적용되는 레이아웃 템플릿입니다.
+ * 큰 장식 숫자(index), 고유 ID, 배경 처리, 하단 구분선을 포함합니다.
+ */
+export function SectionLayout({
+  id,
+  index,
+  children,
+  className,
+  showSeparator = true,
+}: SectionLayoutProps) {
+  return (
+    <section
+      id={id}
+      className={cn("relative overflow-hidden py-24", className)}
+    >
+      {/* Large decorative index number */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-6 top-6 select-none font-mono text-[7rem] font-bold leading-none text-foreground/[0.07] md:text-[9rem]"
+      >
+        {index}
+      </div>
+
+      {children}
+
+      {showSeparator && <SectionSeparator />}
+    </section>
+  );
+}

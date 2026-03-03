@@ -15,10 +15,10 @@ interface HeaderProps {
 export function Header({ className }: HeaderProps) {
   const { isMobile } = useMobile();
   const navItems = [
-    { label: "기술", href: "#skills" },
-    { label: "프로젝트", href: "#projects" },
-    { label: "블로그", href: "#blog" },
-    { label: "연락처", href: "#contact" },
+    { label: "기술", href: "#skills-section" },
+    { label: "프로젝트", href: "#projects-section" },
+    { label: "AI", href: "#ai-section" },
+    { label: "연락처", href: "#contact-section" },
   ];
 
   return (

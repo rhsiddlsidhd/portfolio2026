@@ -6,6 +6,16 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+/**
+ * 특정 ID를 가진 요소로 부드럽게 스크롤합니다.
+ */
+export const scrollToSection = (id: string) => {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
 export type ThumbnailSrc = {
   webp: string;
   default: string;

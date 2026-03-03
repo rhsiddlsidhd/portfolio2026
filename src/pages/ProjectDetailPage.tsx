@@ -7,7 +7,8 @@ import { Button } from "@/components/atoms/button";
 import { Card, CardContent } from "@/components/atoms/card";
 import { Separator } from "@/components/atoms/separator";
 import { SkillBadge } from "@/components/molecules/SkillBadge";
-import { ChallengeImageCarousel } from "@/components/molecules/ChallengeImageCarousel";
+import { MediaCarousel } from "@/components/molecules/MediaCarousel";
+import { imageBaseUrl } from "@/constants/path";
 import {
   ExternalLink,
   Github,
@@ -26,7 +27,7 @@ import { createProjectThumbnailSrc } from "@/lib/utils";
 const formatDate = (date?: string | null) =>
   date ? date.slice(0, 7).replace("-", ".") : "진행 중";
 
-const Project = () => {
+export function ProjectDetailPage() {
   const project = useLoaderData() as IProject;
   const navigate = useNavigate();
 
@@ -236,7 +237,7 @@ const Project = () => {
                   {project.details.challenges.map((challenge, i) => (
                     <Card
                       key={i}
-                      className="border-border overflow-hidden rounded-xl border"
+                      className="border-border overflow-hidden rounded-xl border p-0"
                     >
                       <CardContent className="p-0">
                         {/* 문제 */}
@@ -289,11 +290,11 @@ const Project = () => {
                         {challenge.imgs && challenge.imgs.length > 0 && (
                           <>
                             <Separator />
-                            <div className="p-4">
-                              <ChallengeImageCarousel
+                            <div className="m-auto max-w-md p-4 aspect-video">
+                              <MediaCarousel
                                 imgs={challenge.imgs}
-                                challengeId={challenge.id}
-                                projectId={project.id}
+                                basePath={`${imageBaseUrl}/challenges/${project.id}`}
+                                altPrefix={challenge.id}
                               />
                             </div>
                           </>
@@ -309,8 +310,6 @@ const Project = () => {
       </div>
     </div>
   );
-};
-
-export default Project;
+}
 
 

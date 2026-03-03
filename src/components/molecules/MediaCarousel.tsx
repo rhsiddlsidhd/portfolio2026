@@ -5,18 +5,18 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/atoms/carousel";
-import { imageBaseUrl } from "@/constants/path";
 import { cn } from "@/lib/utils";
 
-interface ChallengeImageCarouselProps {
+interface MediaCarouselProps {
   imgs: string[];
-  challengeId: string;
-  projectId: string;
+  basePath: string; // 예: `${imageBaseUrl}/challenges/${projectId}` 또는 `${imageBaseUrl}/ai`
+  altPrefix: string;
+  className?: string;
 }
 
 const isVideo = (filename: string) => filename.endsWith(".webm");
 
-const ChallengeMedia = ({
+const MediaItem = ({
   src,
   alt,
 }: {
@@ -49,24 +49,28 @@ const ChallengeMedia = ({
   );
 };
 
-export function ChallengeImageCarousel({
+/**
+ * 이미지 또는 비디오 목록을 캐러셀(모바일) 또는 그리드(데스크탑) 형태로 보여주는 범용 컴포넌트입니다.
+ */
+export function MediaCarousel({
   imgs,
-  challengeId,
-  projectId,
-}: ChallengeImageCarouselProps) {
+  basePath,
+  altPrefix,
+  className,
+}: MediaCarouselProps) {
   if (imgs.length === 0) return null;
 
   return (
-    <>
+    <div className={className}>
       {/* Mobile: Carousel */}
-      <div className="sm:hidden">
-        <Carousel opts={{ align: "start" }}>
-          <CarouselContent>
+      <div >
+        <Carousel  opts={{ align: "start" }}>
+          <CarouselContent className="">
             {imgs.map((img, i) => (
-              <CarouselItem key={i}>
-                <ChallengeMedia
-                  src={`${imageBaseUrl}/challenges/${projectId}/${img}`}
-                  alt={`${challengeId} evidence ${i + 1}`}
+              <CarouselItem key={i} className="flex justify-center items-center">
+                <MediaItem
+                  src={`${basePath}/${img}`}
+                  alt={`${altPrefix} media ${i + 1}`}
                 />
               </CarouselItem>
             ))}
@@ -80,16 +84,17 @@ export function ChallengeImageCarousel({
         </Carousel>
       </div>
 
-      {/* Desktop: grid */}
-      <div className={cn(`hidden grid-cols-2 gap-4 sm:grid`, imgs.length === 1 && 'grid-cols-1')}>
+      {/* Desktop: Grid */}
+      {/* sm:grid */}
+      <div className={cn(`hidden grid-cols-2 gap-4 `, imgs.length === 1 && 'grid-cols-1')}>
         {imgs.map((img, i) => (
-          <ChallengeMedia
+          <MediaItem
             key={i}
-            src={`${imageBaseUrl}/challenges/${projectId}/${img}`}
-            alt={`${challengeId} evidence ${i + 1}`}
+            src={`${basePath}/${img}`}
+            alt={`${altPrefix} media ${i + 1}`}
           />
         ))}
       </div>
-    </>
+    </div>
   );
 }

@@ -3,6 +3,7 @@ import { SkillsGrid } from "@/components/organisms/SkillsGrid";
 import { SkillsFilterProvider } from "@/context/skillsFilter.context";
 import type { ISkill } from "@/types/skill";
 import ScrollReveal from "@/components/organisms/ScrollReveal";
+import { SectionLayout } from "./SectionLayout";
 
 interface SkillsSectionProps {
   skills: ISkill[];
@@ -10,15 +11,7 @@ interface SkillsSectionProps {
 
 export function SkillsSection({ skills }: SkillsSectionProps) {
   return (
-    <section id="skills" className="relative overflow-hidden bg-muted/30 py-24">
-      {/* Large decorative index number */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-6 top-6 select-none font-mono text-[7rem] font-bold leading-none text-foreground/[0.07] md:text-[9rem]"
-      >
-        02
-      </div>
-
+    <SectionLayout id="skills-section" index="02" className="bg-muted/30">
       {/* Dot grid texture */}
       <div  
         aria-hidden
@@ -36,8 +29,8 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
       <div className="container relative mx-auto px-4 md:px-8">
         <ScrollReveal>
           <SectionHeader
-            title="Tech Stack"
-            subtitle="Technologies I work with"
+            title="기술 스택"
+            subtitle="현재 활용 중인 주요 기술과 도구들입니다"
             align="left"
             className="mb-12"
           />
@@ -47,12 +40,6 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
           <SkillsGrid skills={skills} groupByCategory />
         </SkillsFilterProvider>
       </div>
-
-      {/* Bottom fade divider */}
-      <div
-        aria-hidden
-        className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-muted-foreground/30 to-transparent"
-      />
-    </section>
+    </SectionLayout>
   );
 }
