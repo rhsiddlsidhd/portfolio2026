@@ -10,11 +10,7 @@ interface ProjectsListProps {
   className?: string;
 }
 
- function ProjectsList({
-  projects,
-  allSkills,
-  className,
-}: ProjectsListProps) {
+function ProjectsList({ projects, allSkills, className }: ProjectsListProps) {
   if (projects.length === 0) {
     return (
       <div className={className}>
@@ -36,7 +32,11 @@ interface ProjectsListProps {
               key={project.id}
               options={{ threshold: 0, rootMargin: "0px 100px 0px 100px" }}
             >
-              <ProjectCard project={project} allSkills={allSkills} className="w-[70vw] shrink-0 snap-start pt-0"  />
+              <ProjectCard
+                project={project}
+                allSkills={allSkills}
+                className="w-[70vw] shrink-0 snap-start pt-0"
+              />
             </Reveal>
           ))}
         </div>
@@ -50,12 +50,11 @@ interface ProjectsListProps {
             key={project.id}
             options={{ threshold: 0.25 }}
           >
-                          <ProjectCard
-                project={project}
-                allSkills={allSkills}
-                className="pt-0"
-                
-              />
+            <ProjectCard
+              project={project}
+              allSkills={allSkills}
+              className="pt-0"
+            />
           </Reveal>
         ))}
       </div>
@@ -63,4 +62,4 @@ interface ProjectsListProps {
   );
 }
 
-export default ProjectsList
+export default ProjectsList;

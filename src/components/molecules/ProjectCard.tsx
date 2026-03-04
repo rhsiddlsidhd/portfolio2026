@@ -28,7 +28,6 @@ export function ProjectCard({
   project,
   allSkills,
   className,
-
 }: ProjectCardProps) {
   const router = useNavigate();
   const projectSkills = project.skills
@@ -64,7 +63,7 @@ export function ProjectCard({
       />
 
       <CardHeader>
-        <CardTitle className="text-xl">{project.title}</CardTitle>
+        <CardTitle className="line-clamp-1 text-xl">{project.title}</CardTitle>
         <Badge data-slot="badge" variant="secondary">
           {project.name}
         </Badge>
@@ -74,7 +73,7 @@ export function ProjectCard({
       </CardHeader>
 
       <CardContent className="space-y-4">
-        <p className="text-muted-foreground text-sm leading-relaxed">
+        <p className="text-muted-foreground line-clamp-3 text-sm leading-relaxed">
           {project.description}
         </p>
         {projectSkills.length > 0 && (
