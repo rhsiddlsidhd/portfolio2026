@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import { SectionHeader } from "@/components/molecules/SectionHeader";
 import { HighlightedText, type IHighlightItem } from "@/components/molecules/HighlightedText";
-import ScrollReveal from "@/components/organisms/ScrollReveal";
+import Reveal from "@/components/organisms/Reveal";
 import { scrollToSection } from "@/lib/utils";
 import { SectionLayout } from "./SectionLayout";
 
@@ -25,13 +25,9 @@ export function AboutSection({ description }: AboutSectionProps) {
 
 
   return (
-    <SectionLayout id="about-section" index="01">
+  <SectionLayout id="about-section" index="01">
       <div className="container relative mx-auto px-4 md:px-8">
-        <ScrollReveal>
           <SectionHeader title="소개" align="left" className="mb-10" />
-        </ScrollReveal>
-
-        <ScrollReveal>
           <div className="mx-auto max-w-3xl">
             <div className="relative border-l-2 border-chart-2 pl-6">
               <HighlightedText
@@ -41,9 +37,7 @@ export function AboutSection({ description }: AboutSectionProps) {
               />
             </div>
           </div>
-        </ScrollReveal>
       </div>
     </SectionLayout>
   );
 }
-

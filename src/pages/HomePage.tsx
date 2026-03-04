@@ -1,6 +1,5 @@
 import { Header, Footer } from "@/components/layout";
 import { ThemeToggle } from "@/components/molecules";
-import ScrollReveal from "@/components/organisms/ScrollReveal";
 import { cn } from "@/lib/utils";
 import {
   HeroSection,
@@ -38,9 +37,9 @@ export function HomePage() {
       
       <main className="bg-background text-foreground">
         <HeroSection user={userData} />
-        <ScrollReveal>
-          <AboutSection description={userData.description} />
-        </ScrollReveal>
+        
+        <AboutSection description={userData.description} />
+        
         <Header className="sticky top-2 py-2" />
 
         <SkillsSection skills={skillData} />
@@ -49,13 +48,12 @@ export function HomePage() {
 
         <AISection />
         
-        <ScrollReveal>
-          <ContactSection
+        
+        <ContactSection
             email={userData.email}
             phone={userData.phone}
             blogUrl={userData.blogUrl}
-          />
-        </ScrollReveal>
+        />
         
       </main>
       <Footer name={userData.name} />

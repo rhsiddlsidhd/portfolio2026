@@ -1,7 +1,7 @@
 import { SectionHeader } from "@/components/molecules/SectionHeader";
 import { Button } from "@/components/atoms/button";
 import { Mail, Phone, Globe, ArrowUpRight } from "lucide-react";
-import ScrollReveal from "@/components/organisms/ScrollReveal";
+import { SectionLayout } from "./SectionLayout";
 
 interface ContactSectionProps {
   email: string;
@@ -11,17 +11,14 @@ interface ContactSectionProps {
 
 export function ContactSection({ email, phone, blogUrl }: ContactSectionProps) {
   return (
-    <section id="contact-section" className="relative overflow-hidden bg-muted/30 py-32 md:py-40">
-      
-
-
+    <SectionLayout id="contact-section">
+     <section  className="relative overflow-hidden bg-muted/30 py-32 md:py-40">
       {/* Large ghost text background */}
-
       {/* Soft glow */}
       <div className="pointer-events-none absolute -right-24 top-1/2 size-[400px] -translate-y-1/2 rounded-full bg-chart-1/20 blur-2xl dark:bg-chart-1/12" />
 
       <div className="container relative mx-auto px-4 md:px-8">
-        <ScrollReveal>
+        
           <div className="mx-auto max-w-2xl text-center">
             <p className="mb-4 font-mono text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
               05 — 함께 이야기 나누고 싶습니다
@@ -32,9 +29,9 @@ export function ContactSection({ email, phone, blogUrl }: ContactSectionProps) {
               className="mb-12"
             />
           </div>
-        </ScrollReveal>
+        
 
-        <ScrollReveal delay={160}>
+        
           <div className="mx-auto flex max-w-xl flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center">
             <Button
               variant="default"
@@ -78,8 +75,9 @@ export function ContactSection({ email, phone, blogUrl }: ContactSectionProps) {
               </Button>
             )}
           </div>
-        </ScrollReveal>
+        
       </div>
     </section>
+    </SectionLayout>
   );
 }

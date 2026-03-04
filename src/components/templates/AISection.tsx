@@ -1,6 +1,6 @@
 import { Badge } from "@/components/atoms/badge";
 import { SectionHeader } from "@/components/molecules/SectionHeader";
-import ScrollReveal from "@/components/organisms/ScrollReveal";
+import Reveal from "@/components/organisms/Reveal";
 import aiUsageData from "@/data/ai-usage.json";
 import { Link } from "react-router";
 import { SectionLayout } from "./SectionLayout";
@@ -29,18 +29,18 @@ export function AISection() {
   return (
     <SectionLayout id="ai-section" index="04">
       <div className="container mx-auto px-4 md:px-8">
-        <ScrollReveal>
+        <Reveal>
           <SectionHeader
             title="AI 인프라 활용"
             subtitle="프롬프트 엔지니어링과 AI 에이전트를 통한 개발 생산성 극대화"
             align="left"
             className="mb-14"
           />
-        </ScrollReveal>
+        </Reveal>
 
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 ">
           {aiUsageData.map((item, i) => (
-            <ScrollReveal key={item.id} delay={i * 80}>
+            <Reveal key={item.id} delay={i * 80}>
               
                 <li
                   className={[
@@ -68,7 +68,7 @@ export function AISection() {
                   </Link>
                 </li>
               
-            </ScrollReveal>
+            </Reveal>
           ))}
         </ul>
       </div>

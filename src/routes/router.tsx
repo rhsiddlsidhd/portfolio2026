@@ -5,6 +5,7 @@ import { ProjectDetailPage } from "@/pages/ProjectDetailPage";
 import { AIDetailPage } from "@/pages/AIDetailPage";
 import projects from "@/data/projects.json";
 import aiUsage from "@/data/ai-usage.json";
+import { Suspense } from "react";
 
 
 

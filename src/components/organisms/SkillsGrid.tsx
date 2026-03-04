@@ -3,7 +3,7 @@ import { Button } from "@/components/atoms/button";
 import { useSkills } from "@/hooks/useSkills";
 import { CATEGORY_LABELS, SKILL_STAGGER_DELAY } from "@/constants/skill";
 import type { ISkill } from "@/types/skill";
-import ScrollReveal from "./ScrollReveal";
+import Reveal from "./Reveal";
 
 interface SkillsGridProps {
   skills: ISkill[];
@@ -75,9 +75,9 @@ export function SkillsGrid({
             className="animate-fadeIn flex flex-wrap gap-2"
           >
             {currentSkills.map((skill, index) => (
-              <ScrollReveal key={skill.id} delay={index * SKILL_STAGGER_DELAY}>
+              <Reveal key={skill.id} delay={index * SKILL_STAGGER_DELAY}>
                 <SkillBadge skill={skill} showTooltip={true} />
-              </ScrollReveal>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -90,9 +90,9 @@ export function SkillsGrid({
           className="animate-fadeIn flex flex-wrap gap-2"
         >
           {currentSkills.map((skill, index) => (
-            <ScrollReveal key={skill.id} delay={index * SKILL_STAGGER_DELAY}>
+            <Reveal key={skill.id} delay={index * SKILL_STAGGER_DELAY}>
               <SkillBadge skill={skill} showTooltip={true} />
-            </ScrollReveal>
+            </Reveal>
           ))}
         </div>
       </div>

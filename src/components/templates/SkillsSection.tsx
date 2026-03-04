@@ -2,7 +2,7 @@ import { SectionHeader } from "@/components/molecules/SectionHeader";
 import { SkillsGrid } from "@/components/organisms/SkillsGrid";
 import { SkillsFilterProvider } from "@/context/skillsFilter.context";
 import type { ISkill } from "@/types/skill";
-import ScrollReveal from "@/components/organisms/ScrollReveal";
+import Reveal from "@/components/organisms/Reveal";
 import { SectionLayout } from "./SectionLayout";
 
 interface SkillsSectionProps {
@@ -27,14 +27,14 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
       <div className="pointer-events-none absolute -left-24 top-1/2 size-[350px] -translate-y-1/2 rounded-full bg-chart-2/20 blur-2xl dark:bg-chart-2/12" />
 
       <div className="container relative mx-auto px-4 md:px-8">
-        <ScrollReveal>
+        <Reveal>
           <SectionHeader
             title="기술 스택"
             subtitle="현재 활용 중인 주요 기술과 도구들입니다"
             align="left"
             className="mb-12"
           />
-        </ScrollReveal>
+        </Reveal>
 
         <SkillsFilterProvider initialValue={undefined}>
           <SkillsGrid skills={skills} groupByCategory />

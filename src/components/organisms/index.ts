@@ -1,3 +1,4 @@
 export { HeroContent } from "./HeroContent";
 export { SkillsGrid } from "./SkillsGrid";
-export { ProjectsList } from "./ProjectsList";
+export { default as Reveal } from "./Reveal";
+export { default as ProjectsList } from "./ProjectsList";
