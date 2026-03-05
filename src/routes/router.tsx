@@ -1,12 +1,11 @@
 import { createBrowserRouter, type LoaderFunctionArgs } from "react-router";
 import App from "@/App";
 import { HomePage } from "@/pages/HomePage";
-import { ProjectDetailPage } from "@/pages/ProjectDetailPage";
-import { AIDetailPage } from "@/pages/AIDetailPage";
 import projects from "@/data/projects.json";
 import aiUsage from "@/data/ai-usage.json";
-
-
+import { lazy, Suspense } from "react";
+const ProjectDetailPage = lazy(() => import("@/pages/ProjectDetailPage"));
+const AIDetailPage = lazy(() => import("@/pages/AIDetailPage"));
 
 export const routes = [
   {
@@ -15,7 +14,11 @@ export const routes = [
     children: [
       {
         path: "/",
-        element: <HomePage />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <HomePage />
+          </Suspense>
+        ),
         children: [
           {
             path: "/project/:id",
