@@ -24,18 +24,18 @@ const TypingText = ({ text }: { text: string }) => {
 
   return (
     <div className="flex items-start gap-2 font-mono text-sm">
-      <span className="mt-px shrink-0 select-none text-chart-2">›</span>
-      <span className="min-w-0 flex-1 break-words text-foreground">
+      <span className="text-chart-2 mt-px shrink-0 select-none">›</span>
+      <span className="text-foreground min-w-0 flex-1 break-words">
         {displayedText}
         {index < cleanText.length && (
-          <span className="ml-0.5 inline-block h-3.25 w-1.5 translate-y-0.5 animate-pulse bg-chart-2 align-text-bottom" />
+          <span className="bg-chart-2 ml-0.5 inline-block h-3.25 w-1.5 translate-y-0.5 animate-pulse align-text-bottom" />
         )}
       </span>
     </div>
   );
 };
 
-export function AIDetailPage() {
+function AIDetailPage() {
   const data = useLoaderData() as IAIUsage;
   const navigate = useNavigate();
 
@@ -52,11 +52,11 @@ export function AIDetailPage() {
       onClick={() => navigate(-1)}
     >
       <div
-        className="bg-card text-foreground relative flex h-[90vh] w-9/10 max-w-4xl flex-col overflow-hidden rounded-2xl border border-border shadow-2xl animate-[heroEnter_0.4s_ease-out_both]"
+        className="bg-card text-foreground border-border relative flex h-[90vh] w-9/10 max-w-4xl animate-[heroEnter_0.4s_ease-out_both] flex-col overflow-hidden rounded-2xl border shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top accent line — chart-2 cohesion */}
-        <div className="absolute top-0 left-0 right-0 z-10 h-0.5 bg-linear-to-r from-transparent via-chart-2 to-transparent" />
+        <div className="via-chart-2 absolute top-0 right-0 left-0 z-10 h-0.5 bg-linear-to-r from-transparent to-transparent" />
 
         {/* Fixed header */}
         <div className="border-border flex shrink-0 items-center justify-between border-b px-4 py-3 sm:px-6 sm:py-4">
@@ -65,8 +65,8 @@ export function AIDetailPage() {
             <span className="hidden sm:inline">뒤로</span>
           </Button>
           <div className="flex items-center gap-2">
-            <Cpu className="h-3.5 w-3.5 text-chart-2" />
-            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+            <Cpu className="text-chart-2 h-3.5 w-3.5" />
+            <span className="text-muted-foreground font-mono text-[10px] font-semibold tracking-[0.25em] uppercase">
               AI Powered Workflow
             </span>
           </div>
@@ -75,19 +75,18 @@ export function AIDetailPage() {
         {/* Scrollable content */}
         <div className="flex-1 overflow-y-auto">
           <div className="mx-auto flex w-full max-w-2xl flex-col gap-10 p-6 sm:p-10">
-
             {/* ── Header ── */}
-            <div className="space-y-4 animate-[heroEnter_0.6s_ease-out_both] [animation-delay:80ms]">
+            <div className="animate-[heroEnter_0.6s_ease-out_both] space-y-4 [animation-delay:80ms]">
               <Badge
                 variant="outline"
-                className="font-mono text-[10px] uppercase tracking-widest border-chart-2/50 text-chart-2"
+                className="border-chart-2/50 text-chart-2 font-mono text-[10px] tracking-widest uppercase"
               >
                 {data.model}
               </Badge>
               <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
                 {data.title}
               </h1>
-              <div className="border-l-2 border-chart-2 pl-4">
+              <div className="border-chart-2 border-l-2 pl-4">
                 <p className="text-muted-foreground text-sm leading-relaxed sm:text-base">
                   {data.description}
                 </p>
@@ -95,31 +94,31 @@ export function AIDetailPage() {
             </div>
 
             {/* ── Workflow ── */}
-            <div className="space-y-5 animate-[heroEnter_0.6s_ease-out_both] [animation-delay:200ms]">
+            <div className="animate-[heroEnter_0.6s_ease-out_both] space-y-5 [animation-delay:200ms]">
               <div className="flex items-center gap-2">
-                <Workflow className="h-3.5 w-3.5 shrink-0 text-chart-2" />
-                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+                <Workflow className="text-chart-2 h-3.5 w-3.5 shrink-0" />
+                <span className="text-muted-foreground font-mono text-[10px] font-semibold tracking-[0.25em] uppercase">
                   Workflow
                 </span>
               </div>
 
               <div className="relative pl-8">
                 {/* Connector line */}
-                <div className="absolute left-2.75 top-3 bottom-3 w-px bg-linear-to-b from-chart-2/50 via-chart-2/20 to-transparent" />
+                <div className="from-chart-2/50 via-chart-2/20 absolute top-3 bottom-3 left-2.75 w-px bg-linear-to-b to-transparent" />
 
                 <div className="space-y-3">
                   {data.workflow.map((step, i) => (
                     <div key={i} className="relative flex items-start gap-4">
                       {/* Step node */}
-                      <div className="absolute -left-8 z-10 mt-2.5 flex h-6 w-6 items-center justify-center rounded-full border border-chart-2/50 bg-card">
-                        <span className="font-mono text-[9px] font-bold leading-none text-chart-2">
+                      <div className="border-chart-2/50 bg-card absolute -left-8 z-10 mt-2.5 flex h-6 w-6 items-center justify-center rounded-full border">
+                        <span className="text-chart-2 font-mono text-[9px] leading-none font-bold">
                           {String(i + 1).padStart(2, "0")}
                         </span>
                       </div>
 
                       {/* Step content */}
-                      <div className="flex-1 rounded-lg border border-border bg-muted/40 p-3 transition-colors hover:bg-muted/70">
-                        <TypingText text={step}   />
+                      <div className="border-border bg-muted/40 hover:bg-muted/70 flex-1 rounded-lg border p-3 transition-colors">
+                        <TypingText text={step} />
                       </div>
                     </div>
                   ))}
@@ -128,10 +127,10 @@ export function AIDetailPage() {
             </div>
 
             {/* ── Execution Output ── */}
-            <div className="space-y-4 animate-[heroEnter_0.6s_ease-out_both] [animation-delay:360ms]">
+            <div className="animate-[heroEnter_0.6s_ease-out_both] space-y-4 [animation-delay:360ms]">
               <div className="flex items-center gap-2">
-                <Terminal className="h-3.5 w-3.5 shrink-0 text-chart-2" />
-                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+                <Terminal className="text-chart-2 h-3.5 w-3.5 shrink-0" />
+                <span className="text-muted-foreground font-mono text-[10px] font-semibold tracking-[0.25em] uppercase">
                   Execution Output
                 </span>
               </div>
@@ -145,13 +144,13 @@ export function AIDetailPage() {
                     <div className="h-2.5 w-2.5 rounded-full bg-amber-500/70" />
                     <div className="h-2.5 w-2.5 rounded-full bg-emerald-500/70" />
                   </div>
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+                  <span className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase">
                     {data.id}.log
                   </span>
                 </div>
 
                 {/* Terminal body */}
-                <div className="w-full aspect-video p-4 flex justify-center items-center font-mono text-sm">
+                <div className="flex aspect-video w-full items-center justify-center p-4 font-mono text-sm">
                   {data.imgs && data.imgs.length > 0 ? (
                     <MediaCarousel
                       imgs={data.imgs}
@@ -161,17 +160,25 @@ export function AIDetailPage() {
                   ) : (
                     <div className="space-y-2 text-zinc-400">
                       <p>
-                        <span className="mr-4 select-none text-zinc-700">1</span>
+                        <span className="mr-4 text-zinc-700 select-none">
+                          1
+                        </span>
                         <span className="text-emerald-400">$</span>{" "}
                         <span className="text-zinc-200">run</span>{" "}
                         <span className="text-amber-300">{data.id}</span>
                       </p>
                       <p>
-                        <span className="mr-4 select-none text-zinc-700">2</span>
-                        <span className="animate-pulse">Analyzing workflow...</span>
+                        <span className="mr-4 text-zinc-700 select-none">
+                          2
+                        </span>
+                        <span className="animate-pulse">
+                          Analyzing workflow...
+                        </span>
                       </p>
                       <p>
-                        <span className="mr-4 select-none text-zinc-700">3</span>
+                        <span className="mr-4 text-zinc-700 select-none">
+                          3
+                        </span>
                         <span className="text-zinc-600">
                           # No visual output for this workflow
                         </span>
@@ -181,10 +188,10 @@ export function AIDetailPage() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
     </div>
   );
 }
+export default AIDetailPage;

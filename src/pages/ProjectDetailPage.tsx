@@ -27,7 +27,7 @@ import { createProjectThumbnailSrc } from "@/lib/utils";
 const formatDate = (date?: string | null) =>
   date ? date.slice(0, 7).replace("-", ".") : "진행 중";
 
-export function ProjectDetailPage() {
+function ProjectDetailPage() {
   const project = useLoaderData() as IProject;
   const navigate = useNavigate();
 
@@ -54,7 +54,7 @@ export function ProjectDetailPage() {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top accent gradient line */}
-        <div className="absolute top-0 left-0 right-0 z-10 h-0.5 bg-gradient-to-r from-transparent via-chart-2 to-transparent" />
+        <div className="via-chart-2 absolute top-0 right-0 left-0 z-10 h-0.5 bg-gradient-to-r from-transparent to-transparent" />
 
         {/* 고정 헤더 */}
         <div className="border-border flex shrink-0 items-center justify-between border-b px-4 py-3 sm:px-6 sm:py-4">
@@ -108,8 +108,8 @@ export function ProjectDetailPage() {
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-white/55 mb-1">
+            <div className="absolute right-0 bottom-0 left-0 p-4 sm:p-6">
+              <p className="mb-1 font-mono text-[10px] font-semibold tracking-[0.25em] text-white/55 uppercase">
                 {project.name}
               </p>
               <h1 className="text-xl font-bold text-white sm:text-2xl">
@@ -122,15 +122,15 @@ export function ProjectDetailPage() {
             {/* Overview */}
             <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <Target className="h-3.5 w-3.5 text-chart-2 shrink-0" />
-                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+                <Target className="text-chart-2 h-3.5 w-3.5 shrink-0" />
+                <span className="text-muted-foreground font-mono text-[10px] font-semibold tracking-[0.25em] uppercase">
                   Overview
                 </span>
                 <Badge variant="outline" className="ml-auto shrink-0">
                   {project.name}
                 </Badge>
               </div>
-              <div className="border-l-2 border-chart-2 pl-4">
+              <div className="border-chart-2 border-l-2 pl-4">
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   {project.description}
                 </p>
@@ -210,7 +210,7 @@ export function ProjectDetailPage() {
                               key={i}
                               className="text-muted-foreground flex items-start gap-2 text-sm"
                             >
-                              <span className="mt-0.5 shrink-0 select-none text-chart-2">
+                              <span className="text-chart-2 mt-0.5 shrink-0 select-none">
                                 ▸
                               </span>
                               {feature}
@@ -227,8 +227,8 @@ export function ProjectDetailPage() {
             {project.details && (
               <section className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <Zap className="h-3.5 w-3.5 text-chart-2 shrink-0" />
-                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+                  <Zap className="text-chart-2 h-3.5 w-3.5 shrink-0" />
+                  <span className="text-muted-foreground font-mono text-[10px] font-semibold tracking-[0.25em] uppercase">
                     도전 과제
                   </span>
                 </div>
@@ -259,7 +259,7 @@ export function ProjectDetailPage() {
                         <div className="flex items-start gap-4 p-4">
                           <Badge
                             variant="default"
-                            className="bg-chart-2 mt-0.5 shrink-0 text-[10px] hover:bg-chart-2/90"
+                            className="bg-chart-2 hover:bg-chart-2/90 mt-0.5 shrink-0 text-[10px]"
                           >
                             해결
                           </Badge>
@@ -272,10 +272,10 @@ export function ProjectDetailPage() {
                         {challenge.impact && (
                           <>
                             <Separator />
-                            <div className="flex items-start gap-4 bg-muted/40 p-4">
+                            <div className="bg-muted/40 flex items-start gap-4 p-4">
                               <Badge
                                 variant="secondary"
-                                className="bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 mt-0.5 shrink-0 border-none text-[10px]"
+                                className="mt-0.5 shrink-0 border-none bg-emerald-500/15 text-[10px] text-emerald-600 dark:text-emerald-400"
                               >
                                 성과
                               </Badge>
@@ -290,7 +290,7 @@ export function ProjectDetailPage() {
                         {challenge.imgs && challenge.imgs.length > 0 && (
                           <>
                             <Separator />
-                            <div className="m-auto max-w-md p-4 aspect-video">
+                            <div className="m-auto aspect-video max-w-md p-4">
                               <MediaCarousel
                                 imgs={challenge.imgs}
                                 basePath={`${imageBaseUrl}/challenges/${project.id}`}
@@ -312,4 +312,4 @@ export function ProjectDetailPage() {
   );
 }
 
-
+export default ProjectDetailPage;
