@@ -1,9 +1,9 @@
 import { SectionHeader } from "@/components/molecules/SectionHeader";
-import { ProjectsList } from "@/components/organisms/ProjectsList";
 import type { IProject } from "@/types/project";
 import type { ISkill } from "@/types/skill";
-import ScrollReveal from "@/components/organisms/ScrollReveal";
-import { SectionLayout } from "./SectionLayout";
+import Reveal from "@/components/organisms/Reveal";
+import { SectionLayout } from "../layout/SectionLayout";
+import ProjectsList from "../organisms/ProjectsList";
 
 interface ProjectsSectionProps {
   projects: IProject[];
@@ -14,18 +14,17 @@ export function ProjectsSection({ projects, allSkills }: ProjectsSectionProps) {
   return (
     <SectionLayout id="projects-section" index="03">
       {/* Soft glow — left side */}
-      <div className="pointer-events-none absolute -left-24 top-1/2 size-[400px] -translate-y-1/2 rounded-full bg-chart-2/20 blur-2xl" />
+      <div className="bg-chart-2/20 pointer-events-none absolute top-1/2 -left-24 size-100 -translate-y-1/2 rounded-full blur-2xl" />
 
-      <div className="container relative mx-auto px-4 md:px-8">
-        <ScrollReveal>
+      <div className="relative container mx-auto px-4 md:px-8">
+        <Reveal>
           <SectionHeader
             title="프로젝트"
             subtitle="직접 설계하고 구현한 결과물들입니다"
             align="left"
             className="mb-12"
           />
-        </ScrollReveal>
-
+        </Reveal>
         <ProjectsList projects={projects} allSkills={allSkills} />
       </div>
     </SectionLayout>

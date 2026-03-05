@@ -1,11 +1,12 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { SectionSeparator } from "@/components/molecules";
+import { Reveal } from "../organisms";
 
 interface SectionLayoutProps {
   id: string;
-  index: string;
   children: React.ReactNode;
+  index?: string;
   className?: string;
   showSeparator?: boolean;
 }
@@ -27,15 +28,15 @@ export function SectionLayout({
       className={cn("relative overflow-hidden py-24", className)}
     >
       {/* Large decorative index number */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-6 top-6 select-none font-mono text-[7rem] font-bold leading-none text-foreground/[0.07] md:text-[9rem]"
-      >
-        {index}
-      </div>
-
-      {children}
-
+      <Reveal threshold={1} delay={300}>
+        <div
+          aria-hidden
+          className="text-foreground/[0.07] pointer-events-none absolute top-6 right-6 font-mono text-[7rem] leading-none font-bold select-none md:text-[9rem]"
+        >
+          {index}
+        </div>
+      </Reveal>
+      <Reveal>{children}</Reveal>
       {showSeparator && <SectionSeparator />}
     </section>
   );

@@ -23,15 +23,19 @@ export function SkillBadge({
     <Badge
       data-slot="badge"
       variant="secondary"
-      className={cn("p-2", className)}
+      className={cn(
+        "relative flex h-8 shrink-0 items-center justify-center p-0",
+        skill.hasIcon ? "aspect-square w-8" : "w-auto min-w-8 px-2",
+        className,
+      )}
     >
       {!skill.hasIcon ? (
-        <span className="h-6 text-[10px] font-bold uppercase leading-none flex items-center">
+        <span className="text-[8px] leading-none font-bold whitespace-nowrap uppercase">
           {skill.id}
         </span>
       ) : (
         <img
-          className="aspect-square w-6"
+          className="h-4 w-4 object-contain"
           src={`${imageBaseUrl}/skills/${skill.id}.svg`}
           alt={skill.name}
         />

@@ -1,4 +1,3 @@
-import { SectionSeparator } from "@/components/molecules";
 import { HeroContent } from "@/components/organisms/HeroContent";
 import type { IUser } from "@/types/user";
 
@@ -8,9 +7,9 @@ interface HeroSectionProps {
 
 export function HeroSection({ user }: HeroSectionProps) {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative h-screen overflow-hidden">
       {/* Decorative background layer */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+      <div aria-hidden className="pointer-events-none absolute inset-0">
         {/* Subtle grid lines */}
         <div
           className="absolute inset-0 opacity-[0.055] dark:opacity-[0.035]"
@@ -23,19 +22,16 @@ export function HeroSection({ user }: HeroSectionProps) {
           }}
         />
         {/* Glow — top right */}
-        <div className="absolute -right-32 -top-32 size-[500px] rounded-full bg-chart-2/25 blur-2xl dark:bg-chart-2/15" />
+        <div className="bg-chart-2/25 dark:bg-chart-2/15 absolute -top-32 -right-32 size-125 rounded-full blur-2xl" />
         {/* Glow — bottom left */}
-        <div className="absolute -bottom-24 -left-24 size-[350px] rounded-full bg-chart-1/20 blur-2xl dark:bg-chart-1/12" />
+        <div className="bg-chart-1/20 dark:bg-chart-1/12 absolute -bottom-24 -left-24 size-87.5 rounded-full blur-2xl" />
         {/* Glow — center accent */}
-        <div className="absolute left-1/3 top-1/4 size-[260px] rounded-full bg-chart-2/10 blur-3xl dark:bg-chart-2/8" />
-        {/* Bottom divider */}
-        <div className="absolute bottom-0 left-1/2 h-px w-4/5 -translate-x-1/2 bg-gradient-to-r from-transparent via-muted-foreground/30 to-transparent" />
+        <div className="bg-chart-2/10 dark:bg-chart-2/8 absolute top-1/4 left-1/3 size-65 rounded-full blur-3xl" />
+        {/* Bottom fade — blends into next section */}
+        <div className="from-background absolute right-0 bottom-0 left-0 h-48 bg-linear-to-t to-transparent" />
       </div>
 
       <HeroContent user={user} />
-
-      <SectionSeparator />
-
     </section>
   );
 }

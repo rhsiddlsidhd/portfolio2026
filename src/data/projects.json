@@ -90,16 +90,21 @@
       "keyFeatures": [
         "React Router Data API loader를 활용한 렌더링 전 데이터 사전 로딩",
         "WebP + srcSet 반응형 이미지 최적화로 디바이스별 최적 이미지 서빙",
-        "IntersectionObserver 기반 이미지 로드 동기화 ScrollReveal 애니메이션",
+        "IntersectionObserver 기반 이미지 로드 동기화 Reveal 애니메이션",
         "다크/라이트 모드 지원 및 시스템 테마 연동"
       ],
       "challenges": [
         {
           "id": "challenge-1",
-          "problem": "이미지가 로드되기 전에 ScrollReveal 애니메이션이 실행되어, 이미지 없는 카드가 먼저 노출되는 시각적 깜빡임 발생",
-          "solution": "waitForImg 플래그와 React Context(revealImg.context), Render Props 패턴을 조합하여 이미지 onLoad 콜백 시점까지 애니메이션 실행을 지연",
-          "impact": "이미지 로드 완료 후 애니메이션이 실행되어 깜빡임 없는 부드러운 카드 등장 효과 구현",
-          "imgs": ["scrollReveal-before.webm", "scrollReveal-after.webm"]
+          "problem": "단일 번들 파일로 인한 초기 속도 저하 및 불필요한 리소스 로드",
+          "solution": "Route 기반 코드 분할 및 라이브러리별 Vendor Chunk 분리 전략 적용",
+          "impact": "메인 번들 크기를 약 47% 경량화(443KB → 233KB)하여 초기 로딩 성능 개선 및 캐싱 효율 극대화",
+          "imgs": [
+            "portfolio_bundle_before.webp",
+            "portfolio_bundle_after.webp",
+            "bundle_size_before.webp",
+            "bundle_size_after.webp"
+          ]
         },
         {
           "id": "challenge-2",
@@ -111,9 +116,12 @@
         {
           "id": "challenge-3",
           "problem": "뷰포트 밖에 있는 이미지까지 초기 로드 시 일괄 요청되어, 당장 필요하지 않은 네트워크 리소스가 낭비되는 현상",
-          "solution": "뷰포트 진입 여부를 기준으로 이미지를 즉시 로드(eager)와 지연 로드(lazy)로 분리하고, IntersectionObserver 기반 커스텀 트리거를 구현하여 뷰포트 진입 시점에만 이미지 요청이 발생하도록 제어",
-          "impact": "초기 로드 시 네트워크 요청을 당장 필요한 이미지로 한정하여 불필요한 네트워크 의존성을 줄이고, LCP 대상 이미지의 우선 로드를 보장",
-          "imgs": ["img-lazy-loading-before.webp", "img-lazy-loading-after.webp"]
+          "solution": "HTML native lazy loading 적용 및 정적 이미지를 WebP로 변환하고 srcSet으로 디바이스 해상도별 최적 이미지를 제공하도록 구성",
+          "impact": "초기 로드 시 네트워크 요청을 뷰포트 내 이미지로 한정하고, 불필요한 대용량 이미지 전송을 줄여 LCP 개선",
+          "imgs": [
+            "img-lazy-loading-before.webp",
+            "img-lazy-loading-after.webp"
+          ]
         }
       ]
     }
