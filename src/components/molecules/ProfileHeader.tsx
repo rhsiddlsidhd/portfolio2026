@@ -36,6 +36,8 @@ export function ProfileHeader({
               src={`${imageBaseUrl}/users/${id}.webp`}
               alt={name}
               className="object-cover"
+              fetchPriority="high"
+              loading="eager"
             />
             <AvatarFallback>
               <User className="text-muted-foreground size-10" />
