@@ -69,6 +69,12 @@
           "problem": "GitHub Actions에서 GitHub App 토큰 생성 시 `repositories` 입력 형식 오류와 권한 검증 스텝 실패로 PR마다 CI 워크플로우가 중단되었습니다.",
           "solution": "잘못된 `repositories` 입력을 제거하고 워크플로우 경로 패턴을 부정 패턴(negative glob)으로 수정했습니다. 실패하는 권한 검증 스텝을 제거하고, 재사용 가능한 워크플로우(reusable workflow)로 구조를 리팩터링해 중복을 제거했습니다.",
           "impact": "모든 PR에서 Claude AI 코드 리뷰와 Slack 알림이 안정적으로 동작하게 되어 팀 내 코드 리뷰 자동화가 정착했습니다."
+        },
+        {
+          "id": "challenge-hydration",
+          "problem": "배포 환경에서 preview 페이지에 React #418 hydration 오류가 발생했습니다. WeddingMonthCalendar 컴포넌트에서 date-fns의 format()으로 날짜를 포맷할 때, 서버(Vercel, UTC)와 클라이언트(브라우저, KST)   간 timezone이 달라 렌더링 결과가 불일치했고, 로컬 환경에서는 재현되지 않아 원인 파악이 어려웠습니다.",
+          "solution": "date-fns-tz 라이브러리의 formatInTimeZone()을 도입해 서버와 클라이언트 모두 Asia/Seoul timezone으로 고정하여 포맷하도록 수정했습니다. MongoDB는 내부적으로 항상 UTC로 저장하기 때문에 저장 방식 변경으로는 해결이 불가능하며, 포맷 시점에 timezone을 명시적으로 고정하는 것이 근본적인 해결책임을 확인했습니다.",
+          "impact": "배포 환경에서 발생하던 hydration 오류가 제거되었고, 서버에서 생성한 HTML과 클라이언트 렌더링 결과가 일치하여 SSR/ISR 환경에서 안정적인 렌더링이 보장되었습니다."
         }
       ]
     }
