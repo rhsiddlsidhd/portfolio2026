@@ -40,15 +40,15 @@ export function AISection() {
 
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {aiUsageData.map((item, i) => (
-            <Reveal key={item.id} delay={i * 80}>
-              <li
-                className={[
-                  "group relative h-full rounded-lg border border-border bg-card p-6",
-                  "transition-all duration-300 hover:border-chart-2/50 hover:shadow-md",
-                  "before:absolute before:top-4 before:left-0 before:h-8 before:w-0.75 before:rounded-r-full",
-                  ACCENT_MAP[item.accent] || "before:bg-muted",
-                ].join(" ")}
-              >
+            <li
+              className={[
+                "group border-border bg-card relative h-full rounded-lg border p-6",
+                "hover:border-chart-2/50 transition-all duration-300 hover:shadow-md",
+                "before:absolute before:top-4 before:left-0 before:h-8 before:w-0.75 before:rounded-r-full",
+                ACCENT_MAP[item.accent] || "before:bg-muted",
+              ].join(" ")}
+            >
+              <Reveal key={item.id} delay={i * 80}>
                 <Link to={`/ai/${item.id}`} className="block h-full space-y-2">
                   <div className="mb-2 flex items-center gap-2">
                     <span className="text-muted-foreground font-mono text-xs font-semibold tracking-widest">
@@ -68,8 +68,8 @@ export function AISection() {
                     {item.description}
                   </p>
                 </Link>
-              </li>
-            </Reveal>
+              </Reveal>
+            </li>
           ))}
         </ul>
       </div>

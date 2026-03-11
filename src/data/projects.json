@@ -89,8 +89,9 @@
       "background": "자신을 가장 잘 드러낼 수 있는 공간인 포트폴리오를, 단순한 정보 나열이 아닌 '기술적 문제 해결'을 증명하는 무대로 만들고자 시작했습니다. CSR의 가벼움을 유지하면서도 성능 최적화를 극대화하는 것을 목표로 했습니다.",
       "keyFeatures": [
         "React Router Data API loader를 활용한 렌더링 전 데이터 사전 로딩",
-        "WebP + srcSet 반응형 이미지 최적화로 디바이스별 최적 이미지 서빙",
-        "IntersectionObserver 기반 이미지 로드 동기화 Reveal 애니메이션",
+        "메인 번들 47% 경량화를 달성한 Route 기반 코드 분할 및 Chunk 최적화",
+        "fetchPriority·eager loading·WebP srcSet을 활용한 LCP 성능 최적화",
+        "Intersection Observer 기반 스크롤 reveal 애니메이션 및 stagger 효과로 콘텐츠 단계적 노출",
         "다크/라이트 모드 지원 및 시스템 테마 연동"
       ],
       "challenges": [
@@ -116,7 +117,7 @@
         {
           "id": "challenge-3",
           "problem": "뷰포트 밖에 있는 이미지까지 초기 로드 시 일괄 요청되어, 당장 필요하지 않은 네트워크 리소스가 낭비되는 현상",
-          "solution": "HTML native lazy loading 적용 및 정적 이미지를 WebP로 변환하고 srcSet으로 디바이스 해상도별 최적 이미지를 제공하도록 구성",
+          "solution": "HTML native lazy loading으로 뷰포트 밖 이미지 요청을 지연시키고, LCP 대상 히어로 이미지에는 fetchPriority=\"high\"와 loading=\"eager\"를 적용해 브라우저 우선순위를 높였습니다. 정적 이미지를 WebP로 변환하고 srcSet으로 디바이스 해상도별 최적 이미지를 제공하도록 구성했습니다.",
           "impact": "초기 로드 시 네트워크 요청을 뷰포트 내 이미지로 한정하고, 불필요한 대용량 이미지 전송을 줄여 LCP 개선",
           "imgs": [
             "img-lazy-loading-before.webp",
