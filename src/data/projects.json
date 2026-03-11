@@ -21,8 +21,8 @@
       "github-actions",
       "vercel"
     ],
-    "deployUrl": null,
-    "githubUrl": null,
+    "deployUrl": "https://new-invitation-5dib.vercel.app/",
+    "githubUrl": "https://github.com/rhsiddlsidhd/new_invitation",
     "startDate": "2025-12-01",
     "endDate": null,
     "role": "풀스택 개발 (기획, 설계, 구현, 배포)",
