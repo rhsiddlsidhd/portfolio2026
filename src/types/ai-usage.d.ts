@@ -4,6 +4,7 @@ export interface IAIUsage {
   description: string;
   model: string;
   workflow: string[];
-  accent:string;
+  accent: string;
   imgs?: string[];
+  document?: string;
 }

@@ -35,7 +35,6 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
             className="mb-12"
           />
         </Reveal>
-
         <SkillsFilterProvider initialValue={undefined}>
           <SkillsGrid skills={skills} groupByCategory />
         </SkillsFilterProvider>

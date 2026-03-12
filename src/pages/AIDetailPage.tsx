@@ -1,8 +1,15 @@
 import { useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router";
 import { Button } from "@/components/atoms/button";
+import { LinkButton } from "@/components/molecules/LinkButton";
 import { Badge } from "@/components/atoms/badge";
-import { ArrowLeft, Cpu, Terminal, Workflow } from "lucide-react";
+import {
+  ArrowLeft,
+  Cpu,
+  DownloadCloudIcon,
+  Terminal,
+  Workflow,
+} from "lucide-react";
 import { MediaCarousel } from "@/components/molecules/MediaCarousel";
 import { imageBaseUrl } from "@/constants/path";
 import type { IAIUsage } from "@/types/ai-usage";
@@ -25,7 +32,7 @@ const TypingText = ({ text }: { text: string }) => {
   return (
     <div className="flex items-start gap-2 font-mono text-sm">
       <span className="text-chart-2 mt-px shrink-0 select-none">›</span>
-      <span className="text-foreground min-w-0 flex-1 break-words">
+      <span className="text-foreground min-w-0 flex-1 wrap-break-word">
         {displayedText}
         {index < cleanText.length && (
           <span className="bg-chart-2 ml-0.5 inline-block h-3.25 w-1.5 translate-y-0.5 animate-pulse align-text-bottom" />
@@ -83,9 +90,23 @@ function AIDetailPage() {
               >
                 {data.model}
               </Badge>
-              <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
-                {data.title}
-              </h1>
+
+              <div className="flex items-center gap-4">
+                <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
+                  {data.title}
+                </h1>
+
+                {data.document && (
+                  <LinkButton
+                    href={`/document/${data.document}/SKILL.md`}
+                    download="SKILL.md"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <DownloadCloudIcon className="mr-2 aspect-square w-4" />
+                    Document
+                  </LinkButton>
+                )}
+              </div>
               <div className="border-chart-2 border-l-2 pl-4">
                 <p className="text-muted-foreground text-sm leading-relaxed sm:text-base">
                   {data.description}

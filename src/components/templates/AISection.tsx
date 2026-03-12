@@ -4,6 +4,8 @@ import Reveal from "@/components/organisms/Reveal";
 import aiUsageData from "@/data/ai-usage.json";
 import { Link } from "react-router";
 import { SectionLayout } from "../layout/SectionLayout";
+import { LinkButton } from "../molecules/LinkButton";
+import { DownloadCloudIcon } from "lucide-react";
 
 const ACCENT_MAP: Record<string, string> = {
   blue: "before:bg-blue-500",
@@ -67,6 +69,16 @@ export function AISection() {
                   <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
                     {item.description}
                   </p>
+                  {item.document && (
+                    <LinkButton
+                      href={`/document/${item.document}/SKILL.md`}
+                      download="SKILL.md"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <DownloadCloudIcon className="mr-2 aspect-square w-4" />
+                      Document
+                    </LinkButton>
+                  )}
                 </Link>
               </Reveal>
             </li>

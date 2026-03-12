@@ -1,5 +1,5 @@
 import { SectionHeader } from "@/components/molecules/SectionHeader";
-import { Button } from "@/components/atoms/button";
+import { LinkButton } from "@/components/molecules/LinkButton";
 import { Mail, Phone, Globe, ArrowUpRight } from "lucide-react";
 import { SectionLayout } from "../layout/SectionLayout";
 
@@ -30,46 +30,41 @@ export function ContactSection({ email, phone, blogUrl }: ContactSectionProps) {
           </div>
 
           <div className="mx-auto flex max-w-xl flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center">
-            <Button
+            <LinkButton
               variant="default"
               size="lg"
               className="group w-full sm:w-auto"
-              asChild
+              href={`mailto:${email}`}
             >
-              <a href={`mailto:${email}`}>
-                <Mail className="shrink-0" />
-                Email Me
-                <ArrowUpRight className="ml-1 size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-            </Button>
+              <Mail className="shrink-0" />
+              Email Me
+              <ArrowUpRight className="ml-1 size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </LinkButton>
 
             {phone && (
-              <Button
+              <LinkButton
                 variant="outline"
                 size="lg"
                 className="w-full sm:w-auto"
-                asChild
+                href={`tel:${phone}`}
               >
-                <a href={`tel:${phone}`}>
-                  <Phone className="shrink-0" />
-                  Call Me
-                </a>
-              </Button>
+                <Phone className="shrink-0" />
+                Call Me
+              </LinkButton>
             )}
 
             {blogUrl && (
-              <Button
+              <LinkButton
                 variant="outline"
                 size="lg"
                 className="group w-full sm:w-auto"
-                asChild
+                href={blogUrl}
+                target="_blank"
               >
-                <a href={blogUrl} target="_blank" rel="noopener noreferrer">
-                  <Globe className="shrink-0" />
-                  Visit Blog
-                  <ArrowUpRight className="ml-1 size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </a>
-              </Button>
+                <Globe className="shrink-0" />
+                Visit Blog
+                <ArrowUpRight className="ml-1 size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </LinkButton>
             )}
           </div>
         </div>

@@ -6,4 +6,5 @@ export { MediaCarousel } from "./MediaCarousel";
 export { ThemeToggle } from "./themeToggle";
 export { HighlightedText } from "./HighlightedText";
 export { SectionSeparator } from "./SectionSeparator";
+export { LinkButton } from "./LinkButton";
 

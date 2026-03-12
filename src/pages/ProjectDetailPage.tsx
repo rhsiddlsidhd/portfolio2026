@@ -4,6 +4,7 @@ import type { IProject } from "@/types/project";
 import type { ISkill } from "@/types/skill";
 import { Badge } from "@/components/atoms/badge";
 import { Button } from "@/components/atoms/button";
+import { LinkButton } from "@/components/molecules/LinkButton";
 import { Card, CardContent } from "@/components/atoms/card";
 import { Separator } from "@/components/atoms/separator";
 import { SkillBadge } from "@/components/molecules/SkillBadge";
@@ -64,28 +65,20 @@ function ProjectDetailPage() {
           </Button>
           <div className="flex gap-2">
             {project.deployUrl && (
-              <Button variant="default" size="sm" asChild>
-                <a
-                  href={project.deployUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <ExternalLink className="h-4 w-4 sm:mr-1" />
-                  <span className="hidden sm:inline">Live Demo</span>
-                </a>
-              </Button>
+              <LinkButton
+                variant="default"
+                href={project.deployUrl}
+                target="_blank"
+              >
+                <ExternalLink className="h-4 w-4 sm:mr-1" />
+                <span className="hidden sm:inline">Live Demo</span>
+              </LinkButton>
             )}
             {project.githubUrl && (
-              <Button variant="outline" size="sm" asChild>
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Github className="h-4 w-4 sm:mr-1" />
-                  <span className="hidden sm:inline">GitHub</span>
-                </a>
-              </Button>
+              <LinkButton href={project.githubUrl} target="_blank">
+                <Github className="h-4 w-4 sm:mr-1" />
+                <span className="hidden sm:inline">GitHub</span>
+              </LinkButton>
             )}
           </div>
         </div>

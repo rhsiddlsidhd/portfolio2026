@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/atoms/card";
-import { Button } from "@/components/atoms/button";
+import { LinkButton } from "@/components/molecules/LinkButton";
 import { Badge } from "@/components/atoms/badge";
 import { SkillBadge } from "./SkillBadge";
 import { ExternalLink } from "lucide-react";
@@ -89,29 +89,24 @@ export function ProjectCard({
       {hasLinks && (
         <CardFooter className="gap-2">
           {project.deployUrl && (
-            <Button variant="default" size="sm" asChild>
-              <a
-                href={project.deployUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <ExternalLink />
-                Live Demo
-              </a>
-            </Button>
+            <LinkButton
+              variant="default"
+              href={project.deployUrl}
+              target="_blank"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <ExternalLink />
+              Live Demo
+            </LinkButton>
           )}
           {project.githubUrl && (
-            <Button variant="outline" size="sm" asChild>
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-              >
-                GitHub
-              </a>
-            </Button>
+            <LinkButton
+              href={project.githubUrl}
+              target="_blank"
+              onClick={(e) => e.stopPropagation()}
+            >
+              GitHub
+            </LinkButton>
           )}
         </CardFooter>
       )}
