@@ -1,122 +1,117 @@
-# 프론트엔드 포트폴리오 2026
+# 포트폴리오 2026
 
-**Atomic Design 기반의 체계적인 컴포넌트 설계와 AI 협업을 통해 구축한 고성능 개인 포트폴리오**
+> 렌더링 흐름과 네트워크 구조를 이해하고, 사용자가 실제로 느끼는 속도를 설계하는 프론트엔드 개발자의 포트폴리오
 
-TypeScript + React 19 + Tailwind CSS 4를 활용하여 성능 최적화와 사용자 경험(UX)을 극대화한 모던 프론트엔드 프로젝트입니다.
+단순한 정보 나열이 아닌, 실제 성능 병목을 발견하고 구조적으로 해결한 과정을 담은 개인 포트폴리오입니다.
+
+➡️ [배포 링크](https://portfolio2026-2nbc.vercel.app/) | [GitHub](https://github.com/rhsiddlsidhd/portfolio2026)
 
 ---
 
-## 🚀 빠른 시작
+## 📌 프로젝트 개요
 
-### 설치
-```bash
-# 의존성 설치
-npm install
-```
+| 항목 | 내용 |
+| :--- | :--- |
+| **기간** | 2026.01 ~ (진행 중) |
+| **역할** | 프론트엔드 개발 (설계 · 구현 · 배포) |
+| **배경** | 기능 나열형 포트폴리오가 아닌, 성능 문제를 발견하고 구조적으로 해결하는 과정을 보여주는 기술 증명 포트폴리오 |
 
-### 개발 서버 실행
-```bash
-# 개발 서버 (Vite)
-npm run dev
-```
+---
 
-### 빌드 및 테스트
-```bash
-# 프로덕션 빌드
-npm run build
+## 🛠 Tech Stack
 
-# 린트 검사
-npm run lint
+| 분류 | 기술 |
+| :--- | :--- |
+| **Frontend** | TypeScript 5.9, React 19, Vite 7 |
+| **Routing** | React Router 7 (Data API · Loader) |
+| **Styling** | Tailwind CSS 4, shadcn/ui, Radix UI |
+| **State** | Zustand, React Context |
+| **Testing** | Vitest, React Testing Library |
+| **CI/CD** | GitHub, Vercel |
 
-# 테스트 실행 (Vitest)
-npm run test
-```
+---
+
+## 💡 주요 기능 (Key Features)
+
+- **렌더링 워터폴 제거**: `useEffect` 기반 데이터 페칭을 React Router 7 `loader`로 전환하여 라우터 레이어에서 사전 로딩
+- **번들 최적화**: 라우트 기반 코드 스플리팅 + 라이브러리별 벤더 청크 분리로 번들 사이즈 47% 감소 (443KB → 233KB)
+- **이미지 최적화**: WebP 변환 · `srcSet` 반응형 이미지 · `fetchPriority="high"` LCP 타겟 설정 · 뷰포트 외 지연 로딩
+- **다크/라이트 모드**: 시스템 테마 감지 및 동기화
+
+---
+
+## 🏗 아키텍처 (Architecture)
+
+### 렌더링 전략
+
+| 구분 | 선택 | 이유 |
+| :--- | :--- | :--- |
+| **데이터 소스** | Static JSON | API 없는 정적 데이터 → 빌드 타임 최적화, 서버 비용 없음 |
+| **렌더링 방식** | CSR (SPA) | 페이지 전환 UX 우선, 정적 배포로 TTFB 최소화 |
+| **데이터 페칭** | Router Loader | 컴포넌트 마운트 전 데이터 준비 → Cascading Render 제거 |
+
+### 상태 관리 기준
+
+| 상태 유형 | 도구 | 기준 |
+| :--- | :--- | :--- |
+| **전역 UI 상태** | Zustand | 다크모드 등 여러 컴포넌트가 공유하는 상태 |
+| **컴포넌트 상태** | React Context | 트리 내 범위가 한정된 공유 상태 |
+| **지역 상태** | useState | 단일 컴포넌트 내부 상태 |
+
+---
+
+## 🔥 트러블슈팅 (Troubleshooting)
+
+### 1. Cascading Render (렌더링 워터폴)
+
+**Problem**
+`useEffect` 기반 데이터 페칭으로 `Render → 빈 화면 → Fetch → Re-render` 사이클이 발생. 불필요한 빈 화면 노출과 이중 렌더링이 UX를 저해.
+
+**Solution**
+React Router 7의 Data API `loader`를 도입하여 데이터 페칭 책임을 라우터 레이어로 이전. 컴포넌트는 첫 렌더링 시 완성된 데이터를 보유.
+
+**Impact**
+불필요한 Re-render 제거. 첫 렌더링 사이클에서 완성된 UI 제공. 렌더링 횟수 50% 단축.
+
+---
+
+### 2. 번들 사이즈 과부하
+
+**Problem**
+단일 번들 파일로 초기 로딩 속도 저하. 사용하지 않는 페이지의 코드까지 즉시 다운로드됨.
+
+**Solution**
+라우트 기반 코드 스플리팅으로 페이지별 청크 분리. 라이브러리별 벤더 청크를 별도 분리하여 캐싱 효율 극대화. 번들 분석기(`rollup-plugin-visualizer`)로 분리 지점 식별 후 적용.
+
+**Impact**
+메인 번들 47% 감소 (443KB → 233KB). 초기 로딩 속도 개선 및 캐싱 효율 향상.
+
+---
+
+### 3. 이미지 네트워크 낭비 및 LCP 저하
+
+**Problem**
+뷰포트 밖 이미지가 초기 페이지 로드 시 즉시 다운로드되어 불필요한 네트워크 리소스 낭비. 히어로 이미지의 LCP 수치 저하.
+
+**Solution**
+뷰포트 외 이미지에 native `loading="lazy"` 적용. 히어로 이미지는 `fetchPriority="high"` · `loading="eager"` 설정. WebP 변환 및 반응형 `srcSet`으로 디바이스별 최적 이미지 제공.
+
+**Impact**
+초기 네트워크 요청을 뷰포트 내 콘텐츠로 한정. 불필요한 대용량 이미지 전송 감소. LCP 수치 개선.
 
 ---
 
 ## 📦 프로젝트 구조
 
-이 프로젝트는 Atomic Design 패턴을 충실히 따르며, 관심사 분리를 통해 유지보수성을 극대화했습니다.
-
 ```
-portfolio/
-├── docs/                  # 상세 아키텍처 및 컨벤션 문서 (02~04)
-├── public/                # 정적 자산 (이미지, 스킬 아이콘 등)
-├── src/
-│   ├── components/        # Atomic Design 기반 컴포넌트 (Atoms, Molecules, Organisms)
-│   ├── pages/             # 페이지 컴포넌트 및 라우트 뷰
-│   ├── routes/            # React Router 7 기반 라우팅 및 데이터 로더
-│   ├── hooks/             # 커스텀 훅 (비즈니스 로직 분리)
-│   ├── context/           # React Context를 이용한 전역 상태 관리
-│   ├── data/              # JSON 기반 정적 데이터 관리 (단일 진실 공급원)
-│   ├── types/             # TypeScript 타입/인터페이스 정의
-│   ├── styles/            # Tailwind CSS 4 전역 스타일 및 디자인 토큰
-│   └── lib/               # 유틸리티 함수 및 프로젝트 설정
-├── CLAUDE.md             # Claude Code 역할 정의 (테스트/리뷰)
-└── GEMINI.md             # Gemini CLI 역할 정의 (UI/로직 구현)
+src/
+├── components/   # Atomic Design (Atoms, Molecules, Organisms)
+├── pages/        # 페이지 컴포넌트
+├── routes/       # React Router 7 라우팅 및 Loader
+├── hooks/        # 커스텀 훅 (비즈니스 로직 분리)
+├── context/      # React Context 전역 상태
+├── data/         # Static JSON (단일 진실 공급원)
+├── types/        # TypeScript 타입 정의
+├── styles/       # Tailwind CSS 4 전역 스타일
+└── lib/          # 유틸리티 함수
 ```
-
----
-
-## 🛠️ 기술 스택
-
-### Frontend
-- **Core**: React 19, TypeScript 5.9, Vite 7
-- **Routing**: React Router 7 (Data API 및 Loader 활용)
-- **Styling**: Tailwind CSS 4 (v4 전용 문법 사용), shadcn/ui, Radix UI
-- **Animation**: Intersection Observer, CSS Transitions
-- **Icons**: Lucide React
-- **Data**: Static JSON (API 호출 없는 고성능 정적 데이터 구조)
-
-### Dev Tools & Testing
-- **AI Agents**: Gemini CLI (Implementation), Claude Code (Test & Review)
-- **Testing**: Vitest, React Testing Library
-- **Linting**: ESLint + TypeScript ESLint
-
----
-
-## 🤖 AI 협업 개발 구조 (AI-Driven Development)
-
-이 프로젝트는 두 가지 AI 에이전트의 강점을 극대화한 역할 분담 체계로 개발되었습니다. 상세 내용은 [AI 역할 분담 가이드](./docs/01_ai_responsibilities.md)를 참조하세요.
-
-### Gemini CLI (UI 구현 및 비즈니스 로직)
-- **Atoms ~ Pages**: 모든 UI 계층의 설계 및 구현
-- **Hooks & Context**: 비즈니스 로직 및 상태 관리 구현
-- **Architecture**: 컴포넌트 리팩토링 및 아키텍처 설계
-
-### Claude Code (테스트 및 코드 리뷰)
-- **Tests**: Vitest 기반 단위·통합 테스트 작성 (Gemini CLI 수정 금지 영역)
-- **Stories**: Storybook UI 시각 테스트 작성 (예정)
-- **Review**: 구현된 코드의 품질 리뷰 및 버그 리포트
-
----
-
-## 💡 주요 기술적 챌린지 (Case Study)
-
-이 프로젝트는 단순히 정보를 나열하는 것을 넘어, 실제 개발 과정에서 마주하는 성능 문제를 해결하는 과정을 담고 있습니다.
-
-1. **렌더링 워터폴 제거**: `useEffect` 기반의 지연 로딩을 React Router 7의 `loader`를 이용한 사전 로딩으로 개선하여 렌더링 횟수를 50% 단축했습니다.
-2. **이미지 최적화**: WebP 형식과 `srcSet`을 활용하여 디바이스별 최적 이미지를 제공하고, 뷰포트 진입 시점에만 로드되는 지연 로딩을 구현했습니다.
-3. **컴포넌트 강조 전략**: `HighlightedText` Molecule을 설계하여 정적인 텍스트 내의 핵심 키워드에 동적 링크와 시각적 강조를 부여했습니다.
-
----
-
-## 📚 상세 문서 가이드 (Architecture & Strategy)
-
-프로젝트의 세부 규칙은 `docs/` 폴더 내의 문서를 통해 관리됩니다.
-
-- **[01. 컴포넌트 구현 규칙]** : [./docs/01_component_implementation.md](./docs/01_component_implementation.md)
-- **[01. AI 역할 분담]** : [./docs/01_ai_responsibilities.md](./docs/01_ai_responsibilities.md)
-- **[02. 스타일링 방식]** : [./docs/02_styling_method.md](./docs/02_styling_method.md)
-- **[02. 디자인 시스템]** : [./docs/02_styling_design_system.md](./docs/02_styling_design_system.md)
-- **[03. 테스트 전략]** : [./docs/03_testing_overview.md](./docs/03_testing_overview.md)
-- **[03. 단위 테스트 (Vitest)]** : [./docs/03_testing_vitest.md](./docs/03_testing_vitest.md)
-- **[03. 통합 테스트 (RTL)]** : [./docs/03_testing_rtl.md](./docs/03_testing_rtl.md)
-- **[03. UI 테스트 (Storybook)]** : [./docs/03_testing_storybook.md](./docs/03_testing_storybook.md)
-- **[03. 테스트 제외 대상]** : [./docs/03_testing_exclusion.md](./docs/03_testing_exclusion.md)
-
----
-
-## 📄 라이선스
-
-이 프로젝트는 개인 포트폴리오 및 기술 증명 용도로 제작되었습니다.
