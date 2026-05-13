@@ -4,15 +4,13 @@ import type { IProject } from "@/types/project";
 import type { ISkill } from "@/types/skill";
 import { Badge } from "@/components/atoms/badge";
 import { Button } from "@/components/atoms/button";
-import { LinkButton } from "@/components/molecules/LinkButton";
+import { ProjectLinkButton } from "@/components/molecules/ProjectLinkButton";
 import { Card, CardContent } from "@/components/atoms/card";
 import { Separator } from "@/components/atoms/separator";
 import { SkillBadge } from "@/components/molecules/SkillBadge";
 import { MediaCarousel } from "@/components/molecules/MediaCarousel";
 import { imageBaseUrl } from "@/constants/path";
 import {
-  ExternalLink,
-  Github,
   ArrowLeft,
   CalendarDays,
   Zap,
@@ -65,20 +63,13 @@ function ProjectDetailPage() {
           </Button>
           <div className="flex gap-2">
             {project.deployUrl && (
-              <LinkButton
-                variant="default"
-                href={project.deployUrl}
-                target="_blank"
-              >
-                <ExternalLink className="h-4 w-4 sm:mr-1" />
-                <span className="hidden sm:inline">Live Demo</span>
-              </LinkButton>
+              <ProjectLinkButton url={project.deployUrl} type="deploy" />
             )}
             {project.githubUrl && (
-              <LinkButton href={project.githubUrl} target="_blank">
-                <Github className="h-4 w-4 sm:mr-1" />
-                <span className="hidden sm:inline">GitHub</span>
-              </LinkButton>
+              <ProjectLinkButton url={project.githubUrl} type="github" />
+            )}
+            {project.notionUrl && (
+              <ProjectLinkButton url={project.notionUrl} type="notion" />
             )}
           </div>
         </div>

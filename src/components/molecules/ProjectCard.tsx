@@ -6,10 +6,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/atoms/card";
-import { LinkButton } from "@/components/molecules/LinkButton";
+import { ProjectLinkButton } from "@/components/molecules/ProjectLinkButton";
 import { Badge } from "@/components/atoms/badge";
 import { SkillBadge } from "./SkillBadge";
-import { ExternalLink } from "lucide-react";
 import type { IProject } from "@/types/project";
 import type { ISkill } from "@/types/skill";
 import { useNavigate } from "react-router";
@@ -34,7 +33,7 @@ export function ProjectCard({
     .map((skillId) => allSkills.find((s) => s.id === skillId))
     .filter((s): s is ISkill => s !== undefined);
 
-  const hasLinks = project.deployUrl || project.githubUrl;
+  const hasLinks = project.deployUrl || project.githubUrl || project.notionUrl;
   const thumbnails = createProjectThumbnailSrc(project.id);
 
   return (
@@ -89,24 +88,13 @@ export function ProjectCard({
       {hasLinks && (
         <CardFooter className="gap-2">
           {project.deployUrl && (
-            <LinkButton
-              variant="default"
-              href={project.deployUrl}
-              target="_blank"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <ExternalLink />
-              Live Demo
-            </LinkButton>
+            <ProjectLinkButton url={project.deployUrl} type="deploy" stopPropagation />
           )}
           {project.githubUrl && (
-            <LinkButton
-              href={project.githubUrl}
-              target="_blank"
-              onClick={(e) => e.stopPropagation()}
-            >
-              GitHub
-            </LinkButton>
+            <ProjectLinkButton url={project.githubUrl} type="github" stopPropagation />
+          )}
+          {project.notionUrl && (
+            <ProjectLinkButton url={project.notionUrl} type="notion" stopPropagation />
           )}
         </CardFooter>
       )}
