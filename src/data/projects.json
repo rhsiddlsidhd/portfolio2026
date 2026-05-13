@@ -24,7 +24,7 @@
     "deployUrl": "https://new-invitation-5dib.vercel.app/",
     "githubUrl": "https://github.com/rhsiddlsidhd/new_invitation",
     "startDate": "2025-12-01",
-    "endDate": null,
+    "endDate": "2026-01-01",
     "role": "풀스택 개발 (기획, 설계, 구현, 배포)",
     "details": {
       "background": "종이 청첩장 대신 모바일에서 바로 확인할 수 있는 디지털 청첩장을 누구나 손쉽게 제작할 수 있는 서비스를 목표로, 템플릿 마켓플레이스·결제·대시보드를 포함한 풀스택 이커머스 플랫폼으로 발전시켰습니다.",
@@ -71,7 +71,7 @@
     "deployUrl": "https://portfolio2026-2nbc.vercel.app/",
     "githubUrl": "https://github.com/rhsiddlsidhd/portfolio2026",
     "startDate": "2026-01-10",
-    "endDate": null,
+    "endDate": "2026-02-01",
     "role": "프론트엔드 개발",
     "details": {
       "background": "자신을 가장 잘 드러낼 수 있는 공간인 포트폴리오를, 단순한 정보 나열이 아닌 '기술적 문제 해결'을 증명하는 무대로 만들고자 시작했습니다. CSR의 가벼움을 유지하면서도 성능 최적화를 극대화하는 것을 목표로 했습니다.",
@@ -111,6 +111,35 @@
             "img-lazy-loading-before.webp",
             "img-lazy-loading-after.webp"
           ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "weather-chatbot",
+    "name": "WeatherChatbot",
+    "title": "날씨 전문 챗봇",
+    "description": "Streamlit과 OpenAI API로 구현한 날씨 전문 챗봇. GPT가 실시간 데이터를 갖지 못한다는 LLM의 근본적 한계를 외부 API 컨텍스트 주입으로 해결하며, 메시지 배열·스트리밍 응답 흐름을 직접 구현한 첫 AI 프로젝트.",
+    "skills": ["python"],
+    "thumbnailUrl": "/images/projects/weather-chatbot/weather-chatbot_1280w.webp",
+    "githubUrl": "https://github.com/rhsiddlsidhd/weather_chatbot",
+    "startDate": "2026-05-13",
+    "endDate": "2026-05-13",
+    "role": "개인 학습 프로젝트",
+    "details": {
+      "background": "GPT가 실시간 데이터를 갖지 못한다는 LLM의 근본적 한계를 직접 해결해보며, 외부 API 데이터를 컨텍스트에 주입하는 RAG 패턴의 기초를 익히기 위해 시작했습니다.",
+      "keyFeatures": [
+        "사용자 입력에서 도시명을 감지해 OpenWeatherMap API를 호출하고 실시간 날씨 데이터를 메시지 컨텍스트에 주입",
+        "OpenAI 스트리밍 API(stream=True)로 GPT 응답을 실시간 출력",
+        "Streamlit session_state로 시스템 메시지를 포함한 대화 히스토리 관리",
+        "날씨 키워드·도시명 감지로 날씨 쿼리 여부를 판별하는 전처리 로직"
+      ],
+      "challenges": [
+        {
+          "id": "challenge-context-injection",
+          "problem": "GPT는 학습 데이터 기준으로만 답변하기 때문에 실시간 날씨 정보를 알 수 없습니다. 도시 이름만 입력하면 부정확하거나 오래된 정보를 반환하는 문제가 있었습니다.",
+          "solution": "사용자 입력에서 도시명을 추출해 OpenWeatherMap API로 실시간 날씨 데이터를 가져온 뒤, 해당 데이터를 GPT에 전달하는 메시지 본문에 직접 삽입(컨텍스트 주입)하는 방식으로 해결했습니다.",
+          "impact": "GPT가 실시간 날씨 데이터를 근거로 정확한 답변을 생성할 수 있게 되었습니다. 외부 데이터를 LLM 컨텍스트에 주입하는 RAG 패턴의 기본 흐름을 직접 구현하며 체득했습니다."
         }
       ]
     }
