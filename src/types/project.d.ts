@@ -14,6 +14,7 @@ export interface IProject {
   skills: string[]; // 사용된 기술 ID 목록
   deployUrl?: string | null; // 배포된 서비스 URL
   githubUrl?: string | null; // GitHub 저장소 URL
+  notionUrl?: string | null; // Notion 페이지 URL
   startDate?: string | null; // 프로젝트 시작일 (YYYY-MM-DD)
   endDate?: string | null; // 프로젝트 종료일 (YYYY-MM-DD, 선택 사항)
   role: string; // 담당 역할

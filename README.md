@@ -25,6 +25,7 @@
 | **Frontend** | TypeScript 5.9, React 19, Vite 7 |
 | **Routing** | React Router 7 (Data API · Loader) |
 | **Styling** | Tailwind CSS 4, shadcn/ui, Radix UI |
+| **Animation** | Native CSS (Intersection Observer, CSS Transitions) |
 | **State** | Zustand, React Context |
 | **Testing** | Vitest, React Testing Library |
 | **CI/CD** | GitHub, Vercel |
